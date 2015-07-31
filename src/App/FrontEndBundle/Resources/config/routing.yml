@@ -1,0 +1,26 @@
+#app_front_end_homepage:
+    #path:     /hello/{name}
+    #defaults: { _controller: AppFrontEndBundle:Default:index }
+app_front_end_wellcome:
+    path:     /
+    defaults: { _controller: AppFrontEndBundle:Page:index }
+app_front_end_send:
+    path:     /send
+    defaults: { _controller: AppFrontEndBundle:Page:send }
+app_front_end_pag:
+    path:     /pagin
+    defaults: { _controller: AppFrontEndBundle:Page:pagin }
+app_front_end_bread:
+    path:     /bread
+    defaults: { _controller: AppFrontEndBundle:Page:bread }
+app_front_end_multi:
+    path:     /multi/{_locale}
+    defaults:
+        _controller: AppFrontEndBundle:Page:multi
+        #_locale:     %locale%
+app_front_end_ajax:
+    path:     /ajax
+    defaults: { _controller: AppFrontEndBundle:Ajax:index }
+app_front_end_test:
+    path:  /test
+    defaults: { _controller: AppFrontEndBundle:Page:test}

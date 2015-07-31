@@ -1,0 +1,24 @@
+services:
+#    app_back_end.example:
+#        class: App\BackEndBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+ sonata.admin.user:
+         class: App\BackEndBundle\Admin\UserAdmin
+         tags:
+             - { name: sonata.admin, manager_type: orm, group: "Content", label: "User" }
+         arguments:
+             - ~
+             - Bundles\StoreBundle\Entity\Users
+             - ~
+         calls:
+             - [ setTranslationDomain, [BundlesStoreBundle]]
+ sonata.admin.image:
+         class: App\BackEndBundle\Admin\ImageAdmin
+         tags:
+             - { name: sonata.admin, manager_type: orm, group: "Content", label: "Image" }
+         arguments:
+             - ~
+             - Bundles\StoreBundle\Entity\Image
+             - ~
+         calls:
+             - [ setTranslationDomain, [BundlesStoreBundle]]

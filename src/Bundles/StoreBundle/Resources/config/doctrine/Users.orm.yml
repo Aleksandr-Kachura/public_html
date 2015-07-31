@@ -1,0 +1,30 @@
+Bundles\StoreBundle\Entity\Users:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        firstname:
+            type: string
+            length: '40'
+            nullable: true
+        lastname:
+            type: string
+            length: '50'
+            nullable: true
+        status:
+            type: string
+            length: '20'
+            nullable: true
+    oneToMany:
+        photo:
+            targetEntity: Photo
+            mappedBy: users
+            nullable: true
+
+
+    lifecycleCallbacks: {  }

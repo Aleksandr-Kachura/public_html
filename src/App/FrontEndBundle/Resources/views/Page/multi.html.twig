@@ -1,0 +1,17 @@
+{% extends "AppFrontEndBundle::layout.html.twig" %}
+
+{% block content %}
+
+    {{ 'Symfony2 is great' | trans }}
+    {{ app.request.getLocale() }}
+    <a href="{{ path('app_front_end_multi', { _locale: "ru" }) }}" class="nav4">Ру</a>
+    <a href="{{ path('app_front_end_multi', { _locale: "en" }) }}" class="nav4">Англ</a>
+    <select id="lang">
+        <option>ru</option>
+        <option>en</option>
+    </select>
+{% endblock %}
+{% block jscript %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ asset('bundles/appfrontend/js/1.js') }}"></script>
+{% endblock %}
