@@ -1,0 +1,3 @@
+#bundles_login_homepage:
+    #path:     /
+    #defaults: { _controller: BundlesLoginBundle:Default:index }

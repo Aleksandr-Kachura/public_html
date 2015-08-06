@@ -1,8 +1,7 @@
-
 {% extends "AppFrontEndBundle::layout.html.twig" %}
 
     {% block login %}
-
+        Страница фотографа
         <p>Главная <strong><a style="color:red" href="{{ path('app_front_end_wellcome') }}">main</a></strong></p>
 
 
@@ -13,7 +12,7 @@
 
     <!--/panel-->
     <div class="col-md-6">
-           <div class="panel panel-default">
+        <div class="panel panel-default">
             <div class="panel-body">
                 <div class="row">
                     <div class="col-xs-12 col-sm-8">
@@ -58,83 +57,33 @@
         </div><!--/panel-->
     </div>
 
-    <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <form enctype="multipart/form-data" action="{{ path('app_front_end_svImg') }}" method="post">
-                    <input id="file-0a" name="file" class="file" type="file">
-                    <!--  multiple data-min-file-count="1"-->
-                    <br>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                    <button type="reset" class="btn btn-default">Reset</button>
-                </form>
-            </div>
-        </div>
-    </div>
+    {% if photo is defined  %}
+        <div class=" col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-body">
 
-    <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <h3>Заказы</h3>
                     <table class="table">
                         <thead>
                         <tr>
                             <th>ID</th>
                             <th>Дата</th>
-                            <th>UserID</th>
-                            <th>Картинка</th>
+                            <th>Заказать Изображение</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {% for order in orders %}
-                            {% for ord in order %}
-                                <tr>
+                        {% for ph in photo %}
+                            <tr>
+                                <td>{{ ph.id }}</td>
+                                <td>{{ ph.date | date }}</td>
+                                <td><a href="{{ path('app_front_end_order', {'id' : ph.id}) }}"><img  height="42" width="42" src="{{ asset(ph.adress) }}"></a></td>
+                            </tr>
 
-                                        <td>{{ord.id}}</td>
-                                        <td>{{ord.date| date}}</td>
-                                        <td>{{ord.getUsers.id}}</td>
-                                        <td><a href="#"><img  height="42" width="42" src="{{ asset(ord.getPhoto.adress) }}"></a></td>
-                                </tr>
-                            {% endfor %}
                         {% endfor %}
 
                     </table>
-
+                </div>
             </div>
         </div>
-    </div>
-{% if orders is defined  %}
-{% endif %}
-
-
-
-{% if photo is defined  %}
-    <div class=" col-md-8">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <h3>Картинки</h3>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Дата</th>
-                        <th>Изображение</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for ph in photo %}
-                        <tr>
-                            <td>{{ ph.id }}</td>
-                            <td>{{ ph.date | date }}</td>
-                            <td><a href="#"><img  height="42" width="42" src="{{ asset(ph.adress) }}"></a></td>
-                        </tr>
-
-                    {% endfor %}
-
-                </table>
-            </div>
-        </div>
-    </div>
-{% endif %}
+    {% endif %}
 
 {% endblock %}

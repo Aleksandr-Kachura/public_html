@@ -1,7 +1,6 @@
-Bundles\StoreBundle\Entity\Users:
+Bundles\StoreBundle\Entity\User2:
     type: entity
     table: null
-
     id:
         id:
             type: integer
@@ -12,21 +11,25 @@ Bundles\StoreBundle\Entity\Users:
         firstname:
             type: string
             length: '40'
-            nullable: true
         lastname:
             type: string
             length: '50'
-            nullable: true
+        username:
+            type: string
+            length: '40'
+        password:
+            type: string
+            length: '150'
+        email:
+            type: string
+            length: '100'
         status:
             type: string
             length: '20'
+        img:
+            type: string
+            length: '255'
             nullable: true
-    oneToMany:
-        photo:
-            targetEntity: Photo
-            mappedBy: users
-            nullable: true
-        orders:
-            targetEntity: Orders
-            mappedBy: users
+
+
     lifecycleCallbacks: {  }

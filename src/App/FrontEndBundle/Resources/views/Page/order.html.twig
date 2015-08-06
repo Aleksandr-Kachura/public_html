@@ -1,0 +1,53 @@
+
+{% extends "AppFrontEndBundle::layout.html.twig" %}
+
+    {% block login %}
+
+        <p>Главная <strong><a style="color:red" href="{{ path('app_front_end_wellcome') }}">main</a></strong></p>
+
+
+    {% endblock %}
+
+
+{% block content %}
+
+    <!--/panel-->
+    <div class="col-md-6">
+           <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4 text-center">
+                        <img src="{{ asset(photo.adress) }}" alt="" class="center-block img-circle img-responsive">
+                        <ul class="list-inline ratings text-center" title="Ratings">
+                            <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
+                            <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
+                            <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
+                            <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
+                            <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
+                        </ul>
+                    </div><!--/col-->
+                    <div class="col-xs-12 col-sm-8">
+
+                             <img  height="200" width="200" src="{{ asset(photo.adress) }}">
+
+
+
+                    </div><!--/col-->
+                </div><!--/row-->
+            </div><!--/panel-body-->
+        </div><!--/panel-->
+    </div>
+     <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form action="{{ path('app_front_end_getOrder') }}" method="post">
+                    <br>
+                    <button type="submit" class="btn btn-primary">Заказать</button>
+                    <input type="hidden" name="photo" value="{{photo.id}}">
+                    <input type="hidden" name="user" value="{{user.email}}">
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

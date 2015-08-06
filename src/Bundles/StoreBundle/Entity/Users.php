@@ -12,11 +12,6 @@ class Users extends BaseUser
 {
 
 
-    /**
-     * @var integer
-     */
-    protected  $id;
-
 
     public function __construct()
     {
@@ -26,17 +21,9 @@ class Users extends BaseUser
 
 
     /**
-     * Constructor
-     */
-    /*public function __construct()
-    {
-        $this->photo = new \Doctrine\Common\Collections\ArrayCollection();
-    }*/
-
-    /**
      * @var integer
      */
-  //  private $id;
+    protected  $id;
 
     /**
      * @var string
@@ -51,7 +38,17 @@ class Users extends BaseUser
     /**
      * @var string
      */
-    protected  $status;
+    private $status;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $photo;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $orders;
 
 
     /**
@@ -132,12 +129,6 @@ class Users extends BaseUser
     {
         return $this->status;
     }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $photo;
-
-
 
     /**
      * Add photo
@@ -170,5 +161,38 @@ class Users extends BaseUser
     public function getPhoto()
     {
         return $this->photo;
+    }
+
+    /**
+     * Add orders
+     *
+     * @param \Bundles\StoreBundle\Entity\Orders $orders
+     * @return Users
+     */
+    public function addOrder(\Bundles\StoreBundle\Entity\Orders $orders)
+    {
+        $this->orders[] = $orders;
+
+        return $this;
+    }
+
+    /**
+     * Remove orders
+     *
+     * @param \Bundles\StoreBundle\Entity\Orders $orders
+     */
+    public function removeOrder(\Bundles\StoreBundle\Entity\Orders $orders)
+    {
+        $this->orders->removeElement($orders);
+    }
+
+    /**
+     * Get orders
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getOrders()
+    {
+        return $this->orders;
     }
 }

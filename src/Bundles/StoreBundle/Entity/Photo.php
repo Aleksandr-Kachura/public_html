@@ -9,6 +9,13 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Photo
 {
+
+    public function __construct()
+    {
+         $this->setDate(new \DateTime());
+    }
+
+
     /**
      * @var integer
      */
@@ -135,5 +142,47 @@ class Photo
     public function getUsers()
     {
         return $this->users;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $orders;
+
+
+    /**
+     * Add orders
+     *
+     * @param \Bundles\StoreBundle\Entity\Orders $orders
+     * @return Photo
+     */
+    public function addOrder(\Bundles\StoreBundle\Entity\Orders $orders)
+    {
+        $this->orders[] = $orders;
+
+        return $this;
+    }
+
+    /**
+     * Remove orders
+     *
+     * @param \Bundles\StoreBundle\Entity\Orders $orders
+     */
+    public function removeOrder(\Bundles\StoreBundle\Entity\Orders $orders)
+    {
+        $this->orders->removeElement($orders);
+    }
+
+    /**
+     * Get orders
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getOrders()
+    {
+        return $this->orders;
     }
 }

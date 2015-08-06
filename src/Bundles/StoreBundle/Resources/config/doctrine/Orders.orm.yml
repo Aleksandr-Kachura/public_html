@@ -1,0 +1,27 @@
+Bundles\StoreBundle\Entity\Orders:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        date:
+            type: datetime
+    manyToOne:
+        users:
+            targetEntity: Users
+            inversedBy: orders
+            joinColumn:
+              name: userId
+              referencedColumnName: id
+        photo:
+            targetEntity: Photo
+            inversedBy: orders
+            joinColumn:
+              name: photoId
+              referencedColumnName: id
+
+    lifecycleCallbacks: {  }

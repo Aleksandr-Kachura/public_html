@@ -4,9 +4,6 @@
 app_front_end_wellcome:
     path:     /
     defaults: { _controller: AppFrontEndBundle:Page:index }
-app_front_end_send:
-    path:     /send
-    defaults: { _controller: AppFrontEndBundle:Page:send }
 app_front_end_pag:
     path:     /pagin
     defaults: { _controller: AppFrontEndBundle:Page:pagin }
@@ -14,7 +11,7 @@ app_front_end_bread:
     path:     /bread
     defaults: { _controller: AppFrontEndBundle:Page:bread }
 app_front_end_multi:
-    path:     /multi/{_locale}
+    path:     /multi
     defaults:
         _controller: AppFrontEndBundle:Page:multi
         #_locale:     %locale%
@@ -23,4 +20,30 @@ app_front_end_ajax:
     defaults: { _controller: AppFrontEndBundle:Ajax:index }
 app_front_end_test:
     path:  /test
-    defaults: { _controller: AppFrontEndBundle:Page:test}
+    defaults: { _controller: AppFrontEndBundle:Page:test }
+app_front_end_svImg:
+    path: /sv
+    defaults: { _controller: AppFrontEndBundle:Image:save }
+    requirements:
+           _method: POST|GET
+app_front_end_search:
+    path: /search
+    defaults: { _controller: AppFrontEndBundle:Page:search }
+    requirements:
+           _method: POST|GET
+app_front_end_catalog:
+    path: /catalog
+    defaults: { _controller: AppFrontEndBundle:Page:catalog }
+    requirements:
+           _method: POST|GET
+app_front_end_photograph:
+    path: /photograph/{id}
+    defaults: { _controller: AppFrontEndBundle:Page:photograph }
+    requirements:
+           _method: POST|GET
+app_front_end_order:
+      path: /order/{id}
+      defaults: { _controller: AppFrontEndBundle:Page:order}
+app_front_end_getOrder:
+      path: /gorder
+      defaults: { _controller: AppFrontEndBundle:Page:getOrder}

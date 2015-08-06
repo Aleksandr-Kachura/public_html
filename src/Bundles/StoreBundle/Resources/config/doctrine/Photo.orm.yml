@@ -1,6 +1,7 @@
 Bundles\StoreBundle\Entity\Photo:
     type: entity
-    table: null
+    table: photo
+    repositoryClass: Bundles\StoreBundle\Entity\Repository\ImageRepository
     id:
         id:
             type: integer
@@ -20,5 +21,8 @@ Bundles\StoreBundle\Entity\Photo:
           joinColumn:
             name: userId
             referencedColumnName: id
-
+    oneToMany:
+        orders:
+            targetEntity: Orders
+            mappedBy: photo
     lifecycleCallbacks: {  }
