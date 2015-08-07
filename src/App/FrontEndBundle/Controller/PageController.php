@@ -13,6 +13,7 @@ class PageController extends Controller
     public function indexAction()
     {
         $user=$this->getUser();
+        dump($user->getId());
         if(is_null($user))
         {
             return $this->render('AppFrontEndBundle:Page:index.html.twig');

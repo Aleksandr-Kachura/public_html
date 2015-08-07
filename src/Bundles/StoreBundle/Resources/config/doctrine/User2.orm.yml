@@ -19,7 +19,10 @@ Bundles\StoreBundle\Entity\User2:
             length: '40'
         password:
             type: string
-            length: '150'
+            length: '255'
+        salt:
+            type: string
+            length: 255
         email:
             type: string
             length: '100'

@@ -1,0 +1,22 @@
+{% extends 'EnvBrazilLoginBundle::base_.html.twig' %}
+
+{% block css %}
+    <link href="{{ asset('bundles/envbrazillogin/css/andrew.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<section class="reg-popup">
+        <a href="{{path('_security_login')}}" class="return-site">Voltar</a>   
+        <article class="reg-popup-block">  
+            <h3>BEM-VINDO!</h3>
+            {% if errors %}
+                {% for error in errors %}
+                    {{ error.message }}
+                {% endfor %}
+            {% endif %}
+            {% if msg %}
+                {{msg|raw}}
+            {% endif %}
+        </article>
+</section>
+{% endblock %}

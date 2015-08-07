@@ -3,15 +3,33 @@
 namespace Bundles\StoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User2
  */
-class User2
+class User2 implements UserInterface
 {
+    public  function getSalt()
+    {
+        return $this->salt;
+    }
+
+    public function getRoles()
+    {
+        return array('ROLE_USER');
+    }
+    public function eraseCredentials()
+    {
+
+    }
+
+
     /**
      * @var integer
      */
+
+
     private $id;
 
     /**
@@ -219,5 +237,23 @@ class User2
     public function getImg()
     {
         return $this->img;
+    }
+    /**
+     * @var string
+     */
+    protected $salt;
+
+
+    /**
+     * Set salt
+     *
+     * @param string $salt
+     * @return User2
+     */
+    public function setSalt($salt)
+    {
+        $this->salt = $salt;
+
+        return $this;
     }
 }

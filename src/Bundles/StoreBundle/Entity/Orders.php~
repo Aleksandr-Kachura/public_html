@@ -128,4 +128,17 @@ class Orders
     {
         return $this->photo;
     }
+
+    /**
+     * Set photo
+     *
+     * @param \Bundles\StoreBundle\Entity\Photo $photo
+     * @return Orders
+     */
+    public function setPhoto(\Bundles\StoreBundle\Entity\Photo $photo = null)
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
 }

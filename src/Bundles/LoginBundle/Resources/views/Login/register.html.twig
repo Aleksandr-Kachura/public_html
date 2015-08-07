@@ -1,0 +1,42 @@
+{% extends 'AppFrontEndBundle::layout.html.twig' %}
+
+ {% block title %} <title>Photo Gallery</title> {% endblock %}
+
+
+{% block content %}
+    <div id="registration3" class="popup_block" >
+        <form id="RegisterUserForm" role="form" action="{{ path('bundles_login_reg') }}" method="post" {{ form_enctype(form) }}>
+            <div class="form-group">
+                {{ form_row(form.firstname) }}
+            </div>
+            <div class="form-group">
+
+                {{ form_row(form.lastname) }}
+
+            </div>
+            <div class="form-group">
+                {{ form_row(form.email) }}
+            </div>
+            <div class="form-group">
+                <p><b>Роль</b></p>
+                <select name="status">
+                    <option selected value="photo">Фотограф</option>
+                    <option value="seller">Покупатель</option>
+                </select>
+            </div>
+            <div class="form-group">
+                {{ form_row(form.username) }}
+            </div>
+                {#{{ form_row(form.jabber) }}#}
+            <div class="form-group">
+                {{ form_row(form.password) }}
+            </div>
+            {# {{ form_rest(form) }} #}
+
+                <input name="lang" type="hidden" value="en"/>
+                <button type="submit" class="btn btn-success">Войти</button>
+
+            {{ form_rest(form) }}
+        </form>
+    </div>
+{%endblock %}

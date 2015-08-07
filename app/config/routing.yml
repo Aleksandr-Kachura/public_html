@@ -1,6 +1,6 @@
-#bundles_login:
-    #resource: "@BundlesLoginBundle/Resources/config/routing.yml"
-    #prefix:   /
+bundles_login:
+    resource: "@BundlesLoginBundle/Resources/config/routing.yml"
+    prefix:   /
 
 app_front_end:
     resource: "@AppFrontEndBundle/Resources/config/routing.yml"
