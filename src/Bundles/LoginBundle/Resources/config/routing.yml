@@ -11,5 +11,5 @@ bundles_login_form:
 bundles_login_security_check:
     pattern:  /login_check
 
-_security_logout:
+bundles_login_security_logout:
     pattern:  /logout

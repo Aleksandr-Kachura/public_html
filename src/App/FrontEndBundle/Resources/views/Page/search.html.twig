@@ -32,11 +32,14 @@
                         </thead>
                         <tbody>
                         {% for user in users %}
-                            <tr>
-                                <td>{{ user.id }}</td>
-                                <td>{{ user.login }}</td>
-                                <td><a href="{{ path('app_front_end_wellcome', {'id' : ph.id}) }}">Страница</a></td>
-                            </tr>
+
+                                <tr>
+                                    <td>{{ user.id }}</td>
+                                    <td>{{ user.login }}</td>
+                                    <td><a href="{{ path('app_front_end_wellcome', {'id' : ph.id}) }}">Страница</a></td>
+                                </tr>
+
+
 
                         {% endfor %}
 

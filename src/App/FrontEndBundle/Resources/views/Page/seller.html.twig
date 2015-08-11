@@ -1,9 +1,10 @@
+
 {% extends "AppFrontEndBundle::layout.html.twig" %}
 
     {% block login %}
-        Страница фотографа
-        <p>Главная <strong><a style="color:red" href="{{ path('app_front_end_wellcome') }}">main</a></strong></p>
 
+        <p>Главная <strong><a style="color:red" href="{{ path('app_front_end_wellcome') }}">main</a></strong></p>
+        <p>Выход <strong><a style="color:red" href="{{ path('bundles_login_security_logout') }}">exit</a></strong></p>
 
     {% endblock %}
 
@@ -12,11 +13,11 @@
 
     <!--/panel-->
     <div class="col-md-6">
-        <div class="panel panel-default">
+           <div class="panel panel-default">
             <div class="panel-body">
                 <div class="row">
                     <div class="col-xs-12 col-sm-8">
-                        <h2>{{user.getFirstname }} {{ user.getLastname }}</h2>
+                        <h2>{{ user.Firstname }} {{ user.Lastname }}</h2>
                         <p><strong>About: </strong> Web Designer / UI. </p>
                         <p><strong>Hobbies: </strong> Read, out with friends, listen to music, draw and learn new things. </p>
                         <p><strong>Skills: </strong>
@@ -57,33 +58,6 @@
         </div><!--/panel-->
     </div>
 
-    {% if photo is defined  %}
-        <div class=" col-md-8">
-            <div class="panel panel-default">
-                <div class="panel-body">
 
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Дата</th>
-                            <th>Заказать Изображение</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for ph in photo %}
-                            <tr>
-                                <td>{{ ph.id }}</td>
-                                <td>{{ ph.date | date }}</td>
-                                <td><a href="{{ path('app_front_end_order', {'id' : ph.id}) }}"><img  height="42" width="42" src="{{ asset(ph.adress) }}"></a></td>
-                            </tr>
-
-                        {% endfor %}
-
-                    </table>
-                </div>
-            </div>
-        </div>
-    {% endif %}
 
 {% endblock %}

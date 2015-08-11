@@ -256,4 +256,88 @@ class User2 implements UserInterface
 
         return $this;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $photo;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $orders;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->photo = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->orders = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add photo
+     *
+     * @param \Bundles\StoreBundle\Entity\Photo $photo
+     * @return User2
+     */
+    public function addPhoto(\Bundles\StoreBundle\Entity\Photo $photo)
+    {
+        $this->photo[] = $photo;
+
+        return $this;
+    }
+
+    /**
+     * Remove photo
+     *
+     * @param \Bundles\StoreBundle\Entity\Photo $photo
+     */
+    public function removePhoto(\Bundles\StoreBundle\Entity\Photo $photo)
+    {
+        $this->photo->removeElement($photo);
+    }
+
+    /**
+     * Get photo
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    /**
+     * Add orders
+     *
+     * @param \Bundles\StoreBundle\Entity\Orders $orders
+     * @return User2
+     */
+    public function addOrder(\Bundles\StoreBundle\Entity\Orders $orders)
+    {
+        $this->orders[] = $orders;
+
+        return $this;
+    }
+
+    /**
+     * Remove orders
+     *
+     * @param \Bundles\StoreBundle\Entity\Orders $orders
+     */
+    public function removeOrder(\Bundles\StoreBundle\Entity\Orders $orders)
+    {
+        $this->orders->removeElement($orders);
+    }
+
+    /**
+     * Get orders
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getOrders()
+    {
+        return $this->orders;
+    }
 }

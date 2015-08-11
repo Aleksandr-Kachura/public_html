@@ -33,6 +33,13 @@ Bundles\StoreBundle\Entity\User2:
             type: string
             length: '255'
             nullable: true
-
+    oneToMany:
+        photo:
+            targetEntity: Photo
+            mappedBy: user2
+            nullable: true
+        orders:
+            targetEntity: Orders
+            mappedBy: user2
 
     lifecycleCallbacks: {  }

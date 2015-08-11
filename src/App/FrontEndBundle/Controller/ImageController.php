@@ -20,6 +20,7 @@ class ImageController extends Controller
         $file=$request->files->get("file");
        //  dump($file);
         $user=$this->getUser();
+        dump($user);
         if(is_null($user))
         {
             return $this->redirectToRoute("app_front_end_multi");
@@ -37,7 +38,8 @@ class ImageController extends Controller
         $filename = $basepath. $filename;
         $photo = new Photo();
         $photo->setAdress('/'.$filename);
-        $photo->setUsers($user);
+       // $photo->setUsers($user);
+        $photo->setUser2($user);
         $em->persist($photo);
         $em->flush();
 

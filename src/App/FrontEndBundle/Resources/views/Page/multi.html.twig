@@ -4,7 +4,7 @@
     {% block login %}
 
         <p>Главная <strong><a style="color:red" href="{{ path('app_front_end_wellcome') }}">main</a></strong></p>
-
+        <p>Выход <strong><a style="color:red" href="{{ path('bundles_login_security_logout') }}">exit</a></strong></p>
 
     {% endblock %}
 
@@ -17,7 +17,7 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-xs-12 col-sm-8">
-                        <h2>Mike Anamendolla</h2>
+                        <h2>{{ user.Firstname }} {{ user.Lastname }}</h2>
                         <p><strong>About: </strong> Web Designer / UI. </p>
                         <p><strong>Hobbies: </strong> Read, out with friends, listen to music, draw and learn new things. </p>
                         <p><strong>Skills: </strong>
@@ -71,10 +71,11 @@
             </div>
         </div>
     </div>
-
+{% if orders is defined  %}
     <div class="col-md-6">
         <div class="panel panel-default">
             <div class="panel-body">
+                <form action="{{ path('app_front_end_approveOrder') }}" method="post" >
                 <h3>Заказы</h3>
                     <table class="table">
                         <thead>
@@ -83,27 +84,34 @@
                             <th>Дата</th>
                             <th>UserID</th>
                             <th>Картинка</th>
+                            <th>Выбрать</th>
                         </tr>
                         </thead>
                         <tbody>
                         {% for order in orders %}
                             {% for ord in order %}
+                                {% if ord.status == "panding" %}
                                 <tr>
 
                                         <td>{{ord.id}}</td>
                                         <td>{{ord.date| date}}</td>
-                                        <td>{{ord.getUsers.id}}</td>
+                                        <td>{{ord.getUser2.id}}</td>
                                         <td><a href="#"><img  height="42" width="42" src="{{ asset(ord.getPhoto.adress) }}"></a></td>
+                                        <td><input name="checkbox[]" type="checkbox" value="{{ord.id}}" /></td>
                                 </tr>
+                                {% endif %}
                             {% endfor %}
                         {% endfor %}
 
-                    </table>
 
+                    </table>
+                <button type="submit" name="button" value="approved" class="btn btn-primary">Подтвердить</button>
+                <button type="submit" name="button" value="cansel" class="btn btn-default">Удалить</button>
+                </form>
             </div>
         </div>
     </div>
-{% if orders is defined  %}
+
 {% endif %}
 
 

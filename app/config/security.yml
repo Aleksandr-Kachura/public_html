@@ -65,7 +65,7 @@ security:
                 check_path: /login_check
                 login_path: /log
             logout:
-                path: _security_logout
+                path: bundles_login_security_logout
                 target: /
             security: true
             anonymous: true

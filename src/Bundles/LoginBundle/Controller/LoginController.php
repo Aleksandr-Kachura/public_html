@@ -27,7 +27,8 @@ class LoginController extends Controller
                 $status = $request->get('status');
                 $this->create($form,$status);
 
-                return $this->redirect($this->generateUrl('bundles_login_create1',array('form'=>$form)));
+                //return $this->redirect($this->generateUrl('bundles_login_create1',array('form'=>$form)));
+                return $this->redirectToRoute("bundles_login_form");
             }
         }
         return $this->render('BundlesLoginBundle:Login:register.html.twig',array('form'=>$form->createView()));

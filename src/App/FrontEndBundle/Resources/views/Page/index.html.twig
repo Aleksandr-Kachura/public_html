@@ -5,7 +5,7 @@
         {% if user is defined %}
             <p>Профиль <strong><a style="color:red" href="{{ path('app_front_end_multi') }}">Ссылка</a></strong></p>
         {% else %}
-            <p>Пока вы можете войти в личный кабинет <strong><a style="color:red" href="{{ path('fos_user_security_login') }}">login</a></strong></p>
+            <p>Пока вы можете войти в личный кабинет <strong><a style="color:red" href="{{ path('bundles_login_form') }}">login</a></strong></p>
        {% endif %}
         <p>Поиск фотографа <strong><a style="color:red" href="{{ path('app_front_end_search') }}">Поиск</a></strong></p>
         <p>Каталог фотографов <strong><a style="color:red" href="{{ path('app_front_end_catalog') }}">Переход</a></strong></p>

@@ -21,6 +21,12 @@ Bundles\StoreBundle\Entity\Photo:
           joinColumn:
             name: userId
             referencedColumnName: id
+        user2:
+          targetEntity: User2
+          inversedBy: photo
+          joinColumn:
+            name: user2Id
+            referencedColumnName: id
     oneToMany:
         orders:
             targetEntity: Orders

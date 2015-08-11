@@ -21,12 +21,13 @@
                         </thead>
                         <tbody>
                         {% for user in users %}
-                            <tr>
-                                <td>{{ user.id }}</td>
-                                <td>{{ user.username }}</td>
-                                <td><a href="{{ path('app_front_end_photograph', {'id' :user.id}) }}">Страница</a></td>
-                            </tr>
-
+                            {% if user.id != curUser.getId %}
+                                <tr>
+                                    <td>{{ user.id }}</td>
+                                    <td>{{ user.username }}</td>
+                                    <td><a href="{{ path('app_front_end_photograph', {'id' :user.id}) }}">Страница</a></td>
+                                </tr>
+                            {% endif %}
                         {% endfor %}
 
                     </table>

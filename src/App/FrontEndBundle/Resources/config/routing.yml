@@ -47,3 +47,9 @@ app_front_end_order:
 app_front_end_getOrder:
       path: /gorder
       defaults: { _controller: AppFrontEndBundle:Page:getOrder}
+app_front_end_approveOrder:
+      path: /approve
+      defaults: { _controller: AppFrontEndBundle:Page:approveOrder}
+      requirements:
+             _method: POST|GET
+
