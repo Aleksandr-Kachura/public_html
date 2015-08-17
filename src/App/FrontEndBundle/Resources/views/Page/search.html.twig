@@ -35,8 +35,8 @@
 
                                 <tr>
                                     <td>{{ user.id }}</td>
-                                    <td>{{ user.login }}</td>
-                                    <td><a href="{{ path('app_front_end_wellcome', {'id' : ph.id}) }}">Страница</a></td>
+                                    <td>{{ user.username }}</td>
+                                    <td><a href="{{ path('app_front_end_photograph', {'id' : user.id}) }}">Страница</a></td>
                                 </tr>
 
 

@@ -2,3 +2,11 @@ services:
 #    app_back_end.example:
 #        class: App\BackEndBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
+    site_bundle.service:
+              class:  App\FrontEndBundle\Service\Srv
+              arguments:
+                  - @service_container
+    twig.extension.intl:
+        class: Twig_Extensions_Extension_Intl
+        tags:
+            - { name: twig.extension }

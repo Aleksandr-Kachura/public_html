@@ -169,4 +169,32 @@ class Orders
     {
         return $this->user2;
     }
+    /**
+     * @var string
+     */
+    private $status;
+
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     * @return Orders
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string 
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
 }

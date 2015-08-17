@@ -20,15 +20,27 @@
                         </tr>
                         </thead>
                         <tbody>
-                        {% for user in users %}
-                            {% if user.id != curUser.getId %}
-                                <tr>
-                                    <td>{{ user.id }}</td>
-                                    <td>{{ user.username }}</td>
-                                    <td><a href="{{ path('app_front_end_photograph', {'id' :user.id}) }}">Страница</a></td>
-                                </tr>
-                            {% endif %}
-                        {% endfor %}
+                        {% if curUser is defined  %}
+                            {% for user in users %}
+
+                                   {% if user.id != curUser.getId %}
+                                        <tr>
+                                            <td>{{ user.id }}</td>
+                                            <td>{{ user.username }}</td>
+                                            <td><a href="{{ path('app_front_end_photograph', {'id' :user.id}) }}">Страница</a></td>
+                                        </tr>
+                                   {% endif %}
+
+                            {% endfor %}
+                        {% else %}
+                            {% for user in users %}
+                                    <tr>
+                                        <td>{{ user.id }}</td>
+                                        <td>{{ user.username }}</td>
+                                        <td><a href="{{ path('app_front_end_photograph', {'id' :user.id}) }}">Страница</a></td>
+                                    </tr>
+                            {% endfor %}
+                        {% endif %}
 
                     </table>
                 </div>

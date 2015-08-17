@@ -17,7 +17,7 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-xs-12 col-sm-4 text-center">
-                        <img src="{{ asset(photo.adress) }}" alt="" class="center-block img-circle img-responsive">
+                        <img src="{{ asset(photo.adress) | imagine_filter('my_thumb') }}" alt="" class="center-block img-circle img-responsive">
                         <ul class="list-inline ratings text-center" title="Ratings">
                             <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
                             <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
@@ -28,7 +28,7 @@
                     </div><!--/col-->
                     <div class="col-xs-12 col-sm-8">
 
-                             <img  height="200" width="200" src="{{ asset(photo.adress) }}">
+                             <img  height="200" width="200" src="{{ asset(photo.adress)  | imagine_filter('my_thumb')}}">
 
 
 

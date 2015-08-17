@@ -95,8 +95,8 @@
 
                                         <td>{{ord.id}}</td>
                                         <td>{{ord.date| date}}</td>
-                                        <td>{{ord.getUser2.id}}</td>
-                                        <td><a href="#"><img  height="42" width="42" src="{{ asset(ord.getPhoto.adress) }}"></a></td>
+                                        <td><a href="{{path('app_front_end_seller', {'id' : ord.getUser2.id})}}">{{ ord.getUser2.id}}</td>
+                                        <td><a href="{{ asset(ord.getPhoto.adress) }}"><img  height="42" width="42" src="{{ asset(ord.getPhoto.adress) }}"></a></td>
                                         <td><input name="checkbox[]" type="checkbox" value="{{ord.id}}" /></td>
                                 </tr>
                                 {% endif %}

@@ -1,6 +1,7 @@
 Bundles\StoreBundle\Entity\User2:
     type: entity
     table: null
+    repositoryClass: Bundles\StoreBundle\Entity\User2Repository
     id:
         id:
             type: integer

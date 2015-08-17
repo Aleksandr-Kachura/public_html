@@ -91,7 +91,7 @@ class LoginController extends Controller
     public function createAction(Request $request)
     {
         $form=$request->get('form');
-        dump($form);
+        //dump($form);
         $em=$this->getDoctrine()->getEntityManager();
         $use=$em->getRepository('EnvBrazilLoginBundle:Users');
         $users=$use->findByUsername($newUser['username']);

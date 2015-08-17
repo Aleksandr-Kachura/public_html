@@ -98,9 +98,32 @@ sonata_block:
     sonata.admin.block.admin_list:
         contexts:   [admin]
 
+liip_imagine:
+    resolvers:
+       default:
+           web_path: ~
+    filter_sets:
+        cache: ~
+        my_thumb:
+            quality: 75
+            filters:
+                thumbnail: { size: [120, 90], mode: outbound }
+
+#hwi_oauth:
+ #   firewall_name:         secured_area
+  #  resource_owners:
+   #     facebook:
+    #        type:          facebook
+     #       client_id:     <client_id>
+      #      client_secret: <client_secret>
+       #     scope:         "email"
+        #    options:
+         #       display: popup #dialog is optimized for popup window
+
 
 sonata_admin:
     dashboard:
         blocks:
           #  - { position: left, type: sonata_admin_doctrine_phpcr.tree_block }
            - { position: left, type: sonata.admin.block.admin_list }
+
