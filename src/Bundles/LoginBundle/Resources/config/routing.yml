@@ -13,3 +13,9 @@ bundles_login_security_check:
 
 bundles_login_security_logout:
     pattern:  /logout
+
+bundles_login_fbuserinfo:
+    path:     /fbuserinfo
+    defaults: { _controller: BundlesLoginBundle:Login:fbUserInfo}
+    requirements:
+      _method: GET

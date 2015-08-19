@@ -29,7 +29,8 @@
         "sonata-project/user-bundle": "*",
 
         "liip/imagine-bundle":"*",
-        "twig/extensions": "^1.2"
+        "twig/extensions": "^1.2",
+        "facebook/php-sdk-v4": "^5.0"
 
 
     },

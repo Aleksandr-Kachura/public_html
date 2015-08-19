@@ -2,12 +2,17 @@
 
 namespace Bundles\LoginBundle\Controller;
 
+use Facebook\Exceptions\FacebookResponseException;
+use Facebook\Exceptions\FacebookSDKException;
+use Facebook\Facebook;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
 use Symfony\Component\Security\Core\SecurityContext;
 use Bundles\LoginBundle\Form\Type\Register;
 use Bundles\StoreBundle\Entity\User2;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
 
 class LoginController extends Controller
 {
@@ -74,6 +79,7 @@ class LoginController extends Controller
     }
 
 
+    // вывод формы в логине
     public function formLoginAction()
     {
         if ($this->get('request')->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
@@ -88,8 +94,11 @@ class LoginController extends Controller
         ));
     }
 
+
+    // какая то  шняга, но убрать жалко
     public function createAction(Request $request)
     {
+        session_start();
         $form=$request->get('form');
         //dump($form);
         $em=$this->getDoctrine()->getEntityManager();
@@ -104,6 +113,61 @@ class LoginController extends Controller
             return $this->redirect($this->generateUrl('bundles_login_create'));
         }
         return $this->render('BundlesLoginBundle:Login:register.html.twig',array('form'=>$form->createView()));
+    }
+
+
+    public function fbUserInfoAction(Request $request)
+    {
+
+        $fb = new Facebook([
+            'app_id' => '1475718472749501',
+            'app_secret' => 'a67fee083c27186f52030ff3a72f24f9',
+            'default_graph_version' => 'v2.4',
+            //'default_access_token' => '{access-token}', // optional
+        ]);
+
+
+        try {
+            // Get the Facebook\GraphNodes\GraphUser object for the current user.
+            // If you provided a 'default_access_token', the '{access-token}' is optional.
+            //$response = $fb->get('/me', '{access-token}');
+            $helper = $fb->getJavaScriptHelper();
+            $accessToken = $helper->getAccessToken();
+
+            $fb->setDefaultAccessToken((string) $accessToken);
+
+            $response = $fb->get('/me?locale=en_US&fields=name,email');
+            $userNode = $response->getGraphUser();
+           // dump($userNode->getField('email'));
+            $email = $userNode->getField('email');
+            dump($userNode->getField('name'));
+            $name =$userNode->getField('name');
+            $arr = explode("@",$email);
+            $login =$arr[0];
+            $arr2 = explode(" ",$name);
+            $firstname = $arr2[0];
+            $lastname = $arr2[1];
+            /*dump($firstname);
+            dump($lastname);
+            dump($login);*/
+            return new JsonResponse(['firstname'=>$firstname,'lastname'=>$lastname,'login'=> $login,'email'=> $email ]);
+            /* dump($userNode->getField('email'));
+            dump( $userNode['email']);*/
+
+
+
+        } catch(FacebookResponseException  $e) {
+            // When Graph returns an error
+            echo 'Graph returned an error: ' . $e->getMessage();
+            exit;
+        } catch(FacebookSDKException $e) {
+            // When validation fails or other local issues
+            echo 'Facebook SDK returned an error: ' . $e->getMessage();
+            exit;
+        }
+
+
+        exit;
     }
 
 

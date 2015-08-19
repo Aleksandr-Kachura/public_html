@@ -40,43 +40,49 @@
         </form>
     </div>
     <div id="fb-root"></div>
-  <!--  <input type="button" value="Login" onclick="Login();" />
+    <p><a href="#" onClick="logInWithFacebook()">Facebook registration</a></p>
     <script>
-        window.fbAsyncInit = function () {
+        var pathfilter="{{ path('bundles_login_fbuserinfo') }}";
+        logInWithFacebook = function() {
+            FB.login(function(response) {
+                if (response.authResponse) {
+                    console.log('You are logged in & cookie set!');
+                    // Now you can redirect the user or do an AJAX request to
+                    // a PHP script that grabs the signed request from the cookie.
+                    $.ajax({
+                        type: "GET",
+                        url: pathfilter,
+                        success: function(data)
+                        {
+                           document.getElementById("bundles_storebundle_user2_firstname").value = data.firstname ;
+                           document.getElementById("bundles_storebundle_user2_lastname").value = data.lastname ;
+                           document.getElementById("bundles_storebundle_user2_email").value = data.email ;
+                            document.getElementById("bundles_storebundle_user2_username").value = data.login ;
+                        }
+                    });
+
+                } else {
+                    console.log('User cancelled login or did not fully authorize.');
+                }
+            });
+            return false;
+        };
+        window.fbAsyncInit = function() {
             FB.init({
                 appId: '1475718472749501',
-                status: true,
-                cookie: true,
-                xfbml: true
+                cookie: true, // This is important, it's not enabled by default
+                version: 'v2.4'
             });
         };
 
-        (function (doc) {
-            var js;
-            var id = 'facebook-jssdk';
-            var ref = doc.getElementsByTagName('script')[0];
-            if (doc.getElementById(id)) {
-                return;
-            }
-            js = doc.createElement('script');
-            js.id = id;
-            js.async = true;
-            js.src = "//connect.facebook.net/en_US/all.js";
-            ref.parentNode.insertBefore(js, ref);
-        }(document));
-
-        function Login() {
-            FB.login(function (response) {
-                if (response.authResponse) {
-                    FB.api('/me', function (response) {
-                        console.log(response.email);
-                    });
-                } else {
-                    alert("Login attempt failed!");
-                }
-            }, { scope: 'email,user_photos,publish_actions' });
-        }
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
 
 
-    </script>-->
+    </script>
 {%endblock %}
