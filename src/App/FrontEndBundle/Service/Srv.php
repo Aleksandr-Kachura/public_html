@@ -6,6 +6,7 @@ namespace App\FrontEndBundle\Service;
  * Date: 17.06.15
  * Time: 8:43
  */
+use Bundles\StoreBundle\Entity\Image;
 class Srv
 {
 
@@ -25,6 +26,17 @@ class Srv
     {
         $em = $this->container->get('doctrine')->getManager();
         $users=$em->getRepository("BundlesStoreBundle:User2")->findAll();
+    }
+
+    public function changetab()
+    {
+        $em = $this->container->get('doctrine')->getManager();
+        $image = new Image();
+        $str=time();
+        $image->setLocation($str);
+        $em->persist($image);
+        $em->flush();
+        return "ok";
     }
 
     public function prepareDate($keys)

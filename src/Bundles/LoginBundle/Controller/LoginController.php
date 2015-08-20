@@ -128,9 +128,6 @@ class LoginController extends Controller
 
 
         try {
-            // Get the Facebook\GraphNodes\GraphUser object for the current user.
-            // If you provided a 'default_access_token', the '{access-token}' is optional.
-            //$response = $fb->get('/me', '{access-token}');
             $helper = $fb->getJavaScriptHelper();
             $accessToken = $helper->getAccessToken();
 
@@ -138,24 +135,14 @@ class LoginController extends Controller
 
             $response = $fb->get('/me?locale=en_US&fields=name,email');
             $userNode = $response->getGraphUser();
-           // dump($userNode->getField('email'));
             $email = $userNode->getField('email');
-            dump($userNode->getField('name'));
             $name =$userNode->getField('name');
             $arr = explode("@",$email);
             $login =$arr[0];
             $arr2 = explode(" ",$name);
             $firstname = $arr2[0];
             $lastname = $arr2[1];
-            /*dump($firstname);
-            dump($lastname);
-            dump($login);*/
             return new JsonResponse(['firstname'=>$firstname,'lastname'=>$lastname,'login'=> $login,'email'=> $email ]);
-            /* dump($userNode->getField('email'));
-            dump( $userNode['email']);*/
-
-
-
         } catch(FacebookResponseException  $e) {
             // When Graph returns an error
             echo 'Graph returned an error: ' . $e->getMessage();
