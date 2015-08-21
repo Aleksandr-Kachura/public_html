@@ -98,7 +98,7 @@ class SearchController extends Controller
 
 
     //потестить
-    public   function testAction(Request $request)
+    public function testAction(Request $request)
     {
 
         $t = $request->get("service");

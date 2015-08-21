@@ -120,13 +120,14 @@ class PageController extends Controller
     {
 
         $login = $request->get("login");
-        if(is_null($login))
+        dump($login);
+        if(empty($login))
         {
             return $this->render('AppFrontEndBundle:Page:search.html.twig');
         }
-        $em=$this->getDoctrine()->getManager();
-        $repo=$em->getRepository("BundlesStoreBundle:User2");
-        $users=$repo->findLog($login);
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository("BundlesStoreBundle:User2");
+        $users = $repo->findLog($login);
         return $this->render('AppFrontEndBundle:Page:search.html.twig', array('users'=>$users));
     }
 
@@ -217,6 +218,10 @@ class PageController extends Controller
     {
 
         $statArray = $request->get("checkbox");
+        if(!$statArray)
+        {
+            return $this->redirectToRoute("app_front_end_multi");
+        }
         $em=$this->getDoctrine()->getManager();
         foreach($statArray as $key => $value)
         {
@@ -228,5 +233,7 @@ class PageController extends Controller
         return $this->redirectToRoute("app_front_end_multi");
 
     }
+
+
 
 }

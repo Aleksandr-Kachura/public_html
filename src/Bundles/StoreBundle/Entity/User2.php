@@ -17,7 +17,14 @@ class User2 implements UserInterface
 
     public function getRoles()
     {
-        return array('ROLE_USER');
+        if($this->getUsername()==="admin")
+        {
+            return array('ROLE_ADMIN');
+        }
+        else
+        {
+            return array('ROLE_USER');
+        }
     }
     public function eraseCredentials()
     {

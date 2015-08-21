@@ -8,7 +8,17 @@
         <meta name="description" content="">
         <meta name="author" content="">
         {% block title %} <title>Photo Gallery</title> {% endblock %}
-        {% block link %}  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">   {% endblock %}
+        {% block link %}
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">
+            <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css" />
+            <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+
+            <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+            <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+            <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+         {% endblock %}
     {% endblock %}
 
 </head>
@@ -83,7 +93,8 @@
        <!-- <a href=" {{ path('fos_user_security_login') }}"></a>-->
     {% endblock %}
 
-    {% block content %}{% endblock %}
+    {% block content %}
+    {% endblock %}
     {% block gallery %}{% endblock %}
     {% block modal %}
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -106,8 +117,8 @@
     var pathajax="{{ path('app_front_end_ajax') }}";
 </script>
 {% block jscript %}
-    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.2/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="{{ asset('bundles/appfrontend/js/photo-gallery.js') }}"></script>
 {% endblock %}
 </html>

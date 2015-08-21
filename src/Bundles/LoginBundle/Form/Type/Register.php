@@ -17,7 +17,7 @@ class Register extends AbstractType
         $builder
             ->add('firstname',null,array('required'=>true,'label'=>'Firstname'))
             ->add('lastname',null,array('required'=>true,'label'=>'Lastname'))
-            ->add('email',null,array('required'=>true,'label'=>'Email','attr' => array('style' => 'width:200px')))
+            ->add('email','email',array('required'=>true,'label'=>'Email','attr' => array('style' => 'width:200px')))
             ->add('username',null,array('required'=>true,'label'=>'Username'))
             ->add('password',null,array('required'=>true,'label'=>'Password'))
         ;

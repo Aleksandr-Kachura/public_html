@@ -13,7 +13,7 @@ $(document).ready(function(){
 		html += '<a class="controls previous" href="' + (index) + '">&laquo; prev</a>';
 		html += '</div>';
 		
-		$('#myModal').modal();
+		/*$('#myModal').modal();
 		$('#myModal').on('shown.bs.modal', function(){
 			$('#myModal .modal-body').html(html);
 			//new code
@@ -21,7 +21,7 @@ $(document).ready(function(){
 		})
 		$('#myModal').on('hidden.bs.modal', function(){
 			$('#myModal .modal-body').html('');
-		});
+		});*/
 		
 		
 		

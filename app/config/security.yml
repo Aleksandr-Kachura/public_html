@@ -27,7 +27,7 @@ security:
     # for specific sections of your app
     #firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
-        dev:
+      #  dev:
       #      pattern:  ^/(_(profiler|wdt)|css|images|js)/
        #     security: false
         #main:
@@ -88,4 +88,4 @@ security:
         # This config requires being logged for the whole site
         # and having the admin role for the admin part.
         # Change these rules to adapt them to your needs
-        - { path: ^/admin/, role: [ROLE_USER] }
+        - { path: ^/admin/, role: [ROLE_ADMIN] }

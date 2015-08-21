@@ -1,3 +1,5 @@
+
+
 bundles_store_homepage:
     path:     /hello/{name}
     defaults: { _controller: BundlesStoreBundle:Default:index }

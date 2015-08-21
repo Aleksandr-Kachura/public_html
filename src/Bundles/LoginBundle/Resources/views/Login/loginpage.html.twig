@@ -11,14 +11,13 @@
 			<h1 class="logo"></h1>
 			<div class="registration">
 				<span class="topReg"></span>
-                                {% if error %}
-                                    {%  if error.message=='Bad credentials.' %}
-                                        Ошибка доступа
-                                    {% else %}
-                                    {{ error.message }}
-                                    {% endif %}
-                                {% endif %}
-
+                    {% if error %}
+                        {%  if error.message=='Bad credentials.' %}
+                            Ошибка доступа
+                        {% else %}
+                            {{ error.message }}
+                        {% endif %}
+                    {% endif %}
 				<form method="POST" action="{{ path('bundles_login_security_check') }}">
 					<label for="in1">Username</label>
 					<input type="text" name="_username" id="in1">

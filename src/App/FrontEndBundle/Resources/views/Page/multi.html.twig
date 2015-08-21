@@ -123,10 +123,11 @@
                 <h3>Картинки</h3>
                 <table class="table">
                     <thead>
-                    <tr>
+                    <tr>-
                         <th>ID</th>
                         <th>Дата</th>
                         <th>Изображение</th>
+                        <th>Удалить</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -135,6 +136,7 @@
                             <td>{{ ph.id }}</td>
                             <td>{{ ph.date | date }}</td>
                             <td><a href="#"><img  height="42" width="42" src="{{ asset(ph.adress) }}"></a></td>
+                            <td><a href="{{ path('app_front_end_delImg', {'id' : ph.id}) }}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
                         </tr>
 
                     {% endfor %}

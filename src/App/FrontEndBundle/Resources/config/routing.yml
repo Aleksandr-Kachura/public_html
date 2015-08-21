@@ -31,12 +31,6 @@ app_front_end_test:
     path:  /test
     defaults: { _controller: AppFrontEndBundle:Page:test }
 
-app_front_end_svImg:
-    path: /sv
-    defaults: { _controller: AppFrontEndBundle:Image:save }
-    requirements:
-           _method: POST|GET
-
 app_front_end_search:
     path: /search
     defaults: { _controller: AppFrontEndBundle:Page:search }
@@ -69,4 +63,13 @@ app_front_end_approveOrder:
       requirements:
              _method: POST|GET
 
-
+app_front_end_svImg:
+    path: /sv
+    defaults: { _controller: AppFrontEndBundle:Image:save }
+    requirements:
+           _method: POST|GET
+app_front_end_delImg:
+    path: /delImg
+    defaults: { _controller: AppFrontEndBundle:Image:delete }
+    requirements:
+           _method: POST|GET

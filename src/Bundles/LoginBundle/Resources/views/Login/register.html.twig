@@ -4,7 +4,15 @@
 
 
 {% block content %}
+
     <div id="registration3" class="popup_block" >
+        {% if error is defined %}
+            <div class="alert alert-danger" role="alert">
+
+                {{ error }}
+
+            </div>
+        {% endif %}
         <form id="RegisterUserForm" role="form" action="{{ path('bundles_login_reg') }}" method="post" {{ form_enctype(form) }}>
             <div class="form-group">
                 {{ form_row(form.firstname) }}
