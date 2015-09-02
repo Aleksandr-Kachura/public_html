@@ -32,18 +32,11 @@ class Helper
         $member =  new User2();
         $em = $this->container->get('doctrine')->getManager();
         $checkLogin = $em->getRepository('Bundles\StoreBundle\Entity\User2')->findOneBy(array('username' => $form->get('username')->getData()));
-        if(isset($checkLogin)){
+        if(isset($checkLogin))
+        {
             $error = 'Уже существует такой пользователь';
             return $error;
-          //  return $this->redirectToRoute("bundles_login_reg");
         }
-        /*$check=explode('@',$form->get('email')->getData());
-        if(empty($check[1]))
-        {
-            $error = 'Не верный email';
-            return $error;
-        }*/
-        //dump(strlen($form->get('password')->getData()));
         if(strlen($form->get('password')->getData())<6)
         {
             $error = 'Не слишком короткий пароль мин 6 символов';

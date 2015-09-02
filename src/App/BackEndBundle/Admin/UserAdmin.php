@@ -23,8 +23,9 @@ class UserAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
+            ->add('firstname')
+            ->add('lastname')
             ->add('username')
-
             //if no type is specified, SonataAdminBundle tries to guess it
         ;
     }
@@ -33,7 +34,7 @@ class UserAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('username')
+            ->add('username');
 
             //if no type is specified, SonataAdminBundle tries to guess it
         ;
@@ -43,7 +44,9 @@ class UserAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('username')
+            ->add('firstname')
+            ->add('lastname')
+            ->add('username');
 
             //if no type is specified, SonataAdminBundle tries to guess it
         ;
@@ -53,7 +56,8 @@ class UserAdmin extends Admin
     protected function configureShowField(ShowMapper $showMapper)
     {
         $showMapper
-
+            ->add('firstname')
+            ->add('lastname')
             ->add('username');
     }
 
