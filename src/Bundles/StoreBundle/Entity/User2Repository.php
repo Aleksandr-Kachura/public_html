@@ -22,5 +22,14 @@ class User2Repository extends EntityRepository
            return($qb->getQuery()->getResult());
        }
 
+        public function getUsid($id)
+        {
+            $qb=$this->createQueryBuilder('u')
+                ->select("u")
+                ->Where("u.id = :log")
+                ->setParameter('log',$id);
+            return($qb->getQuery()->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY));
+        }
+
 
 }
