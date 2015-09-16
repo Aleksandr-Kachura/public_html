@@ -1,0 +1,23 @@
+Bundles\StoreBundle\Entity\Stat:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        userId:
+            type: integer
+            nullable: true
+        refId:
+            type: integer
+    manyToOne:
+        user2:
+          targetEntity: User2
+          inversedBy: stat
+          joinColumn:
+            name: userId
+            referencedColumnName: id
+    lifecycleCallbacks: {  }

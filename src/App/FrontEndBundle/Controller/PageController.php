@@ -16,7 +16,6 @@ class PageController extends Controller
     public function indexAction()
     {
         $user=$this->getUser();
-       // dump ($this->get('kernel')->g);
         if(is_null($user))
         {
             return $this->render('AppFrontEndBundle:Page:index.html.twig');
@@ -26,8 +25,8 @@ class PageController extends Controller
 
 
     //пагинация
-  public function paginAction(Request $request)
-  {
+    public function paginAction(Request $request)
+    {
         $em = $this->getDoctrine()->getManager();
 
         $repo =$em->getRepository("BundlesStoreBundle:Page");
@@ -40,7 +39,7 @@ class PageController extends Controller
             2/*limit per page*/
         );
         return $this->render('AppFrontEndBundle:Page:page.html.twig', array('pagination' => $pagination));
-  }
+    }
 
     //хлебные крошки
     public function breadAction()
@@ -71,6 +70,7 @@ class PageController extends Controller
         $user=$this->getUser();
         $photo=$user->getPhoto();
         $status=$user->getStatus();
+
         if($status=="seller")
         {
             return $this->render('AppFrontEndBundle:Page:seller.html.twig', array('user'=>$user));
@@ -88,47 +88,63 @@ class PageController extends Controller
             return $this->render('AppFrontEndBundle:Page:multi.html.twig', array('user'=>$user));
         }
 
-
-       // $orders=$this->prepareDate($keys);
         $orders=$this->get('site_bundle.service')->prepareDate($keys);
+
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $photo,
+            $request->query->getInt('page', 1)/*page number*/,
+            5/*limit per page*/
+        );
+
         if(is_null($orders))
         {
+
             return $this->render('AppFrontEndBundle:Page:multi.html.twig', array('photo' =>$photo,'user'=>$user));
         }
-        return $this->render('AppFrontEndBundle:Page:multi.html.twig', array('photo' =>$photo,'user'=>$user,'orders'=>$orders));
+        return $this->render('AppFrontEndBundle:Page:multi.html.twig', array('photo' =>$photo,'user'=>$user,'orders'=>$orders,'pagination' => $pagination));
     }
 
 
-   /* public function prepareDate($keys)
+    // action for fotosess
+    public function fotoSessAction(Request $request)
     {
-        $em=$this->getDoctrine()->getManager();
-        $repo=$em->getRepository("BundlesStoreBundle:Orders");
-        $orders=null;
-        foreach($keys as $key =>$value)
-        {
-            if($repo->findByPhoto($value))
-            {
-                $orders[]=$repo->findByPhoto($value);
-            }
+        $user=$this->getUser();
+        $photo=$user->getPhoto();
 
+        if(is_null($photo))
+        {
+            return $this->render('AppFrontEndBundle:Page:fotosess.html.twig', array('user'=>$user));
         }
-        return $orders;
-    }*/
+        foreach($photo as $key=>$value)
+        {
+            $keys[]=$value->getId();
+        }
+        if(!isset($keys))
+        {
+            return $this->render('AppFrontEndBundle:Page:fotosess.html.twig', array('user'=>$user));
+        }
+
+        return $this->render('AppFrontEndBundle:Page:fotosess.html.twig', array('photo' =>$photo,'user'=>$user));
+    }
 
     //поиск
     public function searchAction(Request $request)
     {
 
         $login = $request->get("login");
-        dump($login);
+
         if(empty($login))
         {
             return $this->render('AppFrontEndBundle:Page:search.html.twig');
         }
+
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository("BundlesStoreBundle:User2");
         $users = $repo->findLog($login);
         return $this->render('AppFrontEndBundle:Page:search.html.twig', array('users'=>$users));
+
+
     }
 
     //католог фотографов
@@ -139,11 +155,13 @@ class PageController extends Controller
         $em=$this->getDoctrine()->getManager();
         $repo=$em->getRepository("BundlesStoreBundle:User2");
         $users=$repo->findBy(array('status' => $status));
+
         if(!is_null($this->getUser()))
         {
             $curUser = $this->getUser();
             return $this->render('AppFrontEndBundle:Page:catalog.html.twig', array('users'=>$users,'curUser'=>$curUser ));
         }
+
         return $this->render('AppFrontEndBundle:Page:catalog.html.twig', array('users'=>$users ));
     }
 
@@ -184,29 +202,29 @@ class PageController extends Controller
         {
             return $this->redirectToRoute("app_front_end_wellcome");
         }
+
         $id =$request->get('photo');
         $str = "I want yoo picture  ".$this->generateUrl('app_front_end_order',array('id' => $id),true);
-         $message = \Swift_Message::newInstance()
+        $message = \Swift_Message::newInstance()
              ->setSubject('Order')
              ->setFrom($this->getUser()->getEmail())
              ->setTo($request->get('user'))
              ->setBody($str) ;
-         $this->get('mailer')->send($message);
+        $this->get('mailer')->send($message);
 
 
 
          $em=$this->getDoctrine()->getManager();
          $order= new Orders();
-         // dump($this->getUser());
          $order->setStatus("panding");
          $order->setUser2($this->getUser());
 
          $repo=$em->getRepository("BundlesStoreBundle:Photo");
          $photo = $repo->findOneById(array('id' => $id));
-         // dump($photo);
+
          $order->setPhoto($photo);
          $em->persist($order);
-          $em->flush();
+         $em->flush();
 
       return $this->redirectToRoute("app_front_end_wellcome");
 
@@ -232,6 +250,13 @@ class PageController extends Controller
         }
         return $this->redirectToRoute("app_front_end_multi");
 
+    }
+
+    public function linkReturnAction()
+    {
+        $user_id=$this->getUser()->getId();
+        $link= $this->get('site_bundle.service')->getlink($user_id);
+        return new Response($link);
     }
 
 

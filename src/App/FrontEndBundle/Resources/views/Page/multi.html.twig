@@ -4,12 +4,40 @@
     {% block login %}
 
         <p>Главная <strong><a style="color:red" href="{{ path('app_front_end_wellcome') }}">main</a></strong></p>
+        <p>Создать фотосессию <strong><a style="color:green" href="{{ path('app_front_end_fotosess') }}">create</a></strong></p>
         <p>Выход <strong><a style="color:red" href="{{ path('bundles_login_security_logout') }}">exit</a></strong></p>
 
     {% endblock %}
 
 
 {% block content %}
+
+  <div class="col-md-12">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Get ref code</button>
+  </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel">Code</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="recipient-name" class="control-label">Link:</label>
+                            <input type="text" class="form-control" value="{{ render(controller('AppFrontEndBundle:Page:linkReturn')) }}" id="recipient-name">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
     <!--/panel-->
     <div class="col-md-6">
@@ -71,6 +99,7 @@
             </div>
         </div>
     </div>
+
 {% if orders is defined  %}
     <div class="col-md-6">
         <div class="panel panel-default">
@@ -118,12 +147,13 @@
 
 {% if photo is defined  %}
     <div class=" col-md-8">
+
         <div class="panel panel-default">
             <div class="panel-body">
                 <h3>Картинки</h3>
                 <table class="table">
                     <thead>
-                    <tr>-
+                    <tr>
                         <th>ID</th>
                         <th>Дата</th>
                         <th>Изображение</th>
@@ -131,19 +161,27 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {% for ph in photo %}
-                        <tr>
-                            <td>{{ ph.id }}</td>
-                            <td>{{ ph.date | date }}</td>
-                            <td><a href="#"><img  height="42" width="42" src="{{ asset(ph.adress) }}"></a></td>
-                            <td><a href="{{ path('app_front_end_delImg', {'id' : ph.id}) }}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
-                        </tr>
 
+
+
+                    {% for article in pagination %}
+                        <tr>
+                            <td>{{ article.id }}</td>
+                            <td>{{ article.date | date }}</td>
+                            <td><a href="{{ asset(article.adress) }}"><img  height="42" width="42" src="{{ asset(article.adress) }}"></a></td>
+                            <td><a href="{{ path('app_front_end_delImg', {'id' : article.id}) }}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
+                        </tr>
                     {% endfor %}
 
+                     </tbody>
+
                 </table>
+                {{ knp_pagination_render(pagination) }}
             </div>
         </div>
+
+
+
     </div>
 {% endif %}
 

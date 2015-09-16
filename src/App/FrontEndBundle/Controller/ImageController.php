@@ -11,10 +11,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ImageController extends Controller
 {
-   /*  public function indexAction()
-    {
-        return $this->render('AppFrontEndBundle:Page:index.html.twig');
-    }*/
 
     //сохранение картинки
     public function saveAction(Request $request)
@@ -33,19 +29,24 @@ class ImageController extends Controller
         $datetime = date("Y-m-d");
         $basepath = "upload/foto/".$datetime."/";
         $filename = uniqid() . '.' . $file->guessExtension();
+
         $em = $this->getDoctrine()
             ->getManager();
+
         $file->move($basepath, $filename);
         $filename = $basepath. $filename;
+
         $photo = new Photo();
         $photo->setAdress('/'.$filename);
-       // $photo->setUsers($user);
         $photo->setUser2($user);
+
         $em->persist($photo);
         $em->flush();
         return $this->redirectToRoute("app_front_end_multi");
     }
 
+
+   // удаление
     public function deleteAction(Request $request)
     {
         $id=$request->get('id');

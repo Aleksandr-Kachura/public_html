@@ -28,6 +28,16 @@ class Srv
         $users=$em->getRepository("BundlesStoreBundle:User2")->findAll();
     }
 
+    public function getlink($id)
+    {
+        $em = $this->container->get('doctrine')->getManager();
+        $user=$em->getRepository("BundlesStoreBundle:User2")->findOneById($id);
+       // /1/?ref=ab45j2
+
+        $link = "http://mvp.intechsoft.net/reg?refferal=".$user->getReferralCode();
+        return $link;
+    }
+
     public function changetab()
     {
         $em = $this->container->get('doctrine')->getManager();

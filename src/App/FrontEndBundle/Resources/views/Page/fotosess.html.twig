@@ -1,0 +1,83 @@
+
+{% extends "AppFrontEndBundle::layout.html.twig" %}
+
+    {% block login %}
+
+        <p>Главная <strong><a style="color:red" href="{{ path('app_front_end_wellcome') }}">main</a></strong></p>
+        <p>Кабинет <strong><a style="color:green" href="{{ path('app_front_end_fotosess') }}">create</a></strong></p>
+        <p>Выход <strong><a style="color:red" href="{{ path('bundles_login_security_logout') }}">exit</a></strong></p>
+
+    {% endblock %}
+{% block css %}
+    <script src="{{ asset('bundles/appfrontend/css/style.js') }}"></script>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css" />
+{% endblock %}
+
+{% block content %}
+
+   <!--/panel-->
+    <div class="col-md-3">
+           <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div >
+                        <h2>{{ user.Firstname }} {{ user.Lastname }}</h2>
+                        <p><strong>About: </strong> Web Designer / UI. </p>
+                        <p><strong>Hobbies: </strong> Read, out with friends, listen to music, draw and learn new things. </p>
+                        <p><strong>Skills: </strong>
+                            <span class="label label-info tags">html5</span>
+                            <span class="label label-info tags">css3</span>
+                            <span class="label label-info tags">jquery</span>
+                            <span class="label label-info tags">bootstrap3</span>
+                        </p>
+                    </div><!--/col-->
+                </div><!--/row-->
+            </div><!--/panel-body-->
+        </div><!--/panel-->
+    </div>
+
+
+
+{% if photo is defined  %}
+    <div class=" col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-body">
+
+                <form action="{{ path('app_front_end_search') }}" method="post">
+
+                    <div><h1>Создать фотосессию</h1></div>
+                    <br/>
+                    <div>
+                        <label>Название фотосессии</label>
+                        <input type="text" name="foto_sess"></input>
+                    </div>
+
+                    <br/><label>User Email</label>
+                    <input type="email" name="user_email"> </input>
+                        <h3>Photo</h3>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Дата</th>
+                                <th>Изображение</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for article in photo %}
+                                <tr>
+                                    <td>{{ article.id }}</td>
+                                    <td>{{ article.date | date }}</td>
+                                    <td><a href="{{ asset(article.adress) }}"><img  height="42" width="42" src="{{ asset(article.adress) }}"></a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    <button type="submit" name="button" value="approved" class="btn btn-primary">Создать</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% endblock %}

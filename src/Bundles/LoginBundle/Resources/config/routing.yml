@@ -1,6 +1,7 @@
 bundles_login_reg:
     path:     /reg
     defaults: { _controller: BundlesLoginBundle:Login:reg }
+
 bundles_login_create:
     path:     /create
     defaults: { _controller: BundlesLoginBundle:Login:create }

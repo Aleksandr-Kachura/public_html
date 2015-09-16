@@ -17,7 +17,14 @@ class User2 implements UserInterface
 
     public function getRoles()
     {
-        return array('ROLE_USER');
+        if($this->getUsername()==="admin")
+        {
+            return array('ROLE_ADMIN');
+        }
+        else
+        {
+            return array('ROLE_USER');
+        }
     }
     public function eraseCredentials()
     {
@@ -273,6 +280,7 @@ class User2 implements UserInterface
     {
         $this->photo = new \Doctrine\Common\Collections\ArrayCollection();
         $this->orders = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->referralCode = self::generateReferralCode();
     }
 
     /**
@@ -339,5 +347,134 @@ class User2 implements UserInterface
     public function getOrders()
     {
         return $this->orders;
+    }
+    /**
+     * @var string
+     */
+    private $referralCode;
+
+
+    /**
+     * Set referralCode
+     *
+     * @param string $referralCode
+     * @return User2
+     */
+    public function setReferralCode($referralCode)
+    {
+        $this->referralCode = $referralCode;
+
+        return $this;
+    }
+
+    /**
+     * Get referralCode
+     *
+     * @return string 
+     */
+    public function getReferralCode()
+    {
+        return $this->referralCode;
+    }
+
+    /**
+     * Generates referral code
+     *
+     * @param int $length
+     * @return string
+     * TODO: Can be extracted to separate service for better flexebility
+     */
+    static protected function generateReferralCode($length=6)
+    {
+        $hex = md5("yourSaltHere" . uniqid("", true));
+
+        $pack = pack('H*', $hex);
+        $tmp =  base64_encode($pack);
+
+        $uid = preg_replace("#(*UTF8)[^A-Za-z0-9]#", "", $tmp);
+
+        $len = max(4, min(128, $length));
+
+        while (strlen($uid) < $len)
+            $uid .= self::generateReferralCode(22);
+
+        return substr($uid, 0, $length);
+    }
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $stat;
+
+
+    /**
+     * Add stat
+     *
+     * @param \Bundles\StoreBundle\Entity\Orders $stat
+     * @return User2
+     */
+    public function addStat(\Bundles\StoreBundle\Entity\Orders $stat)
+    {
+        $this->stat[] = $stat;
+
+        return $this;
+    }
+
+    /**
+     * Remove stat
+     *
+     * @param \Bundles\StoreBundle\Entity\Orders $stat
+     */
+    public function removeStat(\Bundles\StoreBundle\Entity\Orders $stat)
+    {
+        $this->stat->removeElement($stat);
+    }
+
+    /**
+     * Get stat
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getStat()
+    {
+        return $this->stat;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $gallery;
+
+
+    /**
+     * Add gallery
+     *
+     * @param \Bundles\StoreBundle\Entity\Gallery $gallery
+     * @return User2
+     */
+    public function addGallery(\Bundles\StoreBundle\Entity\Gallery $gallery)
+    {
+        $this->gallery[] = $gallery;
+
+        return $this;
+    }
+
+    /**
+     * Remove gallery
+     *
+     * @param \Bundles\StoreBundle\Entity\Gallery $gallery
+     */
+    public function removeGallery(\Bundles\StoreBundle\Entity\Gallery $gallery)
+    {
+        $this->gallery->removeElement($gallery);
+    }
+
+    /**
+     * Get gallery
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGallery()
+    {
+        return $this->gallery;
     }
 }

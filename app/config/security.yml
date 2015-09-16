@@ -89,3 +89,5 @@ security:
         # and having the admin role for the admin part.
         # Change these rules to adapt them to your needs
         - { path: ^/admin/, role: [ROLE_ADMIN] }
+        - { path: ^/multi$, role: [ROLE_USER] }
+        - { path: ^/fotosess$, role: [ROLE_USER] }

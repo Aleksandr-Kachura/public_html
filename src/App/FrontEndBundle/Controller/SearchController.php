@@ -75,38 +75,15 @@ class SearchController extends Controller
     public function multiAction(Request $request)
     {
 
-       /*$request->setLocale("ru");
-        $session = $request->getSession();
-
-        $session->set('_locale', $request->getLocale());
-        $t =  $this->get('translator');
-        dump($t);
-        $m = $request->getLocale();
-        dump($m);*/
-      // return new Response($t);
-      //  dump($_GET);
        $user=$this->getUser();
-       // dump($user->getPhoto());
        $photo=$user->getPhoto();
-    //    $photo=null;
-        if(is_null($photo))
-        {
-            return $this->render('AppFrontEndBundle:Page:multi.html.twig', array('user'=>$user));
-        }
+
+       if(is_null($photo))
+       {
+           return $this->render('AppFrontEndBundle:Page:multi.html.twig', array('user'=>$user));
+       }
        return $this->render('AppFrontEndBundle:Page:multi.html.twig', array('photo' =>$photo,'user'=>$user));
     }
-
-
-    //потестить
-    public function testAction(Request $request)
-    {
-
-        $t = $request->get("service");
-        //$this->getDoctrine()->getRepository("");
-        dump($t);
-       // return $this->redirectToRoute("app_front_end_wellcome");
-    }
-
 
 
 }

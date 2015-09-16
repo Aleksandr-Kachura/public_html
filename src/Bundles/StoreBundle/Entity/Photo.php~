@@ -213,4 +213,5 @@ class Photo
     {
         return $this->user2;
     }
+
 }

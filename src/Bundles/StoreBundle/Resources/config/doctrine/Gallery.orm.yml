@@ -1,0 +1,36 @@
+Bundles\StoreBundle\Entity\Gallery:
+    type: entity
+    table: null
+    repositoryClass: Bundles\StoreBundle\Entity\GalleryRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: '100'
+        phId:
+            type: integer
+    manyToOne:
+       user2:
+         targetEntity: User2
+         inversedBy: gallery
+         joinColumn:
+           name: userId
+           referencedColumnName: id
+    manyToMany:
+       photo:
+         targetEntity: Photo
+         inversedBy: gallery
+         joinTable:
+           name: gal_to_ph
+           joinColumns:
+               gal_id:
+                   referencedColumnName: id
+           inverseJoinColumns:
+               photo_id:
+                   referencedColumnName: id
+    lifecycleCallbacks: {  }

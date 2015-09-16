@@ -34,6 +34,10 @@ Bundles\StoreBundle\Entity\User2:
             type: string
             length: '255'
             nullable: true
+        referralCode:
+            type: string
+            length: '10'
+            nullable: true
     oneToMany:
         photo:
             targetEntity: Photo
@@ -42,5 +46,12 @@ Bundles\StoreBundle\Entity\User2:
         orders:
             targetEntity: Orders
             mappedBy: user2
+        stat:
+            targetEntity: Stat
+            mappedBy: user2
+        gallery:
+            targetEntity: Gallery
+            mappedBy: user2
+
 
     lifecycleCallbacks: {  }

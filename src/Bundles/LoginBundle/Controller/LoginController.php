@@ -2,6 +2,7 @@
 
 namespace Bundles\LoginBundle\Controller;
 
+
 use Facebook\Exceptions\FacebookResponseException;
 use Facebook\Exceptions\FacebookSDKException;
 use Facebook\Facebook;
@@ -18,32 +19,59 @@ class LoginController extends Controller
     //регистрация
     public function regAction(Request $request)
     {
-        $user=new User2();
-        $form=$this->createForm(new Register(),$user);
-        $newUser=$this->get('request')->request->get('user');
+       $user=new User2();
+       $form=$this->createForm(new Register(),$user);
+       $newUser=$this->get('request')->request->get('user');
 
+       $param = array();
 
        if ($request->isMethod('POST')) {
             $form->submit($request);
-           //dump()
-            if ($form->isValid()) {
+
+            if ($form->isValid())
+            {
 
                 // perform some action...
-
-
                 $status = $request->get('status');
-                $e=$this->get("site_bundle.helper")->create($form,$status);
+                $param['status'] = $status;
+
+                if($request->get('code_ref'))
+                {
+                    $param['ref'] = $request->get('code_ref');
+                }
+                elseif($request->get('hide_ref'))
+                {
+                    $param['ref'] = $request->get('hide_ref');
+                }
+
+                $e=$this->get("site_bundle.helper")->create($form,$param);
+
                 if($e)
                 {
-                    return $this->render('BundlesLoginBundle:Login:register.html.twig',array('form'=>$form->createView(),'error'=>$e));
-                }
-                //$this->create($form,$status);
 
-                //return $this->redirect($this->generateUrl('bundles_login_create1',array('form'=>$form)));
+
+                    if($request->get('hide_ref'))
+                    {
+                        $param['refferal'] = $request->get('hide_ref');
+                    }
+                    $param['form'] = $form->createView();
+                    $param['error'] = $e;
+                    return $this->render('BundlesLoginBundle:Login:register.html.twig',$param);
+                   // return $this->render('BundlesLoginBundle:Login:register.html.twig',array('form'=>$form->createView(),'error'=>$e));
+                }
+
                 return $this->redirectToRoute("bundles_login_form");
             }
         }
-        return $this->render('BundlesLoginBundle:Login:register.html.twig',array('form'=>$form->createView()));
+
+        if($request->get('refferal'))
+        {
+            $param['refferal'] = $request->get('refferal');
+        }
+
+        $param['form'] = $form->createView();
+        return $this->render('BundlesLoginBundle:Login:register.html.twig',$param);
+        //return $this->render('BundlesLoginBundle:Login:register.html.twig',array('form'=>$form->createView()));
     }
 
     // вывод формы в логине

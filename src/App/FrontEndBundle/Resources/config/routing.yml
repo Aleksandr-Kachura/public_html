@@ -57,17 +57,30 @@ app_front_end_getOrder:
       path: /gorder
       defaults: { _controller: AppFrontEndBundle:Page:getOrder}
 
+
+app_front_end_returnlink:
+    path:     /retlink
+    defaults: { _controller: AppFrontEndBundle:Page:linkReturn}
+
+app_front_end_fotosess:
+    path:     /fotosess
+    defaults: { _controller: AppFrontEndBundle:Page:fotoSess}
+
+
 app_front_end_approveOrder:
       path: /approve
       defaults: { _controller: AppFrontEndBundle:Page:approveOrder}
       requirements:
              _method: POST|GET
 
+
 app_front_end_svImg:
     path: /sv
     defaults: { _controller: AppFrontEndBundle:Image:save }
     requirements:
            _method: POST|GET
+
+
 app_front_end_delImg:
     path: /delImg
     defaults: { _controller: AppFrontEndBundle:Image:delete }

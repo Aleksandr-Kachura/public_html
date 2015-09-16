@@ -213,4 +213,43 @@ class Photo
     {
         return $this->user2;
     }
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $gallery;
+
+
+    /**
+     * Add gallery
+     *
+     * @param \Bundles\StoreBundle\Entity\Gallery $gallery
+     * @return Photo
+     */
+    public function addGallery(\Bundles\StoreBundle\Entity\Gallery $gallery)
+    {
+        $this->gallery[] = $gallery;
+
+        return $this;
+    }
+
+    /**
+     * Remove gallery
+     *
+     * @param \Bundles\StoreBundle\Entity\Gallery $gallery
+     */
+    public function removeGallery(\Bundles\StoreBundle\Entity\Gallery $gallery)
+    {
+        $this->gallery->removeElement($gallery);
+    }
+
+    /**
+     * Get gallery
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGallery()
+    {
+        return $this->gallery;
+    }
 }

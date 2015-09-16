@@ -38,6 +38,7 @@ class UserAdmin extends Admin
 
             //if no type is specified, SonataAdminBundle tries to guess it
         ;
+
     }
 
     // Fields to be shown on lists
