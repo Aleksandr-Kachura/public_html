@@ -106,27 +106,8 @@ class PageController extends Controller
     }
 
 
-    // action for fotosess
-    public function fotoSessAction(Request $request)
-    {
-        $user=$this->getUser();
-        $photo=$user->getPhoto();
 
-        if(is_null($photo))
-        {
-            return $this->render('AppFrontEndBundle:Page:fotosess.html.twig', array('user'=>$user));
-        }
-        foreach($photo as $key=>$value)
-        {
-            $keys[]=$value->getId();
-        }
-        if(!isset($keys))
-        {
-            return $this->render('AppFrontEndBundle:Page:fotosess.html.twig', array('user'=>$user));
-        }
 
-        return $this->render('AppFrontEndBundle:Page:fotosess.html.twig', array('photo' =>$photo,'user'=>$user));
-    }
 
     //поиск
     public function searchAction(Request $request)

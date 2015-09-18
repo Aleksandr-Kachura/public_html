@@ -122,4 +122,37 @@ class Gallery
     }
 
 
+
+    /**
+     * Add photo
+     *
+     * @param \Bundles\StoreBundle\Entity\Photo $photo
+     * @return Gallery
+     */
+    public function addPhoto(\Bundles\StoreBundle\Entity\Photo $photo)
+    {
+        $this->photo[] = $photo;
+
+        return $this;
+    }
+
+    /**
+     * Remove photo
+     *
+     * @param \Bundles\StoreBundle\Entity\Photo $photo
+     */
+    public function removePhoto(\Bundles\StoreBundle\Entity\Photo $photo)
+    {
+        $this->photo->removeElement($photo);
+    }
+
+    /**
+     * Get photo
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
 }

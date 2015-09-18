@@ -81,7 +81,51 @@ class ImageController extends Controller
 
     }
 
+    // action for fotosess
+    public function fotoSessAction(Request $request)
+    {
+        $user=$this->getUser();
+        $photo=$user->getPhoto();
 
+        if(is_null($photo))
+        {
+            return $this->render('AppFrontEndBundle:Page:fotosess.html.twig', array('user'=>$user));
+        }
+        foreach($photo as $key=>$value)
+        {
+            $keys[]=$value->getId();
+        }
+        if(!isset($keys))
+        {
+            return $this->render('AppFrontEndBundle:Page:fotosess.html.twig', array('user'=>$user));
+        }
+
+        return $this->render('AppFrontEndBundle:Page:fotosess.html.twig', array('photo' =>$photo,'user'=>$user));
+    }
+
+    public function saveFotoSessAction(Request $request)
+    {
+         $ok = $this->get('site_bundle.service')->justSavePhSess($request);
+         if($ok =="Ok")
+         {
+             return $this->redirectToRoute("app_front_end_multi");
+         }
+    }
+
+    public function displayProposFsAction()
+    {
+        $galleries = $this->get('site_bundle.service')->getPropsFS();
+        return $this->render('AppFrontEndBundle:Fotosess:prop.html.twig',array('galleries'=>$galleries));
+    }
+
+    public function orderFsAction(Request $request)
+    {
+        if($request->get('button')=="delete")
+        {
+            $this->get('site_bundle.service')->delFS($request->get('galId'));
+            return $this->redirectToRoute("app_front_end_dpfs");
+        }
+    }
 
 
 }

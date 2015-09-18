@@ -252,4 +252,32 @@ class Photo
     {
         return $this->gallery;
     }
+    /**
+     * @var string
+     */
+    private $access;
+
+
+    /**
+     * Set access
+     *
+     * @param string $access
+     * @return Photo
+     */
+    public function setAccess($access)
+    {
+        $this->access = $access;
+
+        return $this;
+    }
+
+    /**
+     * Get access
+     *
+     * @return string 
+     */
+    public function getAccess()
+    {
+        return $this->access;
+    }
 }

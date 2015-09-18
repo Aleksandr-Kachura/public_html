@@ -14,6 +14,10 @@ Bundles\StoreBundle\Entity\Photo:
             length: '255'
         date:
             type: datetime
+        access:
+            type: string
+            length: '20'
+            nullable: true
 
     manyToOne:
         users:
