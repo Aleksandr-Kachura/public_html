@@ -164,31 +164,41 @@
                     <tbody>
                     {% for article in pagination %}
                         <tr>
-                            <td>{{ article.id }}</td>
+                            <td>{{ article.id }}   </td>
                             <td>{{ article.date | date }}</td>
                             <td><a href="{{ asset(article.adress) }}"><img  height="42" width="42" src="{{ asset(article.adress) }}"></a></td>
-                            <td><select>
-                                {% if(article.access=="public") %}
-                                    <option selected >{{article.access}}</option>
-                                    <option>private</option>
-                                {% else %}
-                                    <option selected >{{article.access}}</option>
-                                    <option>public</option>
-                                {% endif %}
-                            </select></td>
-                            <!--<td>{{ article.access }}</td>-->
-                            <td><a href="{{ path('app_front_end_delImg', {'id' : article.id}) }}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
+                            <td>
+                                <select id="access_ph" name="{{ article.id}}">
+                                    {% if(article.access=="public") %}
+                                        <option selected >{{article.access}}</option>
+                                        <option>private</option>
+                                    {% else %}
+                                        <option selected >{{article.access}}</option>
+                                        <option>public</option>
+                                    {% endif %}
+                                    <td><input type="hidden" name="ItemId" id="ItemId" value="{{ article.id }}" /> <a href="{{ path('app_front_end_delImg', {'id' : article.id}) }}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
+                                </select>
+                            </td>
                         </tr>
+
                     {% endfor %}
 
                      </tbody>
-
                 </table>
+
                 {{ knp_pagination_render(pagination) }}
             </div>
         </div>
     </div>
 {% endif %}
 
+{% endblock %}
+
+{% block jscript %}
+    {{ parent() }}
+    <script>
+        var pathajax="{{ path('app_front_end_ajax') }}";
+    </script>
+    <script src="{{ asset('bundles/appfrontend/js/modal.js') }}"></script>
 {% endblock %}
 

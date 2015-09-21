@@ -13,6 +13,7 @@ class Photo
     public function __construct()
     {
          $this->setDate(new \DateTime());
+         $this->setAccess("private");
     }
 
 

@@ -1,7 +1,7 @@
 Bundles\StoreBundle\Entity\Photo:
     type: entity
     table: photo
-    repositoryClass: Bundles\StoreBundle\Entity\Repository\ImageRepository
+    repositoryClass: Bundles\StoreBundle\Entity\Repository\PhotoRepository
     id:
         id:
             type: integer

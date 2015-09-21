@@ -37,6 +37,7 @@ class AppKernel extends Kernel
             new Liip\ImagineBundle\LiipImagineBundle(),
 
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+
             //фейсбук
 
             // new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),

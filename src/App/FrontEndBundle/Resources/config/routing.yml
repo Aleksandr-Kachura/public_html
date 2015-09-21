@@ -23,10 +23,6 @@ app_front_end_seller:
     path:     /seller
     defaults: { _controller: AppFrontEndBundle:Page:seller }
 
-app_front_end_ajax:
-    path:     /ajax
-    defaults: { _controller: AppFrontEndBundle:Ajax:index }
-
 app_front_end_test:
     path:  /test
     defaults: { _controller: AppFrontEndBundle:Page:test }
@@ -94,3 +90,7 @@ app_front_end_dpfs:
 app_front_end_orderfs:
     path:     /orderfotosess
     defaults: { _controller: AppFrontEndBundle:Image:orderFs}
+
+app_front_end_ajax:
+    path:     /ajaxSS
+    defaults: { _controller: AppFrontEndBundle:Ajax:saveStatus }

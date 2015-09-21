@@ -74,11 +74,13 @@
                         </thead>
                         <tbody>
                         {% for ph in photo %}
-                            <tr>
-                                <td>{{ ph.id }}</td>
-                                <td>{{ ph.date  | date   }}</td>
-                                <td><a href="{{ path('app_front_end_order', {'id' : ph.id}) }}"><img  height="42" width="42" src="{{ asset(ph.adress)| imagine_filter('my_thumb') }}"></a></td>
-                            </tr>
+                            {% if ph.access=="public" %}
+                                <tr>
+                                    <td>{{ ph.id }}</td>
+                                    <td>{{ ph.date  | date   }}</td>
+                                    <td><a href="{{ path('app_front_end_order', {'id' : ph.id}) }}"><img  height="42" width="42" src="{{ asset(ph.adress)| imagine_filter('my_thumb') }}"></a></td>
+                                </tr>
+                            {% endif %}
                         {% endfor %}
                     </table>
 
