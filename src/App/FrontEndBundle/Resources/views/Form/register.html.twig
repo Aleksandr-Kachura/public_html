@@ -1,0 +1,62 @@
+{% extends 'AppFrontEndBundle::layout.html.twig' %}
+
+{% block login %}
+
+    <p>Главная <strong><a style="color:red" href="{{ path('app_front_end_wellcome') }}">main</a></strong></p>
+    <p>Создать фотосессию <strong><a style="color:green" href="{{ path('app_front_end_fotosess') }}">create</a></strong>->Предложенные фотосессию <strong><a style="color:green" href="{{ path('app_front_end_dpfs') }}">photo</a></strong> </p>
+    <p>Посмотреть свой профиль <strong><a style="color:red" href="{{ path('app_front_end_multi') }}">show profile</a></strong></p>
+    <p>Выход <strong><a style="color:red" href="{{ path('bundles_login_security_logout') }}">exit</a></strong></p>
+
+{% endblock %}
+
+
+{% block content %}
+    {% if form is defined %}
+        <h1>Создать кабинет покупателя</h1>
+        <div id="registration3" class="popup_block" >
+            {% if error is defined %}
+                <div class="alert alert-danger" role="alert">
+
+                    {{ error }}
+
+                </div>
+            {% endif %}
+            <form id="RegisterUserForm" role="form" action="{{ path('app_front_end_addus') }}" method="post" {{ form_enctype(form) }}>
+                <div class="form-group">
+                    {{ form_row(form.email) }}
+                    <div class="bsu_message"></div>
+                </div>
+                <div class="form-group">
+                    {{ form_row(form.firstname) }}
+                </div>
+                <div class="form-group">
+
+                    {{ form_row(form.lastname) }}
+
+                </div>
+                <div class="form-group">
+                    {{ form_row(form.username) }}
+                </div>
+                    {#{{ form_row(form.jabber) }}#}
+                <div class="form-group">
+                    {{ form_row(form.password) }}
+                </div>
+                {# {{ form_rest(form) }} #}
+                <input name="lang" type="hidden" value="en"/>
+                <button type="submit" class="btn btn-success">Create</button>
+                {{ form_rest(form) }}
+            </form>
+        </div>
+    {% endif %}
+
+    {% if message is defined %}
+        <h1>{{ message }}</h1>
+    {% endif %}
+
+
+
+{%endblock %}
+{% block jscript %}
+   <script>var pathajax="{{ path('app_front_end_ajaxCheckUser') }}";</script>
+    <script src="{{ asset('bundles/appfrontend/js/1.js') }}"></script>
+{% endblock %}

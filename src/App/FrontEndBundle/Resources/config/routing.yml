@@ -63,6 +63,11 @@ app_front_end_approveOrder:
       requirements:
              _method: POST|GET
 
+app_front_end_addus:
+    path:     /addus
+    defaults: { _controller: AppFrontEndBundle:Page:addUser}
+
+
 app_front_end_svImg:
     path: /sv
     defaults: { _controller: AppFrontEndBundle:Image:save }
@@ -91,6 +96,13 @@ app_front_end_orderfs:
     path:     /orderfotosess
     defaults: { _controller: AppFrontEndBundle:Image:orderFs}
 
+
 app_front_end_ajax:
     path:     /ajaxSS
-    defaults: { _controller: AppFrontEndBundle:Ajax:saveStatus }
+    defaults: { _controller: AppFrontEndBundle:Ajax:saveStatus}
+
+app_front_end_ajaxCheckUser:
+    path: /ajaxCU
+    defaults: { _controller: AppFrontEndBundle:Ajax:checkUser}
+    requirements:
+           _method: POST|GET

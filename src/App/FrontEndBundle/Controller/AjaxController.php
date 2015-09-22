@@ -22,6 +22,21 @@ class AjaxController extends Controller
        return new JsonResponse(['status'=>"ok"]);
 
    }
+    public function checkUserAction(Request $request)
+    {
+        $email = $request->get('email');
 
+        $em = $this->getDoctrine()->getManager();
+        $repo=$em->getRepository("BundlesStoreBundle:User2");
+        $ph=$repo->findOneByEmail($email);
+        if(!$ph)
+        {
+            return new JsonResponse(['status'=>"ok"]);
+        }
+        else
+        {
+            return new JsonResponse(['message'=>"User с таким email-ом есть!!!"]);
+        }
+    }
 
 }

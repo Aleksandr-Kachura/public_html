@@ -84,6 +84,9 @@ class Helper
         $password = $encoder->encodePassword($form->get('password')->getData(), $member->getSalt());
         $member->setPassword($password);
 
+
+
+
         $em->persist($member);
 
         if(isset($refferal))

@@ -5,9 +5,11 @@ namespace App\FrontEndBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+
+use Bundles\LoginBundle\Form\Type\Register;
+
 //use Bundles\StoreBundle\Entity\Users;
 use Bundles\StoreBundle\Entity\User2;
-
 use Bundles\StoreBundle\Entity\Orders;
 use Bundles\StoreBundle\Entity\Photo;
 class PageController extends Controller
@@ -195,19 +197,19 @@ class PageController extends Controller
 
 
 
-         $em=$this->getDoctrine()->getManager();
-         $order= new Orders();
-         $order->setStatus("panding");
-         $order->setUser2($this->getUser());
+        $em=$this->getDoctrine()->getManager();
+        $order= new Orders();
+        $order->setStatus("panding");
+        $order->setUser2($this->getUser());
 
-         $repo=$em->getRepository("BundlesStoreBundle:Photo");
-         $photo = $repo->findOneById(array('id' => $id));
+        $repo=$em->getRepository("BundlesStoreBundle:Photo");
+        $photo = $repo->findOneById(array('id' => $id));
 
-         $order->setPhoto($photo);
-         $em->persist($order);
-         $em->flush();
+        $order->setPhoto($photo);
+        $em->persist($order);
+        $em->flush();
 
-      return $this->redirectToRoute("app_front_end_wellcome");
+        return $this->redirectToRoute("app_front_end_wellcome");
 
     }
 
@@ -238,6 +240,58 @@ class PageController extends Controller
         $user_id=$this->getUser()->getId();
         $link= $this->get('site_bundle.service')->getlink($user_id);
         return new Response($link);
+    }
+
+
+    public function addUserAction(Request $request)
+    {
+        if($request->get('message'))
+        {
+           $param['message'] = $request->get('message');
+           return $this->render('AppFrontEndBundle:Form:register.html.twig',$param);
+        }
+        $user=new User2();
+        $form=$this->createForm(new Register(),$user);
+        $param = array();
+
+
+        if ($request->isMethod('POST'))
+        {
+
+            $form->submit($request);
+           // dump($form->getData()->getUsername());
+            if ($form->isValid())
+            {
+                $param['status'] = 'seller';
+                $e=$this->get("site_bundle.helper")->create($form,$param);
+                if($e)
+                {
+
+                    $param['form'] = $form->createView();
+                    $param['error'] = $e;
+                    return $this->render('AppFrontEndBundle:Form:register.html.twig',$param);
+                    // return $this->render('BundlesLoginBundle:Login:register.html.twig',array('form'=>$form->createView(),'error'=>$e));
+                }
+                $str="User ".$this->getUser()->getEmail()." created your profile http://mvp.intechsoft.net/login  Where Login :".$form->getData()->getUsername()."
+                Password :".$form->getData()->getPassword();
+                $message = \Swift_Message::newInstance()
+                    ->setSubject('Hello Email')
+                    ->setFrom('send@example.com')
+                  ///  ->setTo('akachura.its@gmail.com')
+                    ->setTo($form->getData()->getEmail())
+                    ->setBody($str)
+
+                ;
+
+                $this->get('mailer')->send($message);
+                return $this->redirectToRoute("app_front_end_addus",array('message' => "User created"));
+            }
+
+        }
+
+
+        $param['form'] = $form->createView();
+        return $this->render('AppFrontEndBundle:Form:register.html.twig',$param);
     }
 
 
