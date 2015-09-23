@@ -8,6 +8,7 @@ namespace App\FrontEndBundle\Service;
  */
 use Bundles\StoreBundle\Entity\Gallery;
 use Bundles\StoreBundle\Entity\Image;
+use Bundles\StoreBundle\Entity\Orders;
 use Bundles\StoreBundle\Entity\Photo;
 
 
@@ -80,6 +81,10 @@ class Srv
         $name_ph = $req->get('foto_sess');
         $userEm = $req->get('user_email');
         $ids= $req->get('images');
+        if(!$ids)
+        {
+            return "Fail";
+        }
         $gallery->setName($name_ph);
         $gallery->setPhId($this->user->getId());
         $repo=$em->getRepository("BundlesStoreBundle:User2");
@@ -137,5 +142,29 @@ class Srv
         $em->flush();
         return("ok");
     }
+
+    public function saveOrders($request)
+    {
+
+        $em = $this->container->get('doctrine')->getManager();
+        $ids = $request->get('images');
+        foreach($ids as $key =>$id)
+        {
+            $order= new Orders();
+            $order->setStatus("panding");
+            $order->setUser2($this->user);
+
+            $repo=$em->getRepository("BundlesStoreBundle:Photo");
+            $photo = $repo->findOneById(array('id' => $id));
+
+            $order->setPhoto($photo);
+            $em->persist($order);
+        }
+
+        $em->flush();
+        return "SUCCESS";
+    }
+
+
 
 }

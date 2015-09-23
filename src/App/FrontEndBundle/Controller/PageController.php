@@ -102,7 +102,7 @@ class PageController extends Controller
         if(is_null($orders))
         {
 
-            return $this->render('AppFrontEndBundle:Page:multi.html.twig', array('photo' =>$photo,'user'=>$user));
+            return $this->render('AppFrontEndBundle:Page:multi.html.twig', array('photo' =>$photo,'user'=>$user,'pagination' => $pagination));
         }
         return $this->render('AppFrontEndBundle:Page:multi.html.twig', array('photo' =>$photo,'user'=>$user,'orders'=>$orders,'pagination' => $pagination));
     }
@@ -116,6 +116,10 @@ class PageController extends Controller
     {
 
         $login = $request->get("login");
+        $city = $request->get("city");
+        $country = $request->get("country");
+        dump($city);
+        dump($country);
 
         if(empty($login))
         {
@@ -157,7 +161,7 @@ class PageController extends Controller
         $photo=$user->getPhoto();
         if(is_null($photo))
         {
-            return $this->render('AppFrontEndBundle:Page:photopage.html.twig');
+            return $this->render('AppFrontEndBundle:Page:photopage.html.twig', array('user'=>$user ));
         }
         return $this->render('AppFrontEndBundle:Page:photopage.html.twig', array('user'=>$user,'photo'=>$photo ));
     }
@@ -292,6 +296,18 @@ class PageController extends Controller
 
         $param['form'] = $form->createView();
         return $this->render('AppFrontEndBundle:Form:register.html.twig',$param);
+    }
+
+
+
+    public function showStatAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repo=$em->getRepository("BundlesStoreBundle:Stat");
+        $id = $this->getUser()->getId();
+        $refs=$repo->findByRefId($id);
+        $nRef = count($refs);
+        return $this->render('AppFrontEndBundle:Page:stat.html.twig', array('number'=>$nRef ));
     }
 
 

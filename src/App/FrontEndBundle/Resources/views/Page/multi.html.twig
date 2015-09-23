@@ -6,6 +6,7 @@
         <p>Главная <strong><a style="color:red" href="{{ path('app_front_end_wellcome') }}">main</a></strong></p>
         <p>Создать фотосессию <strong><a style="color:green" href="{{ path('app_front_end_fotosess') }}">create</a></strong>->Предложенные фотосессию <strong><a style="color:green" href="{{ path('app_front_end_dpfs') }}">photo</a></strong> </p>
         <p>Добавить юзера <strong><a style="color:red" href="{{ path('app_front_end_addus') }}">add User</a></strong></p>
+        <p>Статистика реф <strong><a style="color:red" href="{{ path('app_front_end_stat') }}">Stat ref</a></strong></p>
         <p>Выход <strong><a style="color:red" href="{{ path('bundles_login_security_logout') }}">exit</a></strong></p>
 
     {% endblock %}
@@ -91,7 +92,7 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <form enctype="multipart/form-data" action="{{ path('app_front_end_svImg') }}" method="post">
-                    <input id="file-0a" name="file" class="file" type="file">
+                    <input id="file-0a" name="file[]" class="file" type="file" multiple>
                     <!--  multiple data-min-file-count="1"-->
                     <br>
                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -146,7 +147,7 @@
 
 
 
-{% if photo is defined  %}
+{% if pagination is defined  %}
     <div class=" col-md-8">
 
         <div class="panel panel-default">

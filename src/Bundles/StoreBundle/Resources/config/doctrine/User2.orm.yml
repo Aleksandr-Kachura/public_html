@@ -38,6 +38,14 @@ Bundles\StoreBundle\Entity\User2:
             type: string
             length: '10'
             nullable: true
+        city:
+            type: string
+            length: '50'
+            nullable: true
+        country:
+            type: string
+            length: '50'
+            nullable: true
     oneToMany:
         photo:
             targetEntity: Photo

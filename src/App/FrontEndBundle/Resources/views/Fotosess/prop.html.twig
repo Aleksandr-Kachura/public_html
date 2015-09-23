@@ -83,7 +83,6 @@
                                         <tr>
                                             <td>{{photo.id }}</td>
                                             <td>{{ photo.date  |date   }}</td>
-                                           <!-- <td><a href="{{ path('app_front_end_order', {'id' : photo.id}) }}"><img  height="42" width="42" src="{{ asset(photo.adress)| imagine_filter('my_thumb') }}"></a></td>-->
                                             <td><img  height="80" width="80" src="{{ asset(photo.adress)| imagine_filter('my_water') }}"></td>
                                             <td><input  name="images[]" type="checkbox" value="{{ photo.id }}"></td>
                                         </tr>

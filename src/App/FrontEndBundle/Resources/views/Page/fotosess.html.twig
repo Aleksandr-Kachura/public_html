@@ -50,12 +50,13 @@
                     <div class="main">
                         <div class="field">
                             <label for="n">Название фотосессии</label>
-                            <input type="text" name="foto_sess" id="n" />
+                            <input type="text" name="foto_sess" id="n" required/>
                         </div> <br/>
 
                         <div class="field">
                             <label for="ln">User Email</label>
-                            <input type="text" name="user_email" id="ln" />
+                            <input type="email" id="user_email" name="user_email" id="ln" required/>
+                            <div class="bsu_message"></div>
                         </div>
                         <div> <h3>Photo</h3></div>
                     </div>
@@ -89,4 +90,9 @@
     </div>
 {% endif %}
 
+{% endblock %}
+
+{% block jscript %}
+    <script>var pathajax="{{ path('app_front_end_ajaxCheckUser') }}";</script>
+    <script src="{{ asset('bundles/appfrontend/js/1.js') }}"></script>
 {% endblock %}

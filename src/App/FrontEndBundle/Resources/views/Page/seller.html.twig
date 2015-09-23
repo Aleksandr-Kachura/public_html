@@ -5,12 +5,38 @@
 
         <p>Главная <strong><a style="color:red" href="{{ path('app_front_end_wellcome') }}">main</a></strong></p>
         <p> Предложенные фотосессии <strong><a style="color:green" href="{{ path('app_front_end_dpfs') }}">photo</a></strong> </p>
+        <p>Статистика реф <strong><a style="color:red" href="{{ path('app_front_end_stat') }}">Stat ref</a></strong></p>
         <p>Выход <strong><a style="color:red" href="{{ path('bundles_login_security_logout') }}">exit</a></strong></p>
 
     {% endblock %}
 
 
 {% block content %}
+
+    <div class="col-md-12">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Get ref code</button>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel">Code</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="recipient-name" class="control-label">Link:</label>
+                            <input type="text" class="form-control" value="{{ render(controller('AppFrontEndBundle:Page:linkReturn')) }}" id="recipient-name">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!--/panel-->
     <div class="col-md-6">

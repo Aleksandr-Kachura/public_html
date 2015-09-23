@@ -15,32 +15,37 @@ class ImageController extends Controller
     //сохранение картинки
     public function saveAction(Request $request)
     {
-        $file=$request->files->get("file");
-        if(!is_object($file))
-        {
-            return $this->redirectToRoute("app_front_end_multi");
-        }
-        $user=$this->getUser();
-        if(is_null($user))
-        {
-            return $this->redirectToRoute("app_front_end_multi");
-        }
-
-        $datetime = date("Y-m-d");
-        $basepath = "upload/foto/".$datetime."/";
-        $filename = uniqid() . '.' . $file->guessExtension();
-
+        $files=$request->files->get("file");
+        //dump($file);
         $em = $this->getDoctrine()
             ->getManager();
+        foreach ($files as $key=>$file)
+        {
+            if(!is_object($file))
+            {
+                return $this->redirectToRoute("app_front_end_multi");
+            }
+            $user=$this->getUser();
+            if(is_null($user))
+            {
+                return $this->redirectToRoute("app_front_end_multi");
+            }
 
-        $file->move($basepath, $filename);
-        $filename = $basepath. $filename;
+            $datetime = date("Y-m-d");
+            $basepath = "upload/foto/".$datetime."/";
+            $filename = uniqid() . '.' . $file->guessExtension();
 
-        $photo = new Photo();
-        $photo->setAdress('/'.$filename);
-        $photo->setUser2($user);
 
-        $em->persist($photo);
+
+            $file->move($basepath, $filename);
+            $filename = $basepath. $filename;
+
+            $photo = new Photo();
+            $photo->setAdress('/'.$filename);
+            $photo->setUser2($user);
+
+            $em->persist($photo);
+        }
         $em->flush();
         return $this->redirectToRoute("app_front_end_multi");
     }
@@ -110,6 +115,10 @@ class ImageController extends Controller
          {
              return $this->redirectToRoute("app_front_end_multi");
          }
+        else
+        {
+            return $this->redirectToRoute("app_front_end_fotosess");
+        }
     }
 
     public function displayProposFsAction()
@@ -124,6 +133,34 @@ class ImageController extends Controller
         {
             $this->get('site_bundle.service')->delFS($request->get('galId'));
             return $this->redirectToRoute("app_front_end_dpfs");
+        }
+        if(!$request->get('images'))
+        {
+            return $this->redirectToRoute("app_front_end_dpfs");
+        }
+        else
+        {
+            $ok = $this->get('site_bundle.service')->saveOrders($request);
+            dump($ok);
+            return $this->redirectToRoute("app_front_end_dpfs");
+        }
+    }
+
+    public function orderAction (Request $request)
+    {
+
+
+        $id = $request->get('userId');
+
+        if((!$request->get('images')) or (is_null($this->getUser())) )
+        {
+           return $this->redirectToRoute("app_front_end_photograph",array('id'=>$id));
+        }
+        else
+        {
+            $ok = $this->get('site_bundle.service')->saveOrders($request);
+            dump($ok);
+            return $this->redirectToRoute("app_front_end_photograph",array('id'=>$id));
         }
     }
 
