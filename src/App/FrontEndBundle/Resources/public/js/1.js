@@ -48,5 +48,43 @@ $(document).ready(function()
     )
 
 
+    $('#user_email').blur(function()
+        {
+          //  alert($('#user_email').val())
+
+                var email = $('#user_email').val();
+                 //alert($('#user_email').val());
+                $.ajax(
+                    {
+                        method : 'GET',
+                        url : pathajax,
+                        data : { email: email},
+                        success:function(data)
+                        {
+
+                            if( typeof data.status != 'undefined' )
+                            {
+                               // console.log($(".bsu_message").value);
+                                var user = "Not present user in db, please check email for correct"
+                                var str ="<div class='bsu_message' style='color: red'>"+user+"</div>";
+                                // $(str).appendTo( "" );
+                                $( ".bsu_message" ).replaceWith(str);
+                            }
+                            else
+                            {
+                                var str ="<div class='bsu_message'></div>";
+                                //console.log("1111");
+                                $( ".bsu_message" ).replaceWith(str);
+                            }
+
+
+                        }
+                    });
+
+
+        }
+    )
+
+
 
 })
