@@ -56,6 +56,12 @@ class ImageController extends Controller
     {
         $id=$request->get('id');
         //dump($id);
+
+        $this->addFlash(
+            'notice',
+            'Your changes were saved!'
+        );
+
         $em=$this->getDoctrine()->getManager();
         $repo=$em->getRepository("BundlesStoreBundle:Photo");
         $ph = $repo->findOneById(array('id' => $id));
@@ -74,6 +80,8 @@ class ImageController extends Controller
         }
         $em->remove($ph);
         $em->flush();
+
+
 
         return $this->redirectToRoute("app_front_end_multi");
 
@@ -94,7 +102,8 @@ class ImageController extends Controller
 
         if(is_null($photo))
         {
-            return $this->render('AppFrontEndBundle:Page:fotosess.html.twig', array('user'=>$user));
+            return $this->render('AppFrontEndBundle:Fotosess:fotosess.html.twig', array('user'=>$user));
+            //return $this->render('AppFrontEndBundle:Page:fotosess.html.twig', array('user'=>$user));
         }
         foreach($photo as $key=>$value)
         {
@@ -102,10 +111,11 @@ class ImageController extends Controller
         }
         if(!isset($keys))
         {
-            return $this->render('AppFrontEndBundle:Page:fotosess.html.twig', array('user'=>$user));
+            return $this->render('AppFrontEndBundle:Fotosess:fotosess.html.twig', array('user'=>$user));
+            //return $this->render('AppFrontEndBundle:Page:fotosess.html.twig', array('user'=>$user));
         }
-
-        return $this->render('AppFrontEndBundle:Page:fotosess.html.twig', array('photo' =>$photo,'user'=>$user));
+        return $this->render('AppFrontEndBundle:Fotosess:fotosess.html.twig', array('photo' =>$photo,'user'=>$user));
+        //return $this->render('AppFrontEndBundle:Page:fotosess.html.twig', array('photo' =>$photo,'user'=>$user));
     }
 
     public function saveFotoSessAction(Request $request)
