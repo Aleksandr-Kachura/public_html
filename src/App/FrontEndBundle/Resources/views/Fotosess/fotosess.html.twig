@@ -54,9 +54,9 @@
                     <div id="sortable1" class="connectedSortable">
                         {% for article in photo %}
                             <div class="rw ui-state-default">
+                                <div class="col"><div class="img-wrap" href="{{ asset(article.adress) }}"><img  src="{{ asset(article.adress) }}"></div></div>
                                 <div class="col">{{ article.id }}</div>
                                 <div class="col">{{ article.date | date }}</div>
-                                <div class="col"><div class="img-wrap" href="{{ asset(article.adress) }}"><img  src="{{ asset(article.adress) }}"></div></div>
                                 <div class="col"><input  name="images[]" type="hidden" value="{{ article.id }}"></div>
                             </div>
                         {% endfor %}
