@@ -21,7 +21,6 @@ class User2Type extends AbstractType
             ->add('password')
             ->add('email')
             ->add('status')
-            ->add('img')
         ;
     }
     

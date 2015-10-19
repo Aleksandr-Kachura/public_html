@@ -16,7 +16,6 @@ class ImageController extends Controller
     public function saveAction(Request $request)
     {
         $files=$request->files->get("file");
-        //dump($file);
         $em = $this->getDoctrine()
             ->getManager();
         foreach ($files as $key=>$file)
@@ -151,7 +150,6 @@ class ImageController extends Controller
         else
         {
             $ok = $this->get('site_bundle.service')->saveOrders($request);
-            dump($ok);
             return $this->redirectToRoute("app_front_end_dpfs");
         }
     }
@@ -169,7 +167,6 @@ class ImageController extends Controller
         else
         {
             $ok = $this->get('site_bundle.service')->saveOrders($request);
-            dump($ok);
             return $this->redirectToRoute("app_front_end_photograph",array('id'=>$id));
         }
     }

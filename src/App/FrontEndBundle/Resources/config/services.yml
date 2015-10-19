@@ -5,8 +5,9 @@ services:
     site_bundle.service:
               class:  App\FrontEndBundle\Service\Srv
               arguments:    ["@service_container", "@security.context"]
-              #arguments:
-                  #- @service_container
+    site_bundle.search:
+              class:  App\FrontEndBundle\Service\SearchManager
+              arguments:    ["@service_container"]
     twig.extension.intl:
         class: Twig_Extensions_Extension_Intl
         tags:

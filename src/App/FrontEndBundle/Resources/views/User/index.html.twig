@@ -1,0 +1,68 @@
+{% extends "AppFrontEndBundle::layout.html.twig" %}
+
+    {% block login %}
+        Фотосессии
+        <p>Главная <strong><a style="color:red" href="{{ path('app_front_end_wellcome') }}">main</a></strong></p>
+        <p>Посмотреть свой профиль <strong><a style="color:red" href="{{ path('app_front_end_multi') }}">show profile</a></strong></p>
+        <p>Выход <strong><a style="color:red" href="{{ path('bundles_login_security_logout') }}">exit</a></strong></p>
+    {% endblock %}
+
+
+{% block content %}
+    <!--/panel-->
+
+    {% include "AppFrontEndBundle:Elements:userblock.html.twig" %}
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                {% if form is defined %}
+                    {% if app.session.flashbag.get('notice')  is defined  %}
+                        {% for flashMessage in app.session.flashbag.get('notice') %}
+                            <div class="alert alert-success" role="alert">
+                                {{ flashMessage }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    {% if error is defined %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ error }}
+                        </div>
+                    {% endif %}
+                    <form id="RegisterUserForm" role="form" action="{{ path('app_front_end_profedit') }}" method="post" {{ form_enctype(form) }}>
+                        <div class="form-group">
+                            {{ form_row(form.email) }}
+                            <div class="bsu_message"></div>
+                        </div>
+                        <div class="form-group">
+                            {{ form_row(form.firstname) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_row(form.lastname) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_row(form.username) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_row(form.city) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_row(form.country) }}
+                        </div>
+
+                        <div class="form-group">
+                            {{ form_row(form.extra) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_row(form.descTech) }}
+                        </div>
+
+                        <input name="lang" type="hidden" value="en"/>
+                        <button type="submit" class="btn btn-success">Create</button>
+                        {{ form_rest(form) }}
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -46,6 +46,9 @@ Bundles\StoreBundle\Entity\User2:
             type: string
             length: '50'
             nullable: true
+        descTech:
+            type: text
+            nullable: true
     oneToMany:
         photo:
             targetEntity: Photo

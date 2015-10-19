@@ -29,7 +29,7 @@ app_front_end_test:
 
 app_front_end_search:
     path: /search
-    defaults: { _controller: AppFrontEndBundle:Page:search }
+    defaults: { _controller: AppFrontEndBundle:Search:search }
     requirements:
            _method: POST|GET
 
@@ -104,6 +104,9 @@ app_front_end_orderimg:
       path: /orderimg
       defaults: { _controller: AppFrontEndBundle:Image:order}
 
+app_front_end_profedit:
+      path: /profedit
+      defaults: { _controller: AppFrontEndBundle:User:index}
 
 
 

@@ -1,0 +1,153 @@
+@font-face {
+    font-family: 'icomoon';
+    src:url('../fonts/icomoon.eot?iy3yiv');
+    src:url('../fonts/icomoon.eot?iy3yiv#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?iy3yiv') format('truetype'),
+    url('../fonts/icomoon.woff?iy3yiv') format('woff'),
+    url('../fonts/icomoon.svg?iy3yiv#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+[class^="icon-"], [class*=" icon-"] {
+    font-family: 'icomoon', serif;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.icon-pinterest:before {
+    content: "\e800";
+}
+.icon-linkedin:before {
+    content: "\e801";
+}
+.icon-skype:before {
+    content: "\e802";
+}
+.icon-tumblr:before {
+    content: "\e803";
+}
+.icon-github:before {
+    content: "\e804";
+}
+.icon-steam:before {
+    content: "\e805";
+}
+.icon-dribbble:before {
+    content: "\e806";
+}
+.icon-picassa:before {
+    content: "\e807";
+}
+.icon-flickr:before {
+    content: "\e808";
+}
+.icon-vimeo:before {
+    content: "\e809";
+}
+.icon-youtube:before {
+    content: "\e80a";
+}
+.icon-youtube2:before {
+    content: "\e80b";
+}
+.icon-feed:before {
+    content: "\e80c";
+}
+.icon-twitter:before {
+    content: "\e80d";
+}
+.icon-instagram:before {
+    content: "\e80e";
+}
+.icon-facebook:before {
+    content: "\e80f";
+}
+.icon-google-plus:before {
+    content: "\e810";
+}
+select, textarea, input[type="text"], input[type="password"],
+input[type="datetime"], input[type="datetime-local"],
+input[type="date"], input[type="month"], input[type="time"],
+input[type="week"], input[type="number"], input[type="email"],
+input[type="url"], input[type="search"], input[type="tel"],
+input[type="color"]{
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
+    border-radius: 4px;
+    color: #555555;
+    display: inline-block;
+    font-size: 14px;
+    height: 34px;
+    line-height: 20px;
+    padding: 4px 6px;
+    vertical-align: middle;
+}
+.wrap-block:after{
+    display: block;
+    clear: both;
+    content: "";
+}
+.wrapper .registration .error-message{
+    color: #b94a48;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 0 20px;
+}
+.wrapper .registration .cada .glyphicon:empty{
+    vertical-align: middle;
+    font-size: 18px;
+    margin: -6px 7px 0 0;
+}
+.wrapper .registration .login-form{
+    margin: 0 0 15px;
+}
+.wrapper .registration .login-form .form-group{
+    margin: 0 15px 0 0;
+}
+.wrapper .registration .login-form label{
+    margin: 0 10px 0 0;
+}
+.wrapper .registration .login-form button .glyphicon:empty{
+    vertical-align: middle;
+    font-size: 18px;
+    margin: -6px 7px 0 0;
+}
+.container #registration3 #RegisterUserForm .form-group{
+    overflow: hidden;
+}
+.container #registration3 #RegisterUserForm .form-group input[type="email"]{
+    width: 55%!important;
+}
+.container #registration3 #RegisterUserForm label{
+    float: left;
+    margin: 7px 0 0;
+    max-width: 40%;
+}
+.container #registration3 #RegisterUserForm .form-group.extra p{
+    float: left;
+    margin: 8px 0 0;
+    max-width: 40%;
+}
+.container #registration3 #RegisterUserForm .form-group.extra .span2{
+    width: 55%;
+    float: right;
+}
+.container #registration3 #RegisterUserForm input{
+    float: right;
+    width: 55%;
+}
+.container .btn-set-block a i{
+    display: inline-block;
+    vertical-align: top;
+    margin: -1px 15px 0 0;
+    padding: 2px;
+    border: 1px solid #fff;
+    border-radius: 3px;
+}

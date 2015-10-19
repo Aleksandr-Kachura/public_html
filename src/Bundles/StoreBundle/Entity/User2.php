@@ -533,4 +533,32 @@ class User2 implements UserInterface
     {
         return $this->country;
     }
+    /**
+     * @var string
+     */
+    private $descTech;
+
+
+    /**
+     * Set descTech
+     *
+     * @param string $descTech
+     * @return User2
+     */
+    public function setDescTech($descTech)
+    {
+        $this->descTech = $descTech;
+
+        return $this;
+    }
+
+    /**
+     * Get descTech
+     *
+     * @return string 
+     */
+    public function getDescTech()
+    {
+        return $this->descTech;
+    }
 }

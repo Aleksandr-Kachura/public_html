@@ -5,59 +5,64 @@
 
 {% block content %}
 
-    <div id="registration3" class="popup_block" >
-        {% if error is defined %}
-            <div class="alert alert-danger" role="alert">
+    <div class="wrap-block">
+        <div id="registration3" class="popup_block col-md-4 pull-left" >
+            {% if error is defined %}
+                <div class="alert alert-danger" role="alert">
 
-                {{ error }}
+                    {{ error }}
 
-            </div>
-        {% endif %}
-        <form id="RegisterUserForm" role="form" action="{{ path('bundles_login_reg') }}" method="post" {{ form_enctype(form) }}>
-            <div class="form-group">
-                {{ form_row(form.firstname) }}
-            </div>
-            <div class="form-group">
-
-                {{ form_row(form.lastname) }}
-
-            </div>
-            <div class="form-group">
-                {{ form_row(form.email) }}
-            </div>
-            <div class="form-group">
-                <p><b>Роль</b></p>
-                <select name="status">
-                    <option selected value="photo">Фотограф</option>
-                    <option value="seller">Покупатель</option>
-                </select>
-            </div>
-            <div class="form-group">
-                {{ form_row(form.username) }}
-            </div>
-                {#{{ form_row(form.jabber) }}#}
-            <div class="form-group">
-                {{ form_row(form.password) }}
-            </div>
-
-            {% if refferal is defined %}
-                <input name="hide_ref" type="hidden" value="{{ refferal }}"/>
-            {% else %}
-                 <div class="form-group">
-                    <label for="code_ref">Code ref</label>
-                    <input type="text" name="code_ref" maxlength="6" >
                 </div>
             {% endif %}
-            {# {{ form_rest(form) }} #}
+            <form id="RegisterUserForm" role="form" action="{{ path('bundles_login_reg') }}" method="post" {{ form_enctype(form) }}>
+                <div class="form-group">
+                    {{ form_row(form.firstname) }}
+                </div>
+                <div class="form-group">
 
-                <input name="lang" type="hidden" value="en"/>
-                <button type="submit" class="btn btn-success">Войти</button>
+                    {{ form_row(form.lastname) }}
 
-            {{ form_rest(form) }}
-        </form>
+                </div>
+                <div class="form-group">
+                    {{ form_row(form.email) }}
+                </div>
+                <div class="form-group extra">
+                    <p><b>Роль</b></p>
+                    <select name="status" class="span2">
+                        <option selected value="photo">Фотограф</option>
+                        <option value="seller">Покупатель</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    {{ form_row(form.username) }}
+                </div>
+                    {#{{ form_row(form.jabber) }}#}
+                <div class="form-group">
+                    {{ form_row(form.password) }}
+                </div>
+
+                {% if refferal is defined %}
+                    <input name="hide_ref" type="hidden" value="{{ refferal }}"/>
+                {% else %}
+                     <div class="form-group">
+                        <label for="code_ref">Code ref</label>
+                        <input type="text" name="code_ref" maxlength="6" >
+                    </div>
+                {% endif %}
+                {# {{ form_rest(form) }} #}
+
+                    <input name="lang" type="hidden" value="en"/>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success pull-right">Войти</button>
+                    </div>
+                {{ form_rest(form) }}
+            </form>
+        </div>
+        <div id="fb-root"></div>
+        <div class="col-md-4 pull-left btn-set-block">
+            <p><a href="#" class="btn btn-block btn-primary" onClick="logInWithFacebook()"><i class="icon-facebook"></i>Facebook registration</a></p>
+        </div>
     </div>
-    <div id="fb-root"></div>
-    <p><a href="#" onClick="logInWithFacebook()">Facebook registration</a></p>
     <script>
         var pathfilter="{{ path('bundles_login_fbuserinfo') }}";
         logInWithFacebook = function() {

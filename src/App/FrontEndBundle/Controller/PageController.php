@@ -7,10 +7,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 use Bundles\LoginBundle\Form\Type\Register;
-
-//use Bundles\StoreBundle\Entity\Users;
 use Bundles\StoreBundle\Entity\User2;
 use Bundles\StoreBundle\Entity\Orders;
+
 use Bundles\StoreBundle\Entity\Photo;
 class PageController extends Controller
 {
@@ -112,14 +111,12 @@ class PageController extends Controller
 
 
     //поиск
-    public function searchAction(Request $request)
+  /*  public function searchAction(Request $request)
     {
 
         $login = $request->get("login");
         $city = $request->get("city");
         $country = $request->get("country");
-        dump($city);
-        dump($country);
 
         if(empty($login))
         {
@@ -132,7 +129,7 @@ class PageController extends Controller
         return $this->render('AppFrontEndBundle:Page:search.html.twig', array('users'=>$users));
 
 
-    }
+    }*/
 
     //католог фотографов
     public function catalogAction()
@@ -252,7 +249,7 @@ class PageController extends Controller
         if($request->get('message'))
         {
            $param['message'] = $request->get('message');
-           return $this->render('AppFrontEndBundle:Form:register.html.twig',$param);
+           return $this->render('me.html.twig',$param);
         }
         $user=new User2();
         $form=$this->createForm(new Register(),$user);
@@ -273,7 +270,7 @@ class PageController extends Controller
 
                     $param['form'] = $form->createView();
                     $param['error'] = $e;
-                    return $this->render('AppFrontEndBundle:Form:register.html.twig',$param);
+                    return $this->render('me.html.twig',$param);
                     // return $this->render('BundlesLoginBundle:Login:register.html.twig',array('form'=>$form->createView(),'error'=>$e));
                 }
                 $str="User ".$this->getUser()->getEmail()." created your profile http://mvp.intechsoft.net/login  Where Login :".$form->getData()->getUsername()."
@@ -295,7 +292,7 @@ class PageController extends Controller
 
 
         $param['form'] = $form->createView();
-        return $this->render('AppFrontEndBundle:Form:register.html.twig',$param);
+        return $this->render('me.html.twig',$param);
     }
 
 

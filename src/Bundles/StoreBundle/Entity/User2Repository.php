@@ -22,6 +22,32 @@ class User2Repository extends EntityRepository
            return($qb->getQuery()->getResult());
        }
 
+        public function findPhotogrs($search)
+        {
+            $qb=$this->createQueryBuilder('u')
+                ->select("u")
+                ->where('u.firstname LIKE :firstname')
+                ->setParameter('firstname','%'.$search['firstname'].'%')
+                ->andWhere('u.lastname LIKE :lastname')
+                ->setParameter('lastname','%'.$search['lastname'].'%');
+                if ($search['login']!=" ")
+                {
+                    $qb ->andWhere('u.username LIKE :login')
+                        ->setParameter('login','%'.$search['login'].'%');
+                }
+                if ($search['city']!=" ")
+                {
+                    $qb ->andWhere('u.city LIKE :city')
+                        ->setParameter('city','%'.$search['city'].'%');
+                }
+                if ($search['country']!=" ")
+                {
+                    $qb ->andWhere('u.country LIKE :country')
+                        ->setParameter('country','%'.$search['country'].'%');
+                }
+            return($qb->getQuery()->getResult());
+        }
+
         public function getUsid($id)
         {
             $qb=$this->createQueryBuilder('u')
@@ -31,5 +57,5 @@ class User2Repository extends EntityRepository
             return($qb->getQuery()->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY));
         }
 
-
+        // $qb->distinct();
 }

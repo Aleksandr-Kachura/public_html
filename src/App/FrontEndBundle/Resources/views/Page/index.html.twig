@@ -2,14 +2,13 @@
 
     {% block login %}
 
-        {% if user is defined %}
-            <p>Профиль <strong><a style="color:red" href="{{ path('app_front_end_multi') }}">Ссылка</a></strong></p>
-        {% else %}
-            <p>Пока вы можете войти в личный кабинет <strong><a style="color:red" href="{{ path('bundles_login_form') }}">login</a></strong></p>
-       {% endif %}
-        <p>Поиск фотографа <strong><a style="color:red" href="{{ path('app_front_end_search') }}">Поиск</a></strong></p>
-        <p>Каталог фотографов <strong><a style="color:red" href="{{ path('app_front_end_catalog') }}">Переход</a></strong></p>
-
+            {% if user is defined %}
+                <div class="btn-group"><a class="btn btn-primary" href="{{ path('app_front_end_multi') }}">Профиль<i class="glyphicon glyphicon-link"></i></a></div>
+            {% else %}
+                <div class="btn-group"><a class="btn btn-primary" href="{{ path('bundles_login_form') }}">Пока вы можете войти в личный кабинет<i class="glyphicon glyphicon-log-in"></i></a></div>
+           {% endif %}
+            <div class="btn-group"><a class="btn btn-info" href="{{ path('app_front_end_search') }}">Поиск фотографа<i class="glyphicon glyphicon-search"></i></a></div>
+            <div class="btn-group"><a class="btn btn-success" href="{{ path('app_front_end_catalog') }}">Каталог фотографов<i class="glyphicon glyphicon-book"></i></a></div>
     {% endblock %}
 
 

@@ -1,4 +1,4 @@
-{
+app{
     "name": "symfony/framework-standard-edition",
     "license": "MIT",
     "type": "project",
@@ -33,7 +33,6 @@
         "facebook/php-sdk-v4": "^5.0",
 
         "knplabs/knp-paginator-bundle": "~2.4"
-
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

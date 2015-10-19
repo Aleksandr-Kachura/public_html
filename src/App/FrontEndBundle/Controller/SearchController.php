@@ -11,31 +11,37 @@ class SearchController extends Controller
     public function indexAction()
     {
 
-        return $this->render('AppFrontEndBundle:Page:index.html.twig', array('user' => $user));
-    }
-
-    //письмо
-    public function sendAction()
-    {
-        $message = \Swift_Message::newInstance()
-            ->setSubject('Hello Email')
-            ->setFrom('send@example.com')
-            ->setTo('recipient@example.com')
-            ->setBody("Hello" )
-            /*
-             * If you also want to include a plaintext version of the message
-            ->addPart(
-                $this->renderView(
-                    'Emails/registration.txt.twig',
-                    array('name' => $name)
-                ),
-                'text/plain'
-            )
-            */
-        ;
-        $this->get('mailer')->send($message);
         return $this->render('AppFrontEndBundle:Page:index.html.twig');
     }
+
+
+    //поиск
+    public function searchAction(Request $request)
+    {
+        $search = $request->get("search");
+        $this->get('site_bundle.search')->setSearchArr($search);
+        $users = $this->get('site_bundle.search')->giveResult();
+
+
+       /* $login = $request->get("login");
+        $city = $request->get("city");
+        $country = $request->get("country");
+
+        if(empty($login))
+        {
+            return $this->render('AppFrontEndBundle:Page:search.html.twig');
+        }*/
+
+        /*$em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository("BundlesStoreBundle:User2");
+        $users = $repo->findLog($login);*/
+        return $this->render('AppFrontEndBundle:Page:search.html.twig', array('users'=>$users));
+        //return $this->render('AppFrontEndBundle:Page:search.html.twig');
+
+
+    }
+
+
 
     //пагинация
     public function paginAction(Request $request)
@@ -60,16 +66,6 @@ class SearchController extends Controller
         return $this->render('AppFrontEndBundle:Page:page.html.twig', array('pagination' => $pagination));
     }
 
-    //хлебные крошки
-    public function breadAction()
-    {
-        $router = $this->get('router');
-        $breadcrumbs = $this->get('white_october_breadcrumbs');
-        $breadcrumbs->addItem('Главная', $router->generate('app_front_end_wellcome'));
-        $breadcrumbs->addItem('Хлеб');
-        return $this->render('AppFrontEndBundle:Page:bread.html.twig');
-
-    }
 
     //мультиязычность
     public function multiAction(Request $request)
