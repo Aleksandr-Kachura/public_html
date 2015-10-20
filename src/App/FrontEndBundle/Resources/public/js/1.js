@@ -2,11 +2,12 @@
 
 $(document).ready(function()
 {
-    /*if($('input#bundles_storebundle_user2_email').length>3)
-    {
 
-        alert("ok");
-    }*/
+    $('.advantage').hide();
+
+    $('.advsearch').on('click',function(){
+        $('.advantage').toggle();
+    });
 
     $('#bundles_storebundle_user2_email').blur(function()
         {
