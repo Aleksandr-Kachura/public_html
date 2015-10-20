@@ -1,6 +1,4 @@
-#app_front_end_homepage:
-    #path:     /hello/{name}
-    #defaults: { _controller: AppFrontEndBundle:Default:index }
+
 app_front_end_wellcome:
     path:     /
     defaults: { _controller: AppFrontEndBundle:Page:index }
@@ -17,7 +15,6 @@ app_front_end_multi:
     path:     /multi
     defaults:
         _controller: AppFrontEndBundle:Page:multi
-        #_locale:     %locale%
 
 app_front_end_seller:
     path:     /seller
@@ -26,12 +23,6 @@ app_front_end_seller:
 app_front_end_test:
     path:  /test
     defaults: { _controller: AppFrontEndBundle:Page:test }
-
-app_front_end_search:
-    path: /search
-    defaults: { _controller: AppFrontEndBundle:Search:search }
-    requirements:
-           _method: POST|GET
 
 app_front_end_catalog:
     path: /catalog
@@ -44,14 +35,6 @@ app_front_end_photograph:
     defaults: { _controller: AppFrontEndBundle:Page:photograph }
     requirements:
            _method: POST|GET
-
-#app_front_end_order:
-     # path: /order/{id}
-     # defaults: { _controller: AppFrontEndBundle:Page:order}
-
-#app_front_end_getOrder:
-     # path: /gorder
-     # defaults: { _controller: AppFrontEndBundle:Page:getOrder}
 
 app_front_end_returnlink:
     path:     /retlink
@@ -70,6 +53,8 @@ app_front_end_addus:
 app_front_end_stat:
     path: /afestat
     defaults: { _controller: AppFrontEndBundle:Page:showStat}
+
+
 
 
 app_front_end_svImg:
@@ -104,9 +89,26 @@ app_front_end_orderimg:
       path: /orderimg
       defaults: { _controller: AppFrontEndBundle:Image:order}
 
+app_front_end_waterimg:
+      path: /waterimg
+      defaults: { _controller: AppFrontEndBundle:Image:waterimg}
+
+
+
+
 app_front_end_profedit:
       path: /profedit
       defaults: { _controller: AppFrontEndBundle:User:index}
+
+
+
+
+app_front_end_search:
+    path: /search
+    defaults: { _controller: AppFrontEndBundle:Search:search }
+    requirements:
+           _method: POST|GET
+
 
 
 

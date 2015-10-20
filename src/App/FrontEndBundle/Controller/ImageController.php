@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 class ImageController extends Controller
 {
 
-    //сохранение картинки
+    //saving image
     public function saveAction(Request $request)
     {
         $files=$request->files->get("file");
@@ -33,24 +33,18 @@ class ImageController extends Controller
             $datetime = date("Y-m-d");
             $basepath = "upload/foto/".$datetime."/";
             $filename = uniqid() . '.' . $file->guessExtension();
-
-
-
             $file->move($basepath, $filename);
             $filename = $basepath. $filename;
-
             $photo = new Photo();
             $photo->setAdress('/'.$filename);
             $photo->setUser2($user);
-
             $em->persist($photo);
         }
         $em->flush();
         return $this->redirectToRoute("app_front_end_multi");
     }
 
-
-   // удаление
+   // delete
     public function deleteAction(Request $request)
     {
         $id=$request->get('id');
@@ -79,15 +73,10 @@ class ImageController extends Controller
         }
         $em->remove($ph);
         $em->flush();
-
-
-
         return $this->redirectToRoute("app_front_end_multi");
-
-
     }
 
-
+    // empty method
     public function editAction(Request $request)
     {
 
@@ -117,6 +106,7 @@ class ImageController extends Controller
         //return $this->render('AppFrontEndBundle:Page:fotosess.html.twig', array('photo' =>$photo,'user'=>$user));
     }
 
+   //saving photo session
     public function saveFotoSessAction(Request $request)
     {
          $ok = $this->get('site_bundle.service')->justSavePhSess($request);
@@ -130,12 +120,14 @@ class ImageController extends Controller
         }
     }
 
+    //display propose photo session
     public function displayProposFsAction()
     {
         $galleries = $this->get('site_bundle.service')->getPropsFS();
         return $this->render('AppFrontEndBundle:Fotosess:prop.html.twig',array('galleries'=>$galleries));
     }
 
+    // order photo session
     public function orderFsAction(Request $request)
     {
         if($request->get('button')=="delete")
@@ -154,10 +146,9 @@ class ImageController extends Controller
         }
     }
 
+   // order image
     public function orderAction (Request $request)
     {
-
-
         $id = $request->get('userId');
 
         if((!$request->get('images')) or (is_null($this->getUser())) )
@@ -170,6 +161,22 @@ class ImageController extends Controller
             return $this->redirectToRoute("app_front_end_photograph",array('id'=>$id));
         }
     }
+
+    //save position watermark
+    public function waterimgAction (Request $request)
+    {
+        $result = $this->get('site_bundle.service')->saveWaterPosition($request);
+        if($result !='ERR')
+        {
+            $this->addFlash(
+                'waterMessage',
+                'Your watremark position saved!'
+            );
+        }
+        return $this->redirectToRoute("app_front_end_profedit");
+    }
+
+
 
 
 }

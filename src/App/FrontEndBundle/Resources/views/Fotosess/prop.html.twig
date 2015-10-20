@@ -1,9 +1,9 @@
 {% extends "AppFrontEndBundle::layout.html.twig" %}
 
     {% block login %}
-        Фотосессии
-        <p>Главная <strong><a style="color:red" href="{{ path('app_front_end_wellcome') }}">main</a></strong></p>
-
+        <a class="btn btn-warning" href="{{ path('app_front_end_wellcome') }}">Главная<i class="glyphicon glyphicon-th-large"></i></a>
+        <a class="btn btn-success" href="{{ path('app_front_end_multi') }}">Мой профиль<i class="glyphicon glyphicon-user"></i></a>
+        <a class="btn btn-danger" href="{{ path('bundles_login_security_logout') }}">Выход<i class="glyphicon glyphicon-log-out"></i></a>
 
     {% endblock %}
 
@@ -58,6 +58,8 @@
         </div><!--/panel-->
     </div>
 
+
+    {% set runtimeConfig = {"watermark": {"position": "center", image: "Resources/data/draft.png",  size: "0.5"} } %}
     {% if galleries is defined  %}
         {% for  gallery in galleries %}
             <div class=" col-md-8">
@@ -83,7 +85,7 @@
                                         <tr>
                                             <td>{{photo.id }}</td>
                                             <td>{{ photo.date  |date   }}</td>
-                                            <td><img  height="80" width="80" src="{{ asset(photo.adress)| imagine_filter('my_water') }}"></td>
+                                            <td><img  height="80" width="80" src="{{ asset(photo.adress)| imagine_filter('watermark_photo', runtimeConfig) }}"></td>
                                             <td><input  name="images[]" type="checkbox" value="{{ photo.id }}"></td>
                                         </tr>
                                     {% endfor %}

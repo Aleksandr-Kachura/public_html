@@ -1,10 +1,9 @@
 {% extends "AppFrontEndBundle::layout.html.twig" %}
 
     {% block login %}
-        Фотосессии
-        <p>Главная <strong><a style="color:red" href="{{ path('app_front_end_wellcome') }}">main</a></strong></p>
-        <p>Посмотреть свой профиль <strong><a style="color:red" href="{{ path('app_front_end_multi') }}">show profile</a></strong></p>
-        <p>Выход <strong><a style="color:red" href="{{ path('bundles_login_security_logout') }}">exit</a></strong></p>
+        <a class="btn btn-warning" href="{{ path('app_front_end_wellcome') }}">Главная<i class="glyphicon glyphicon-th-large"></i></a>
+        <a class="btn btn-success" href="{{ path('app_front_end_multi') }}">Мой профиль<i class="glyphicon glyphicon-user"></i></a>
+        <a class="btn btn-danger" href="{{ path('bundles_login_security_logout') }}">Выход<i class="glyphicon glyphicon-log-out"></i></a>
     {% endblock %}
 
 
@@ -12,6 +11,7 @@
     <!--/panel-->
 
     {% include "AppFrontEndBundle:Elements:userblock.html.twig" %}
+
     <div class="col-md-6">
         <div class="panel panel-default">
             <div class="panel-body">
@@ -64,5 +64,38 @@
             </div>
         </div>
     </div>
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h2>Конструктор Watermark</h2>
+                {% if app.session.flashbag.get('waterMessage')  is defined  %}
+                    {% for flashMessage in app.session.flashbag.get('waterMessage') %}
+                        <div class="alert alert-success" role="alert">
+                            {{ flashMessage }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <form  action="{{ path('app_front_end_waterimg') }}" method="post">
+                    <label for="waterPos">Position</label>
+                    <select name="waterPos" id="waterPos">
+                            <option>Choise position</option>
+                            <option>top-left</option>
+                            <option>top</option>
+                            <option>top-right</option>
+                            <option>left</option>
+                            <option>center</option>
+                            <option>right</option>
+                            <option>bottom-left</option>
+                            <option>bottom</option>
+                            <option>bottom-right</option>
+                     </select>
+                    <br>
+                    <br>
+                     <button type="submit" class="btn btn-success">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
 {% endblock %}

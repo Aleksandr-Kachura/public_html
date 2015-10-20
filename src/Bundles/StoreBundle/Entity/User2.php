@@ -561,4 +561,42 @@ class User2 implements UserInterface
     {
         return $this->descTech;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $watermark;
+
+
+    /**
+     * Add watermark
+     *
+     * @param \Bundles\StoreBundle\Entity\WaterMark $watermark
+     * @return User2
+     */
+    public function addWatermark(\Bundles\StoreBundle\Entity\WaterMark $watermark)
+    {
+        $this->watermark[] = $watermark;
+
+        return $this;
+    }
+
+    /**
+     * Remove watermark
+     *
+     * @param \Bundles\StoreBundle\Entity\WaterMark $watermark
+     */
+    public function removeWatermark(\Bundles\StoreBundle\Entity\WaterMark $watermark)
+    {
+        $this->watermark->removeElement($watermark);
+    }
+
+    /**
+     * Get watermark
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getWatermark()
+    {
+        return $this->watermark;
+    }
 }

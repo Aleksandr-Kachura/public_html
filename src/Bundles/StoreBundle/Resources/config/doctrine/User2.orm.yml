@@ -63,6 +63,9 @@ Bundles\StoreBundle\Entity\User2:
         gallery:
             targetEntity: Gallery
             mappedBy: user2
+        watermark:
+            targetEntity: WaterMark
+            mappedBy: user2
 
 
     lifecycleCallbacks: {  }

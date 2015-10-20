@@ -9,26 +9,14 @@
         <meta name="author" content="">
         {% block title %} <title>Photo Gallery</title> {% endblock %}
         {% block link %}
-            <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">
-
+            <link rel="stylesheet" href="{{ asset('bundles/appfrontend/css/mvp_styles.css') }}"/>
             <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-
             <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
             <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-
-            <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">
             <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-
-            <!-- Latest compiled and minified CSS -->
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
-            <!-- Optional theme -->
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-
-            <!-- Latest compiled and minified JavaScript -->
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-            <link rel="stylesheet" href="{{ asset('bundles/appfrontend/css/mvp_styles.css') }}"/>
          {% endblock %}
     {% endblock %}
 
@@ -92,7 +80,7 @@
 
 
     {% block content_header %}
-        <div class="heading" >
+        <div class="heading">
             <h1><a href="#">MVP</a></h1>
         </div>
        <!-- <a href=" {{ path('fos_user_security_login') }}"></a>-->
@@ -101,7 +89,6 @@
         {% block login %}
         {% endblock %}
     </div>
-
     {% block content %}
     {% endblock %}
     {% block gallery %}{% endblock %}
@@ -125,7 +112,6 @@
 {% block jscript %}
 
     <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.2/js/bootstrap.min.js"></script>
     <script src="{{ asset('bundles/appfrontend/js/photo-gallery.js') }}"></script>
 {% endblock %}
 </html>

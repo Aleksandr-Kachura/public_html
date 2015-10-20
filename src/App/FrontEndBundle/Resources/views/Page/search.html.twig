@@ -1,7 +1,7 @@
 {% extends "AppFrontEndBundle::layout.html.twig" %}
 
 {% block login %}
-    Страница результата
+    <a class="btn btn-warning" href="{{ path('app_front_end_wellcome') }}">Главная<i class="glyphicon glyphicon-th-large"></i></a>
 {% endblock %}
 
 {% block css %}
@@ -13,33 +13,33 @@
     <div class="col-lg-6">
         <form action="{{ path('app_front_end_search') }}" method="post">
             <div class="main">
-                <div class="field">
+                <div class="form-group">
                     <label for="firstname">Firstname</label>
                     <input type="text" name="search[firstname]" class="form-control" placeholder="Search for...">
                 </div><!-- /input-group -->
-                <div class="field">
+                <div class="form-group">
                     <label for="lastname">Lastname</label>
                     <input type="text" name="search[lastname]" class="form-control" placeholder="Search for...">
                 </div><!-- /input-group -->
-                <div class="field">
-                    <label><input class="advsearch" type="checkbox" value="Advantage Search">Advantage Search</label>
+                <div class="form-group">
+                    <label>Advantage Search</label><input class="advsearch" type="checkbox" value="Advantage Search">
                 </div>
                 <div class="advantage">
-                    <div class="field">
+                    <div class="form-group">
                         <label for="login">Login</label>
                         <input type="text" name="search[login]" class="form-control" placeholder="Search for...">
                     </div><!-- /input-group -->
-                    <div class="field">
+                    <div class="form-group">
                         <label for="city">City</label>
                         <input type="text" name="search[city]" class="form-control" placeholder="Search for...">
                     </div><!-- /input-group -->
-                    <div class="field">
+                    <div class="form-group">
                         <label for="country">Country</label>
                         <input type="text" name="search[country]" class="form-control" placeholder="Search for...">
                     </div><!-- /input-group -->
                 </div>
-                <div class="field">
-                    <button type="submit" class="btn btn-default">Submit</button>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </div>
 

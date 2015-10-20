@@ -2,14 +2,23 @@
 {% extends "AppFrontEndBundle::layout.html.twig" %}
 
     {% block login %}
-
-        <p>Главная <strong><a style="color:red" href="{{ path('app_front_end_wellcome') }}">main</a></strong></p>
-        <p>Создать фотосессию <strong><a style="color:green" href="{{ path('app_front_end_fotosess') }}">create</a></strong>->Предложенные фотосессию <strong><a style="color:green" href="{{ path('app_front_end_dpfs') }}">photo</a></strong> </p>
-        <p>Редактировать профиль <strong><a style="color:red" href="{{ path('app_front_end_profedit') }}">Edit profile</a></strong></p>
-        <p>Добавить юзера <strong><a style="color:red" href="{{ path('app_front_end_addus') }}">add User</a></strong></p>
-        <p>Статистика реф <strong><a style="color:red" href="{{ path('app_front_end_stat') }}">Stat ref</a></strong></p>
-        <p>Выход <strong><a style="color:red" href="{{ path('bundles_login_security_logout') }}">exit</a></strong></p>
-
+        <a class="btn btn-warning" href="{{ path('app_front_end_wellcome') }}">Главная<i class="glyphicon glyphicon-th-large"></i></a>
+        <div class="btn-group" role="group">
+            <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Фотосессии<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="{{ path('app_front_end_dpfs') }}">Предложенные фотосессии</a></li>
+                <li><a href="{{ path('app_front_end_fotosess') }}">Создать фотоссесию</a></li>
+            </ul>
+        </div>
+        <div class="btn-group" role="group">
+            <a class="btn btn-success dropdown-toggle" data-toggle="dropdown" href="#">Профиль<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="{{ path('app_front_end_profedit') }}">Редактировать профиль</a></li>
+                <li><a href="{{ path('app_front_end_addus') }}">Добавить юзера</a></li>
+                <li><a href="{{ path('bundles_login_security_logout') }}">Выход</a></li>
+            </ul>
+        </div>
+        <a class="btn btn-info" href="{{ path('app_front_end_stat') }}">Статистика реф<i class="glyphicon glyphicon-copyright-mark"></i></a>
     {% endblock %}
 
 {% block css %}
@@ -29,7 +38,9 @@
       {% endfor %}
   {% endif %}
   <div class="col-md-12">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Get ref code</button>
+     <div class="wrap-block">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Get ref code</button>
+     </div>
   </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
         <div class="modal-dialog" role="document">

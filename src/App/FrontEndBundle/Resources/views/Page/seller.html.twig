@@ -3,10 +3,10 @@
 
     {% block login %}
 
-        <p>Главная <strong><a style="color:red" href="{{ path('app_front_end_wellcome') }}">main</a></strong></p>
-        <p> Предложенные фотосессии <strong><a style="color:green" href="{{ path('app_front_end_dpfs') }}">photo</a></strong> </p>
-        <p>Статистика реф <strong><a style="color:red" href="{{ path('app_front_end_stat') }}">Stat ref</a></strong></p>
-        <p>Выход <strong><a style="color:red" href="{{ path('bundles_login_security_logout') }}">exit</a></strong></p>
+        <a class="btn btn-warning" href="{{ path('app_front_end_wellcome') }}">Главная<i class="glyphicon glyphicon-th-large"></i></a>
+        <a class="btn btn-primary" href="{{ path('app_front_end_dpfs') }}">Предложенные фотосессии<i class="glyphicon glyphicon-camera"></i></a>
+        <a class="btn btn-info" href="{{ path('app_front_end_stat') }}">Статистика реф<i class="glyphicon glyphicon-copyright-mark"></i></a>
+        <a class="btn btn-danger" href="{{ path('bundles_login_security_logout') }}">Выход<i class="glyphicon glyphicon-log-out"></i></a>
 
     {% endblock %}
 

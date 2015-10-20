@@ -1,0 +1,22 @@
+Bundles\StoreBundle\Entity\WaterMark:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        position:
+            type: string
+            length: 20
+    manyToOne:
+        user2:
+          targetEntity: User2
+          inversedBy: watermark
+          joinColumn:
+            name: user2Id
+            referencedColumnName: id
+
+    lifecycleCallbacks: {  }

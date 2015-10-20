@@ -108,16 +108,14 @@ liip_imagine:
             quality: 100
             filters:
                 thumbnail: { size: [200, 200], mode: outbound }
-        my_water:
+        watermark_photo:
             filters:
-                watermark:
+                    relative_resize: { widen: 1600 }
                     # Relative path to the watermark file (prepended with "%kernel.root_dir%/")
-                    image: "Resources/data/draft.png"
-                    # Size of the watermark relative to the origin images size
-                    size: 0.5
-                    # Position: One of topleft,top,topright,left,center,right,bottomleft,bottom,bottomright
-                    position: center
 
+                    # Size of the watermark relative to the origin images size
+
+                    # Position: One of topleft,top,topright,left,center,right,bottomleft,bottom,bottomright
 sonata_admin:
     dashboard:
         blocks:

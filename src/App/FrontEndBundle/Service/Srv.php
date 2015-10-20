@@ -10,6 +10,7 @@ use Bundles\StoreBundle\Entity\Gallery;
 use Bundles\StoreBundle\Entity\Image;
 use Bundles\StoreBundle\Entity\Orders;
 use Bundles\StoreBundle\Entity\Photo;
+use Bundles\StoreBundle\Entity\WaterMark;
 
 
 class Srv
@@ -164,6 +165,32 @@ class Srv
 
         $em->flush();
         return "SUCCESS";
+    }
+
+    public function saveWaterPosition($request)
+    {
+        $em = $this->container->get('doctrine')->getManager();
+        $waterPos = $request->get('waterPos');
+        if($waterPos=='Choise position')
+        {
+            return 'ERR';
+        }
+        $repo=$em->getRepository("BundlesStoreBundle:WaterMark");
+        $waters =  $repo->findBy(array('user2'=>$this->user));
+        if(empty($waters))
+        {
+            $water = new WaterMark();
+            $water->setPosition($waterPos);
+            $water->setUser2($this->user);
+        }
+        else
+        {
+            $water=$waters[0];
+            $water->setPosition($waterPos);
+        }
+        $em->persist($water);
+        $em->flush();
+
     }
 
 

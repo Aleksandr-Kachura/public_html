@@ -1,14 +1,14 @@
 {% extends "AppFrontEndBundle::layout.html.twig" %}
 
     {% block login %}
+            <a class="btn btn-info" href="{{ path('app_front_end_search') }}">Поиск фотографа<i class="glyphicon glyphicon-search"></i></a>
+            <a class="btn btn-success" href="{{ path('app_front_end_catalog') }}">Каталог фотографов<i class="glyphicon glyphicon-book"></i></a>
 
             {% if user is defined %}
-                <div class="btn-group"><a class="btn btn-primary" href="{{ path('app_front_end_multi') }}">Профиль<i class="glyphicon glyphicon-link"></i></a></div>
+            <a class="btn btn-primary" href="{{ path('app_front_end_multi') }}">Профиль<i class="glyphicon glyphicon-link"></i></a>
             {% else %}
-                <div class="btn-group"><a class="btn btn-primary" href="{{ path('bundles_login_form') }}">Пока вы можете войти в личный кабинет<i class="glyphicon glyphicon-log-in"></i></a></div>
+            <a class="btn btn-primary" href="{{ path('bundles_login_form') }}">Личный кабинет<i class="glyphicon glyphicon-log-in"></i></a>
            {% endif %}
-            <div class="btn-group"><a class="btn btn-info" href="{{ path('app_front_end_search') }}">Поиск фотографа<i class="glyphicon glyphicon-search"></i></a></div>
-            <div class="btn-group"><a class="btn btn-success" href="{{ path('app_front_end_catalog') }}">Каталог фотографов<i class="glyphicon glyphicon-book"></i></a></div>
     {% endblock %}
 
 

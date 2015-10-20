@@ -1,10 +1,7 @@
 {% extends "AppFrontEndBundle::layout.html.twig" %}
 
     {% block login %}
-        Страница фотографа
-        <p>Главная <strong><a style="color:red" href="{{ path('app_front_end_wellcome') }}">main</a></strong></p>
-
-
+        <a class="btn btn-warning" href="{{ path('app_front_end_wellcome') }}">Главная<i class="glyphicon glyphicon-th-large"></i></a>
     {% endblock %}
 
 
@@ -103,6 +100,5 @@
  {% block jscript %}
 
     <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.2/js/bootstrap.min.js"></script>
     <script src="{{ asset('bundles/appfrontend/js/modal.js') }}"></script>
 {% endblock %}

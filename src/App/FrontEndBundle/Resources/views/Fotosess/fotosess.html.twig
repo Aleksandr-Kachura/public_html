@@ -2,9 +2,9 @@
 {% extends "AppFrontEndBundle::layout.html.twig" %}
 
     {% block login %}
-        <div class="btn-group"><a class="btn btn-warning" href="{{ path('app_front_end_wellcome') }}">Главная<i class="glyphicon glyphicon-th-large"></i></a></div>
-        <div class="btn-group"><a class="btn btn-success" href="{{ path('app_front_end_fotosess') }}">Кабинет<i class="glyphicon glyphicon-save-file"></i></a></div>
-        <div class="btn-group"><a class="btn btn-danger" href="{{ path('bundles_login_security_logout') }}">Выход<i class="glyphicon glyphicon-log-out"></i></a></div>
+        <a class="btn btn-warning" href="{{ path('app_front_end_wellcome') }}">Главная<i class="glyphicon glyphicon-th-large"></i></a>
+        <a class="btn btn-success" href="{{ path('app_front_end_fotosess') }}">Кабинет<i class="glyphicon glyphicon-save-file"></i></a>
+        <a class="btn btn-danger" href="{{ path('bundles_login_security_logout') }}">Выход<i class="glyphicon glyphicon-log-out"></i></a>
     {% endblock %}
 {% block css %}
     <link rel="stylesheet" href="{{ asset('bundles/appfrontend/css/1.css') }}"/>
@@ -88,7 +88,7 @@
                             <input type="email" id="user_email" name="user_email" id="ln" required/>
                             <div class="bsu_message"></div>
                         </div>
-                        <div><h3>Photo</h3></div>
+                        <div><h3 style="text-transform:uppercase; font-weight:bold; margin-top:15px;">Photo</h3></div>
                     </div>
 
                     <div id="sortable2" class="connectedSortable">
