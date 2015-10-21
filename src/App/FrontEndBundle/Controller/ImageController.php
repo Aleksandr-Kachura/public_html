@@ -48,7 +48,6 @@ class ImageController extends Controller
     public function deleteAction(Request $request)
     {
         $id=$request->get('id');
-        //dump($id);
 
         $this->addFlash(
             'notice',
@@ -124,6 +123,13 @@ class ImageController extends Controller
     public function displayProposFsAction()
     {
         $galleries = $this->get('site_bundle.service')->getPropsFS();
+      //  $possitions = $this->get('site_bundle.service')->getAuthorWaterPossition();
+       /* $config = array();
+        foreach($possitions as $key => $possition)
+        {
+
+        }*/
+
         return $this->render('AppFrontEndBundle:Fotosess:prop.html.twig',array('galleries'=>$galleries));
     }
 

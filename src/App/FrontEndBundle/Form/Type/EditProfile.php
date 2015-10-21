@@ -22,7 +22,7 @@ class EditProfile extends AbstractType
             ->add('city',null,array('required'=>true,'label'=>'City'))
             ->add('country',null,array('required'=>true,'label'=>'Country'))
             ->add('descTech','textarea',array('required'=>false,'label'=>'TechInfo'))
-            ->add('extra', 'file', array('required'=>false,'mapped' => false))
+            ->add('image', 'file', array('required'=>false,'mapped' => false))
         ;
     }
 

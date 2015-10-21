@@ -160,6 +160,17 @@ class PageController extends Controller
         {
             return $this->render('AppFrontEndBundle:Page:photopage.html.twig', array('user'=>$user ));
         }
+        $waterRepo = $em->getRepository("BundlesStoreBundle:WaterMark");
+        $position = $waterRepo->findOneBy(array('user2' => $user));
+
+        if(empty($position))
+        {
+            $user->config = 'center';
+        }
+        else
+        {
+            $user->config = $position->getPosition();
+        }
         return $this->render('AppFrontEndBundle:Page:photopage.html.twig', array('user'=>$user,'photo'=>$photo ));
     }
 
@@ -249,7 +260,7 @@ class PageController extends Controller
         if($request->get('message'))
         {
            $param['message'] = $request->get('message');
-           return $this->render('me.html.twig',$param);
+           return $this->render('AppFrontEndBundle:Form:register.html.twig',$param);
         }
         $user=new User2();
         $form=$this->createForm(new Register(),$user);
@@ -270,7 +281,7 @@ class PageController extends Controller
 
                     $param['form'] = $form->createView();
                     $param['error'] = $e;
-                    return $this->render('me.html.twig',$param);
+                    return $this->render('AppFrontEndBundle:Form:register.html.twig',$param);
                     // return $this->render('BundlesLoginBundle:Login:register.html.twig',array('form'=>$form->createView(),'error'=>$e));
                 }
                 $str="User ".$this->getUser()->getEmail()." created your profile http://mvp.intechsoft.net/login  Where Login :".$form->getData()->getUsername()."
@@ -292,7 +303,7 @@ class PageController extends Controller
 
 
         $param['form'] = $form->createView();
-        return $this->render('me.html.twig',$param);
+        return $this->render('AppFrontEndBundle:Form:register.html.twig',$param);
     }
 
 

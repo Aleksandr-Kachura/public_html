@@ -112,8 +112,25 @@ class Srv
 
     public function getPropsFS()
     {
-        //$em = $this->container->get('doctrine')->getManager();
         $galleries =$this->user->getGallery();
+        $em = $this->container->get('doctrine')->getManager();
+        $repo=$em->getRepository("BundlesStoreBundle:WaterMark");
+        foreach($galleries as $key=>$gallery)
+        {
+            $userRepo = $em->getRepository("BundlesStoreBundle:User2");
+            $user = $userRepo->findOneById($gallery->getphId());
+            $position = $repo->findOneBy(array('user2' => $user));
+
+            if(empty($position))
+            {
+                $gallery->config = 'center';
+            }
+            else
+            {
+                $gallery->config = $position->getPosition();
+            }
+        }
+        return($galleries);
        /* $data=array();
         $phadr=array();
         foreach($galleries as $key=>$gallery)
@@ -132,9 +149,8 @@ class Srv
             $data[$nameFS]['photos']= $phadr;
 
         }*/
-        return($galleries);
-    }
 
+    }
     public function delFS($id)
     {
         $em = $this->container->get('doctrine')->getManager();
@@ -167,6 +183,8 @@ class Srv
         return "SUCCESS";
     }
 
+
+   // this method save possition of watermark
     public function saveWaterPosition($request)
     {
         $em = $this->container->get('doctrine')->getManager();
@@ -192,6 +210,14 @@ class Srv
         $em->flush();
 
     }
+
+    //
+    public function getPossition($request)
+    {
+        $em = $this->container->get('doctrine')->getManager();
+
+    }
+
 
 
 
