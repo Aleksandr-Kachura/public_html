@@ -2,10 +2,16 @@
 
 {% block login %}
 
-        <p>Главная <strong><a style="color:red" href="{{ path('app_front_end_wellcome') }}">main</a></strong></p>
-        <p>Создать фотосессию <strong><a style="color:green" href="{{ path('app_front_end_fotosess') }}">create</a></strong>->Предложенные фотосессию <strong><a style="color:green" href="{{ path('app_front_end_dpfs') }}">photo</a></strong> </p>
-        <p>Посмотреть свой профиль <strong><a style="color:red" href="{{ path('app_front_end_multi') }}">show profile</a></strong></p>
-        <p>Выход <strong><a style="color:red" href="{{ path('bundles_login_security_logout') }}">exit</a></strong></p>
+        <a class="btn btn-warning" href="{{ path('app_front_end_wellcome') }}">Главная<i class="glyphicon glyphicon-th-large"></i></a>
+        <div class="btn-group" role="group">
+            <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Фотосессии<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="{{ path('app_front_end_dpfs') }}">Предложенные фотосессии</a></li>
+                <li><a href="{{ path('app_front_end_fotosess') }}">Создать фотоссесию</a></li>
+            </ul>
+        </div>
+        <a class="btn btn-success" href="{{ path('app_front_end_multi') }}">Мой профиль<i class="glyphicon glyphicon-user"></i></a>
+        <a class="btn btn-danger" href="{{ path('bundles_login_security_logout') }}">Выход<i class="glyphicon glyphicon-log-out"></i></a>
 
 {% endblock %}
 

@@ -19,26 +19,13 @@ class SearchController extends Controller
     public function searchAction(Request $request)
     {
         $search = $request->get("search");
-        $this->get('site_bundle.search')->setSearchArr($search);
-        $users = $this->get('site_bundle.search')->giveResult();
-
-
-       /* $login = $request->get("login");
-        $city = $request->get("city");
-        $country = $request->get("country");
-
-        if(empty($login))
+        if (!$request->isMethod('POST'))
         {
             return $this->render('AppFrontEndBundle:Page:search.html.twig');
-        }*/
-
-        /*$em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository("BundlesStoreBundle:User2");
-        $users = $repo->findLog($login);*/
+        }
+        $this->get('site_bundle.search')->setSearchArr($search);
+        $users = $this->get('site_bundle.search')->giveResult();
         return $this->render('AppFrontEndBundle:Page:search.html.twig', array('users'=>$users));
-        //return $this->render('AppFrontEndBundle:Page:search.html.twig');
-
-
     }
 
 
@@ -46,9 +33,6 @@ class SearchController extends Controller
     //пагинация
     public function paginAction(Request $request)
     {
-       // $em    = $this->get('doctrine.orm.entity_manager');
-
-        //$query = $em->createQuery($dql);BundlesStoreBundle:ProdtoOrder
         $em = $this->getDoctrine()->getManager();
 
         $repo =$em->getRepository("BundlesStoreBundle:Page");
@@ -60,9 +44,6 @@ class SearchController extends Controller
             $request->query->getInt('page', 1)/*page number*/,
             2/*limit per page*/
         );
-
-        // parameters to template
-      //  return $this->render('AcmeMainBundle:Article:list.html.twig', array('pagination' => $pagination));
         return $this->render('AppFrontEndBundle:Page:page.html.twig', array('pagination' => $pagination));
     }
 

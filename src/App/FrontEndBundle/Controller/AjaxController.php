@@ -11,7 +11,7 @@ class AjaxController extends Controller
 
    public function saveStatusAction(Request $request)
    {
-        $id = $request->get('id');
+       $id = $request->get('id');
        $access =$request->get('access');
 
        $em = $this->getDoctrine()->getManager();
@@ -22,6 +22,18 @@ class AjaxController extends Controller
        return new JsonResponse(['status'=>"ok"]);
 
    }
+
+   public function getFirstnamesAction(Request $request)
+   {
+       $firstname = $request->get('firstname');
+       $em = $this->getDoctrine()->getManager();
+       $repo=$em->getRepository("BundlesStoreBundle:User2");
+       $firstnames = $repo->findFirstnames($firstname);
+      // var_dump($firstnames);
+       return new JsonResponse(['firstnames'=>$firstnames]);
+   }
+
+
     public function checkUserAction(Request $request)
     {
         $email = $request->get('email');

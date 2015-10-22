@@ -175,7 +175,7 @@ class PageController extends Controller
     }
 
 
-    //страница заказа
+ /*   //страница заказа
 
     public function orderAction($id)
     {
@@ -183,7 +183,7 @@ class PageController extends Controller
         $em=$this->getDoctrine()->getManager();
         $repo=$em->getRepository("BundlesStoreBundle:Photo");
         $photo = $repo->findOneById(array('id' => $id));
-        $this->get('site_bundle.service')->init();
+        //$this->get('site_bundle.service')->init();
         $user=$photo->getUser2();
         return $this->render('AppFrontEndBundle:Page:order.html.twig', array('user'=>$user,'photo'=>$photo ));
     }
@@ -223,7 +223,7 @@ class PageController extends Controller
 
         return $this->redirectToRoute("app_front_end_wellcome");
 
-    }
+    }*/
 
     // подтверждение заказа
     //TODO сделать через один запрос или транзакцию

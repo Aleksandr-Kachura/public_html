@@ -57,5 +57,15 @@ class User2Repository extends EntityRepository
             return($qb->getQuery()->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY));
         }
 
+        public function findFirstnames($firstname)
+        {
+            $qb=$this->createQueryBuilder('u')
+                ->select("u.firstname")
+                ->where('u.firstname LIKE :log')
+                ->andWhere("u.status='photo'")
+                ->setParameter('log','%'.$firstname.'%');
+            return($qb->getQuery()->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY));
+        }
+
         // $qb->distinct();
 }

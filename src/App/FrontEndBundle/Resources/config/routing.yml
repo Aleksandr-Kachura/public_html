@@ -117,6 +117,10 @@ app_front_end_ajax:
     path:     /ajaxSS
     defaults: { _controller: AppFrontEndBundle:Ajax:saveStatus}
 
+app_front_end_ajaxresultFirstname:
+    path:     /ajaxResFirst
+    defaults: { _controller: AppFrontEndBundle:Ajax:getFirstnames}
+
 app_front_end_ajaxCheckUser:
     path: /ajaxCU
     defaults: { _controller: AppFrontEndBundle:Ajax:checkUser}
