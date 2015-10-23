@@ -70,6 +70,9 @@
 .icon-google-plus:before {
     content: "\e810";
 }
+.h1, .h2, .h3, h1, h2, h3{
+    margin-top: 0;
+}
 select, textarea, input[type="text"], input[type="password"],
 input[type="datetime"], input[type="datetime-local"],
 input[type="date"], input[type="month"], input[type="time"],
@@ -88,6 +91,50 @@ input[type="color"]{
     line-height: 20px;
     padding: 4px 6px;
     vertical-align: middle;
+}
+#sortable2{
+    border: 1px solid #ccc;
+    width: 100%;
+    min-height: 50px;
+    list-style-type: none;
+    margin: 0 0 15px;
+    float: left;
+    position: relative;
+    margin-right: 10px;
+}
+.heading{
+    text-align:center;
+}
+.heading h1{
+    font-family: Arial, sans-serif;
+    font-size: 100px;
+    line-height: 104px;
+    margin: 0;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 20px 0 20px;
+}
+.heading h1 a{
+    text-decoration: none;
+    color: #666666;
+}
+.mvp_nav{
+    margin: 0 0 30px;
+}
+.mvp_nav .btn-group .dropdown-menu{
+    width: 100%;
+}
+.mvp_nav .btn i{
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 0 0 15px;
+    font-size: 16px;
+    padding: 2px;
+    border-radius: 3px;
+    width: auto;
+}
+.wrap-block button{
+    margin: 0 0 20px;
 }
 .wrap-block:after{
     display: block;
@@ -119,8 +166,16 @@ input[type="color"]{
     font-size: 18px;
     margin: -6px 7px 0 0;
 }
-.container #registration3 #RegisterUserForm .form-group{
+.container #RegisterUserForm .form-group{
     overflow: hidden;
+}
+.container #RegisterUserForm .form-group textarea{
+    float: right;
+    width: 100%;
+    min-height: 90px;
+}
+.container #RegisterUserForm .form-group input{
+    float: right;
 }
 .container #registration3 #RegisterUserForm .form-group input[type="email"]{
     width: 55%!important;
@@ -151,3 +206,46 @@ input[type="color"]{
     border: 1px solid #fff;
     border-radius: 3px;
 }
+.information-list{
+    margin: 0;
+    padding: 0;
+}
+.information-list li{
+    list-style: none;
+    display: block;
+}
+.information-list .box-4{
+    display: block;
+    position:relative;
+    overflow:hidden;
+}
+.information-list .table-string{
+    width: 100%;
+    display: table;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+.information-list .title-string .table-string{
+    border-width: 2px;
+    font-weight: bold;
+}
+.information-list .table-column{
+    display: table-cell;
+    vertical-align: middle;
+}
+.img-wrap{
+    width: 100px;
+    height: auto;
+    text-align: center;
+}
+.img-wrap img{
+    width: 100%;
+    display: inline-block;
+    vertical-align: middle;
+}
+.rw .col{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
