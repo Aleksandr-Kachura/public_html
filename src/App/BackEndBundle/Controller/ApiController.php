@@ -5,7 +5,6 @@ namespace App\BackEndBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 class ApiController extends Controller
 {
@@ -29,7 +28,6 @@ class ApiController extends Controller
         if(!$user)
         {
             return new JsonResponse(['error'=>'Fail User']);
-            exit;
         }
        // dump($user);
        // exit;

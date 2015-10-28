@@ -8,9 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 use Bundles\LoginBundle\Form\Type\Register;
 use Bundles\StoreBundle\Entity\User2;
-use Bundles\StoreBundle\Entity\Orders;
 
-use Bundles\StoreBundle\Entity\Photo;
 class PageController extends Controller
 {
    //Главная
@@ -41,18 +39,6 @@ class PageController extends Controller
         );
         return $this->render('AppFrontEndBundle:Page:page.html.twig', array('pagination' => $pagination));
     }
-
-    //хлебные крошки
-    public function breadAction()
-    {
-        $router = $this->get('router');
-        $breadcrumbs = $this->get('white_october_breadcrumbs');
-        $breadcrumbs->addItem('Главная', $router->generate('app_front_end_wellcome'));
-        $breadcrumbs->addItem('Хлеб');
-        return $this->render('AppFrontEndBundle:Page:bread.html.twig');
-
-    }
-
 
     //профиль покупателя
     public function sellerAction(Request $request)
@@ -160,6 +146,8 @@ class PageController extends Controller
         {
             return $this->render('AppFrontEndBundle:Page:photopage.html.twig', array('user'=>$user ));
         }
+
+        //TODO в сервис все
         $waterRepo = $em->getRepository("BundlesStoreBundle:WaterMark");
         $position = $waterRepo->findOneBy(array('user2' => $user));
 
@@ -171,6 +159,8 @@ class PageController extends Controller
         {
             $user->config = $position->getPosition();
         }
+
+
         return $this->render('AppFrontEndBundle:Page:photopage.html.twig', array('user'=>$user,'photo'=>$photo ));
     }
 
@@ -226,7 +216,7 @@ class PageController extends Controller
     }*/
 
     // подтверждение заказа
-    //TODO сделать через один запрос или транзакцию
+
     public function approveOrderAction(Request $request)
     {
 

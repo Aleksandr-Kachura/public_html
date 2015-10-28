@@ -82,7 +82,7 @@ class ImageController extends Controller
     }
 
     // action for fotosess
-    public function fotoSessAction(Request $request)
+    public function fotoSessAction()
     {
         $user=$this->getUser();
         $photo=$user->getPhoto();
@@ -123,13 +123,6 @@ class ImageController extends Controller
     public function displayProposFsAction()
     {
         $galleries = $this->get('site_bundle.service')->getPropsFS();
-      //  $possitions = $this->get('site_bundle.service')->getAuthorWaterPossition();
-       /* $config = array();
-        foreach($possitions as $key => $possition)
-        {
-
-        }*/
-
         return $this->render('AppFrontEndBundle:Fotosess:prop.html.twig',array('galleries'=>$galleries));
     }
 
@@ -147,7 +140,7 @@ class ImageController extends Controller
         }
         else
         {
-            $ok = $this->get('site_bundle.service')->saveOrders($request);
+            $this->get('site_bundle.service')->saveOrders($request);
             return $this->redirectToRoute("app_front_end_dpfs");
         }
     }
@@ -163,7 +156,7 @@ class ImageController extends Controller
         }
         else
         {
-            $ok = $this->get('site_bundle.service')->saveOrders($request);
+             $this->get('site_bundle.service')->saveOrders($request);
             return $this->redirectToRoute("app_front_end_photograph",array('id'=>$id));
         }
     }

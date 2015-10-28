@@ -9,8 +9,13 @@
 
 {% block content %}
     <!--/panel-->
+    {%  set runtimeConfig = {"watermark": {"position": user.config, image: "Resources/data/draft.png",  size: "0.5"} } %}
+
+
 
     {% include "AppFrontEndBundle:Elements:userblock.html.twig" %}
+
+
 
     <div class="col-md-6">
         <div class="panel panel-default">
@@ -64,6 +69,7 @@
             </div>
         </div>
     </div>
+
     <div class="col-md-6">
         <div class="panel panel-default">
             <div class="panel-body">
@@ -78,8 +84,8 @@
                 <form  action="{{ path('app_front_end_waterimg') }}" method="post">
                     <label for="waterPos">Position</label>
                     <select name="waterPos" id="waterPos">
-                            <option>Choise position</option>
-                            <option>top</option>
+                            <option>{{user.config}}</option>
+                             <option>top</option>
                              <option>left</option>
                             <option>center</option>
                             <option>right</option>
@@ -92,6 +98,23 @@
             </div>
         </div>
     </div>
+
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h2>Image with Watermark</h2>
+                <div class="col-md-6">
+                    <img class="center-block img-responsive"  src="{{ asset('bundles/appfrontend/images/Magic.jpg' | imagine_filter('watermark_photo',runtimeConfig ))}}">
+                </div>
+
+            </div
+        </div>
+    </div>
+
+
+
+
+
 
 
 {% endblock %}

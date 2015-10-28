@@ -4,7 +4,7 @@ namespace App\FrontEndBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+
 
 class SearchController extends Controller
 {
@@ -49,7 +49,7 @@ class SearchController extends Controller
 
 
     //мультиязычность
-    public function multiAction(Request $request)
+    public function multiAction()
     {
 
        $user=$this->getUser();

@@ -91,7 +91,7 @@ class LoginController extends Controller
 
 
     // вставка фб
-    public function fbUserInfoAction(Request $request)
+    public function fbUserInfoAction()
     {
 
         $fb = new Facebook([
