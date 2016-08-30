@@ -31,7 +31,16 @@ class AppKernel extends Kernel
           //  new Sonata/DoctrineO
 
             new Sonata\AdminBundle\SonataAdminBundle(),
-           // new Bundles\LoginBundle\BundlesLoginBundle(),
+            new Bundles\LoginBundle\BundlesLoginBundle(),
+
+            //картинки
+            new Liip\ImagineBundle\LiipImagineBundle(),
+
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+
+            //фейсбук
+
+            // new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

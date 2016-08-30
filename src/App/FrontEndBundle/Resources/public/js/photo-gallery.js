@@ -1,4 +1,6 @@
-$(document).ready(function(){        
+
+
+$(document).ready(function(){
 	$('li img').on('click',function(){
 		var src = $(this).attr('src');
 		var img = '<img src="' + src + '" class="img-responsive"/>';
@@ -8,7 +10,7 @@ $(document).ready(function(){
 		
 		var html = '';
 		html += img;                
-		html += '<div style="height:25px;clear:both;display:block;">';
+		html += '<div style="height:25px;clear:both;display:block;mod">';
 		html += '<a class="controls next" href="'+ (index+2) + '">next &raquo;</a>';
 		html += '<a class="controls previous" href="' + (index) + '">&laquo; prev</a>';
 		html += '</div>';

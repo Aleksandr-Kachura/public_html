@@ -2,67 +2,77 @@
 {% extends "AppFrontEndBundle::layout.html.twig" %}
 
     {% block login %}
-
-        <p>Главная <strong><a style="color:red" href="{{ path('app_front_end_wellcome') }}">main</a></strong></p>
-
-
+        <a class="btn btn-warning" href="{{ path('app_front_end_wellcome') }}">Главная<i class="glyphicon glyphicon-th-large"></i></a>
+        <div class="btn-group" role="group">
+            <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Фотосессии<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="{{ path('app_front_end_dpfs') }}">Предложенные фотосессии</a></li>
+                <li><a href="{{ path('app_front_end_fotosess') }}">Создать фотоссесию</a></li>
+            </ul>
+        </div>
+        <div class="btn-group" role="group">
+            <a class="btn btn-success dropdown-toggle" data-toggle="dropdown" href="#">Профиль<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="{{ path('app_front_end_profedit') }}">Редактировать профиль</a></li>
+                <li><a href="{{ path('app_front_end_addus') }}">Добавить юзера</a></li>
+                <li><a href="{{ path('bundles_login_security_logout') }}">Выход</a></li>
+            </ul>
+        </div>
+        <a class="btn btn-info" href="{{ path('app_front_end_stat') }}">Статистика реф<i class="glyphicon glyphicon-copyright-mark"></i></a>
     {% endblock %}
 
+{% block css %}
+    <link rel="stylesheet" href="{{ asset('bundles/appfrontend/css/1.css') }}"/>
+    <style>
+         div.ajax_loader{background: url("{{ asset('bundles/appfrontend/images/ajax-loader_blue.gif')}}") no-repeat center center transparent;}
+    </style>
+{% endblock %}
 
 {% block content %}
 
-    <!--/panel-->
-    <div class="col-md-6">
-           <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-8">
-                        <h2>Mike Anamendolla</h2>
-                        <p><strong>About: </strong> Web Designer / UI. </p>
-                        <p><strong>Hobbies: </strong> Read, out with friends, listen to music, draw and learn new things. </p>
-                        <p><strong>Skills: </strong>
-                            <span class="label label-info tags">html5</span>
-                            <span class="label label-info tags">css3</span>
-                            <span class="label label-info tags">jquery</span>
-                            <span class="label label-info tags">bootstrap3</span>
-                        </p>
-                    </div><!--/col-->
-                    <div class="col-xs-12 col-sm-4 text-center">
-                        <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="" class="center-block img-circle img-responsive">
-                        <ul class="list-inline ratings text-center" title="Ratings">
-                            <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
-                            <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
-                            <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
-                            <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
-                            <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
-                        </ul>
-                    </div><!--/col-->
-
-                    <div class="col-xs-12 col-sm-4">
-                        <h2><strong> 20,7K </strong></h2>
-                        <p><small>Followers</small></p>
-                        <button class="btn btn-success btn-block"><span class="fa fa-plus-circle"></span> Follow </button>
-                    </div><!--/col-->
-                    <div class="col-xs-12 col-sm-4">
-                        <h2><strong>245</strong></h2>
-                        <p><small>Following</small></p>
-                        <button class="btn btn-info btn-block"><span class="fa fa-user"></span> View Profile </button>
-                    </div><!--/col-->
-                    <div class="col-xs-12 col-sm-4">
-                        <h2><strong>43</strong></h2>
-                        <p><small>Snippets</small></p>
-                        <button type="button" class="btn btn-primary btn-block"><span class="fa fa-gear"></span> Options </button>
-                    </div><!--/col-->
-                </div><!--/row-->
-            </div><!--/panel-body-->
-        </div><!--/panel-->
+   {% if app.session.flashbag.get('notice')  is defined  %}
+     {% for flashMessage in app.session.flashbag.get('notice') %}
+      <div class="alert alert-success" role="alert">
+          {{ flashMessage }}
+      </div>
+      {% endfor %}
+  {% endif %}
+  <div class="col-md-12">
+     <div class="wrap-block">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Get ref code</button>
+     </div>
+  </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel">Code</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="recipient-name" class="control-label">Link:</label>
+                            <input type="text" class="form-control" value="{{ render(controller('AppFrontEndBundle:Page:linkReturn')) }}" id="recipient-name">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
+
+
+
+    {% include "AppFrontEndBundle:Elements:userblock.html.twig" %}
 
     <div class="col-md-6">
         <div class="panel panel-default">
             <div class="panel-body">
                 <form enctype="multipart/form-data" action="{{ path('app_front_end_svImg') }}" method="post">
-                    <input id="file-0a" name="file" class="file" type="file">
+                    <input id="file-0a" name="file[]" class="file" type="file" multiple>
                     <!--  multiple data-min-file-count="1"-->
                     <br>
                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -72,9 +82,11 @@
         </div>
     </div>
 
+{% if orders is defined  %}
     <div class="col-md-6">
         <div class="panel panel-default">
             <div class="panel-body">
+                <form action="{{ path('app_front_end_approveOrder') }}" method="post" >
                 <h3>Заказы</h3>
                     <table class="table">
                         <thead>
@@ -83,58 +95,88 @@
                             <th>Дата</th>
                             <th>UserID</th>
                             <th>Картинка</th>
+                            <th>Выбрать</th>
                         </tr>
                         </thead>
                         <tbody>
                         {% for order in orders %}
                             {% for ord in order %}
+                                {% if ord.status == "panding" %}
                                 <tr>
-
-                                        <td>{{ord.id}}</td>
-                                        <td>{{ord.date| date}}</td>
-                                        <td>{{ord.getUsers.id}}</td>
-                                        <td><a href="#"><img  height="42" width="42" src="{{ asset(ord.getPhoto.adress) }}"></a></td>
+                                    <td>{{ord.id}}</td>
+                                    <td>{{ord.date| date}}</td>
+                                    <td><a href="{{path('app_front_end_seller', {'id' : ord.getUser2.id})}}">{{ ord.getUser2.id}}</td>
+                                    <td><a href="{{ asset(ord.getPhoto.adress) }}"><img  height="42" width="42" src="{{ asset(ord.getPhoto.adress) }}"></a></td>
+                                    <td><input name="checkbox[]" type="checkbox" value="{{ord.id}}" /></td>
                                 </tr>
+                                {% endif %}
                             {% endfor %}
                         {% endfor %}
 
-                    </table>
 
+                    </table>
+                <button type="submit" name="button" value="approved" class="btn btn-primary">Подтвердить</button>
+                <button type="submit" name="button" value="cansel" class="btn btn-default">Удалить</button>
+                </form>
             </div>
         </div>
     </div>
-{% if orders is defined  %}
+
 {% endif %}
 
 
 
-{% if photo is defined  %}
+{% if pagination is defined  %}
     <div class=" col-md-8">
+
         <div class="panel panel-default">
             <div class="panel-body">
                 <h3>Картинки</h3>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Дата</th>
-                        <th>Изображение</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for ph in photo %}
-                        <tr>
-                            <td>{{ ph.id }}</td>
-                            <td>{{ ph.date | date }}</td>
-                            <td><a href="#"><img  height="42" width="42" src="{{ asset(ph.adress) }}"></a></td>
-                        </tr>
-
+                <ul class="information-list">
+                    <li class="title-string">
+                        <div class="table-string">
+                            <div class="table-column" style="width:5%">ID</div>
+                            <div class="table-column" style="width:45%">Дата</div>
+                            <div class="table-column" style="width:20%">Изображение</div>
+                            <div class="table-column" style="width:20%">Доступ</div>
+                            <div class="table-column" style="width:10%">Удалить</div>
+                        </div>
+                    </li>
+                    {% for article in pagination %}
+                    <li class="box-4">
+                        <div class="table-string">
+                            <div class="table-column style="width:5%"">{{ article.id }}</div>
+                            <div class="table-column" style="width:45%">{{ article.date | date }}</div>
+                            <div class="table-column" style="width:20%"><div class="img-wrap" href="{{ asset(article.adress) }}"><img src="{{ asset(article.adress) }}"></div></div>
+                            <div class="table-column" style="width:20%">
+                                <select id="access_ph" name="{{ article.id}}">
+                                    {% if(article.access=="public") %}
+                                        <option selected >{{article.access}}</option>
+                                        <option>private</option>
+                                    {% else %}
+                                        <option selected >{{article.access}}</option>
+                                        <option>public</option>
+                                    {% endif %}
+                                </select>
+                            </div>
+                            <div class="table-column" style="width:10%;text-align:center;"><input type="hidden" name="ItemId" id="ItemId" value="{{ article.id }}" /> <a href="{{ path('app_front_end_delImg', {'id' : article.id}) }}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></div>
+                        </div>
+                    </li>
                     {% endfor %}
-
-                </table>
+                </ul>
+                {{ knp_pagination_render(pagination) }}
             </div>
         </div>
     </div>
 {% endif %}
 
 {% endblock %}
+
+{% block jscript %}
+    {{ parent() }}
+    <script>
+        var pathajax="{{ path('app_front_end_ajax') }}";
+    </script>
+    <script src="{{ asset('bundles/appfrontend/js/modal.js') }}"></script>
+{% endblock %}
+

@@ -141,4 +141,60 @@ class Orders
 
         return $this;
     }
+    /**
+     * @var \Bundles\StoreBundle\Entity\User2
+     */
+    private $user2;
+
+
+    /**
+     * Set user2
+     *
+     * @param \Bundles\StoreBundle\Entity\User2 $user2
+     * @return Orders
+     */
+    public function setUser2(\Bundles\StoreBundle\Entity\User2 $user2 = null)
+    {
+        $this->user2 = $user2;
+
+        return $this;
+    }
+
+    /**
+     * Get user2
+     *
+     * @return \Bundles\StoreBundle\Entity\User2 
+     */
+    public function getUser2()
+    {
+        return $this->user2;
+    }
+    /**
+     * @var string
+     */
+    private $status;
+
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     * @return Orders
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string 
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
 }

@@ -1,0 +1,91 @@
+
+{% extends "AppFrontEndBundle::layout.html.twig" %}
+
+    {% block login %}
+
+        <a class="btn btn-warning" href="{{ path('app_front_end_wellcome') }}">Главная<i class="glyphicon glyphicon-th-large"></i></a>
+        <a class="btn btn-primary" href="{{ path('app_front_end_dpfs') }}">Предложенные фотосессии<i class="glyphicon glyphicon-camera"></i></a>
+        <a class="btn btn-info" href="{{ path('app_front_end_stat') }}">Статистика реф<i class="glyphicon glyphicon-copyright-mark"></i></a>
+        <a class="btn btn-danger" href="{{ path('bundles_login_security_logout') }}">Выход<i class="glyphicon glyphicon-log-out"></i></a>
+
+    {% endblock %}
+
+
+{% block content %}
+
+    <div class="col-md-12">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Get ref code</button>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel">Code</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="recipient-name" class="control-label">Link:</label>
+                            <input type="text" class="form-control" value="{{ render(controller('AppFrontEndBundle:Page:linkReturn')) }}" id="recipient-name">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--/panel-->
+    <div class="col-md-6">
+           <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-8">
+                        <h2>{{ user.Firstname }} {{ user.Lastname }}</h2>
+                        <p><strong>About: </strong> Web Designer / UI. </p>
+                        <p><strong>Email: </strong> {{ user.Email }}</p>
+                        <p><strong>Hobbies: </strong> Read, out with friends, listen to music, draw and learn new things. </p>
+                       <!-- <p><strong>Skills: </strong>
+                            <span class="label label-info tags">html5</span>
+                            <span class="label label-info tags">css3</span>
+                            <span class="label label-info tags">jquery</span>
+                            <span class="label label-info tags">bootstrap3</span>
+                        </p>-->
+                    </div><!--/col-->
+                    <div class="col-xs-12 col-sm-4 text-center">
+                        <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="" class="center-block img-circle img-responsive">
+                        <ul class="list-inline ratings text-center" title="Ratings">
+                            <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
+                            <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
+                            <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
+                            <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
+                            <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
+                        </ul>
+                    </div><!--/col-->
+
+                    <div class="col-xs-12 col-sm-4">
+                        <h2><strong> 20,7K </strong></h2>
+                        <p><small>Followers</small></p>
+                        <button class="btn btn-success btn-block"><span class="fa fa-plus-circle"></span> Follow </button>
+                    </div><!--/col-->
+                    <div class="col-xs-12 col-sm-4">
+                        <h2><strong>245</strong></h2>
+                        <p><small>Following</small></p>
+                        <button class="btn btn-info btn-block"><span class="fa fa-user"></span> View Profile </button>
+                    </div><!--/col-->
+                    <div class="col-xs-12 col-sm-4">
+                        <h2><strong>43</strong></h2>
+                        <p><small>Snippets</small></p>
+                        <button type="button" class="btn btn-primary btn-block"><span class="fa fa-gear"></span> Options </button>
+                    </div><!--/col-->
+                </div><!--/row-->
+            </div><!--/panel-body-->
+        </div><!--/panel-->
+    </div>
+
+
+
+{% endblock %}

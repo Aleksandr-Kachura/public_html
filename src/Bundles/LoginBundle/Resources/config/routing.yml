@@ -1,3 +1,22 @@
-#bundles_login_homepage:
-    #path:     /
-    #defaults: { _controller: BundlesLoginBundle:Default:index }
+bundles_login_reg:
+    path:     /reg
+    defaults: { _controller: BundlesLoginBundle:Login:reg }
+
+bundles_login_create:
+    path:     /create
+    defaults: { _controller: BundlesLoginBundle:Login:create }
+bundles_login_form:
+    path:     /log
+    defaults: { _controller: BundlesLoginBundle:Login:formLogin }
+
+bundles_login_security_check:
+    pattern:  /login_check
+
+bundles_login_security_logout:
+    pattern:  /logout
+
+bundles_login_fbuserinfo:
+    path:     /fbuserinfo
+    defaults: { _controller: BundlesLoginBundle:Login:fbUserInfo}
+    requirements:
+      _method: GET

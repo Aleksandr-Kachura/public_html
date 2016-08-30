@@ -1,19 +1,18 @@
 {% extends "AppFrontEndBundle::layout.html.twig" %}
 
     {% block login %}
+            <a class="btn btn-info" href="{{ path('app_front_end_search') }}">Поиск фотографа<i class="glyphicon glyphicon-search"></i></a>
+            <a class="btn btn-success" href="{{ path('app_front_end_catalog') }}">Каталог фотографов<i class="glyphicon glyphicon-book"></i></a>
 
-        {% if user is defined %}
-            <p>Профиль <strong><a style="color:red" href="{{ path('app_front_end_multi') }}">Ссылка</a></strong></p>
-        {% else %}
-            <p>Пока вы можете войти в личный кабинет <strong><a style="color:red" href="{{ path('fos_user_security_login') }}">login</a></strong></p>
-       {% endif %}
-        <p>Поиск фотографа <strong><a style="color:red" href="{{ path('app_front_end_search') }}">Поиск</a></strong></p>
-        <p>Каталог фотографов <strong><a style="color:red" href="{{ path('app_front_end_catalog') }}">Переход</a></strong></p>
+            {% if user is defined %}
+            <a class="btn btn-primary" href="{{ path('app_front_end_multi') }}">Профиль<i class="glyphicon glyphicon-link"></i></a>
+            {% else %}
+            <a class="btn btn-primary" href="{{ path('bundles_login_form') }}">Личный кабинет<i class="glyphicon glyphicon-log-in"></i></a>
+           {% endif %}
     {% endblock %}
 
 
 {% block gallery %}
-
 
     <ul class="row">
         <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
@@ -21,7 +20,7 @@
         </li>
         <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
             <img class="img-responsive" src="{{ asset('bundles/appfrontend/images/photodune-287182-blah-blah-blah-yellow-road-sign-xs.jpg')}}">
-         </li>
+        </li>
         <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
             <img class="img-responsive" src="{{ asset('bundles/appfrontend/images/photodune-460760-colors-xs.jpg')}}">
         </li>

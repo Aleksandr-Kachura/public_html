@@ -1,0 +1,120 @@
+{% extends "AppFrontEndBundle::layout.html.twig" %}
+
+    {% block login %}
+        <a class="btn btn-warning" href="{{ path('app_front_end_wellcome') }}">Главная<i class="glyphicon glyphicon-th-large"></i></a>
+        <a class="btn btn-success" href="{{ path('app_front_end_multi') }}">Мой профиль<i class="glyphicon glyphicon-user"></i></a>
+        <a class="btn btn-danger" href="{{ path('bundles_login_security_logout') }}">Выход<i class="glyphicon glyphicon-log-out"></i></a>
+    {% endblock %}
+
+
+{% block content %}
+    <!--/panel-->
+    {%  set runtimeConfig = {"watermark": {"position": user.config, image: "Resources/data/draft.png",  size: "0.5"} } %}
+
+
+
+    {% include "AppFrontEndBundle:Elements:userblock.html.twig" %}
+
+
+
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                {% if form is defined %}
+                    {% if app.session.flashbag.get('notice')  is defined  %}
+                        {% for flashMessage in app.session.flashbag.get('notice') %}
+                            <div class="alert alert-success" role="alert">
+                                {{ flashMessage }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    {% if error is defined %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ error }}
+                        </div>
+                    {% endif %}
+                    <form id="RegisterUserForm" role="form" action="{{ path('app_front_end_profedit') }}" method="post" {{ form_enctype(form) }}>
+                        <div class="form-group">
+                            {{ form_row(form.email) }}
+                            <div class="bsu_message"></div>
+                        </div>
+                        <div class="form-group">
+                            {{ form_row(form.firstname) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_row(form.lastname) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_row(form.username) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_row(form.city) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_row(form.country) }}
+                        </div>
+
+                        <div class="form-group">
+                            {{ form_row(form.image) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_row(form.descTech) }}
+                        </div>
+
+                        <input name="lang" type="hidden" value="en"/>
+                        <button type="submit" class="btn btn-success">Create</button>
+                        {{ form_rest(form) }}
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h2>Конструктор Watermark</h2>
+                {% if app.session.flashbag.get('waterMessage')  is defined  %}
+                    {% for flashMessage in app.session.flashbag.get('waterMessage') %}
+                        <div class="alert alert-success" role="alert">
+                            {{ flashMessage }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <form  action="{{ path('app_front_end_waterimg') }}" method="post">
+                    <label for="waterPos">Position</label>
+                    <select name="waterPos" id="waterPos">
+                            <option>{{user.config}}</option>
+                             <option>top</option>
+                             <option>left</option>
+                            <option>center</option>
+                            <option>right</option>
+                            <option>bottom</option>
+                     </select>
+                    <br>
+                    <br>
+                     <button type="submit" class="btn btn-success">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h2>Image with Watermark</h2>
+                <div class="col-md-6">
+                    <img class="center-block img-responsive"  src="{{ asset('bundles/appfrontend/images/Magic.jpg' | imagine_filter('watermark_photo',runtimeConfig ))}}">
+                </div>
+
+            </div
+        </div>
+    </div>
+
+
+
+
+
+
+
+{% endblock %}

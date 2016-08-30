@@ -98,9 +98,27 @@ sonata_block:
     sonata.admin.block.admin_list:
         contexts:   [admin]
 
+liip_imagine:
+    resolvers:
+       default:
+           web_path: ~
+    filter_sets:
+        cache: ~
+        my_thumb:
+            quality: 100
+            filters:
+                thumbnail: { size: [200, 200], mode: outbound }
+        watermark_photo:
+            filters:
+                    relative_resize: { widen: 800 }
+                    # Relative path to the watermark file (prepended with "%kernel.root_dir%/")
 
+                    # Size of the watermark relative to the origin images size
+
+                    # Position: One of topleft,top,topright,left,center,right,bottomleft,bottom,bottomright
 sonata_admin:
     dashboard:
         blocks:
           #  - { position: left, type: sonata_admin_doctrine_phpcr.tree_block }
            - { position: left, type: sonata.admin.block.admin_list }
+

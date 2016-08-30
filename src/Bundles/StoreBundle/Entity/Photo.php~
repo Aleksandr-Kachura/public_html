@@ -13,6 +13,7 @@ class Photo
     public function __construct()
     {
          $this->setDate(new \DateTime());
+         $this->setAccess("private");
     }
 
 
@@ -184,5 +185,100 @@ class Photo
     public function getOrders()
     {
         return $this->orders;
+    }
+    /**
+     * @var \Bundles\StoreBundle\Entity\User2
+     */
+    private $user2;
+
+
+    /**
+     * Set user2
+     *
+     * @param \Bundles\StoreBundle\Entity\User2 $user2
+     * @return Photo
+     */
+    public function setUser2(\Bundles\StoreBundle\Entity\User2 $user2 = null)
+    {
+        $this->user2 = $user2;
+
+        return $this;
+    }
+
+    /**
+     * Get user2
+     *
+     * @return \Bundles\StoreBundle\Entity\User2 
+     */
+    public function getUser2()
+    {
+        return $this->user2;
+    }
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $gallery;
+
+
+    /**
+     * Add gallery
+     *
+     * @param \Bundles\StoreBundle\Entity\Gallery $gallery
+     * @return Photo
+     */
+    public function addGallery(\Bundles\StoreBundle\Entity\Gallery $gallery)
+    {
+        $this->gallery[] = $gallery;
+
+        return $this;
+    }
+
+    /**
+     * Remove gallery
+     *
+     * @param \Bundles\StoreBundle\Entity\Gallery $gallery
+     */
+    public function removeGallery(\Bundles\StoreBundle\Entity\Gallery $gallery)
+    {
+        $this->gallery->removeElement($gallery);
+    }
+
+    /**
+     * Get gallery
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGallery()
+    {
+        return $this->gallery;
+    }
+    /**
+     * @var string
+     */
+    private $access;
+
+
+    /**
+     * Set access
+     *
+     * @param string $access
+     * @return Photo
+     */
+    public function setAccess($access)
+    {
+        $this->access = $access;
+
+        return $this;
+    }
+
+    /**
+     * Get access
+     *
+     * @return string 
+     */
+    public function getAccess()
+    {
+        return $this->access;
     }
 }

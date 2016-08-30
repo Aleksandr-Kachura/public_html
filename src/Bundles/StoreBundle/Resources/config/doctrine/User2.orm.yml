@@ -1,6 +1,7 @@
 Bundles\StoreBundle\Entity\User2:
     type: entity
     table: null
+    repositoryClass: Bundles\StoreBundle\Entity\User2Repository
     id:
         id:
             type: integer
@@ -19,7 +20,10 @@ Bundles\StoreBundle\Entity\User2:
             length: '40'
         password:
             type: string
-            length: '150'
+            length: '255'
+        salt:
+            type: string
+            length: 255
         email:
             type: string
             length: '100'
@@ -30,6 +34,38 @@ Bundles\StoreBundle\Entity\User2:
             type: string
             length: '255'
             nullable: true
+        referralCode:
+            type: string
+            length: '10'
+            nullable: true
+        city:
+            type: string
+            length: '50'
+            nullable: true
+        country:
+            type: string
+            length: '50'
+            nullable: true
+        descTech:
+            type: text
+            nullable: true
+    oneToMany:
+        photo:
+            targetEntity: Photo
+            mappedBy: user2
+            nullable: true
+        orders:
+            targetEntity: Orders
+            mappedBy: user2
+        stat:
+            targetEntity: Stat
+            mappedBy: user2
+        gallery:
+            targetEntity: Gallery
+            mappedBy: user2
+        watermark:
+            targetEntity: WaterMark
+            mappedBy: user2
 
 
     lifecycleCallbacks: {  }

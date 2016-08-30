@@ -1,89 +1,60 @@
 {% extends "AppFrontEndBundle::layout.html.twig" %}
 
     {% block login %}
-        Страница фотографа
-        <p>Главная <strong><a style="color:red" href="{{ path('app_front_end_wellcome') }}">main</a></strong></p>
-
-
+        <a class="btn btn-warning" href="{{ path('app_front_end_wellcome') }}">Главная<i class="glyphicon glyphicon-th-large"></i></a>
     {% endblock %}
 
 
 {% block content %}
 
-    <!--/panel-->
-    <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-8">
-                        <h2>Mike Anamendolla</h2>
-                        <p><strong>About: </strong> Web Designer / UI. </p>
-                        <p><strong>Hobbies: </strong> Read, out with friends, listen to music, draw and learn new things. </p>
-                        <p><strong>Skills: </strong>
-                            <span class="label label-info tags">html5</span>
-                            <span class="label label-info tags">css3</span>
-                            <span class="label label-info tags">jquery</span>
-                            <span class="label label-info tags">bootstrap3</span>
-                        </p>
-                    </div><!--/col-->
-                    <div class="col-xs-12 col-sm-4 text-center">
-                        <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="" class="center-block img-circle img-responsive">
-                        <ul class="list-inline ratings text-center" title="Ratings">
-                            <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
-                            <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
-                            <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
-                            <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
-                            <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
-                        </ul>
-                    </div><!--/col-->
+    {%  set runtimeConfig = {"watermark": {"position": user.config, image: "Resources/data/draft.png",  size: "0.5"} } %}
 
-                    <div class="col-xs-12 col-sm-4">
-                        <h2><strong> 20,7K </strong></h2>
-                        <p><small>Followers</small></p>
-                        <button class="btn btn-success btn-block"><span class="fa fa-plus-circle"></span> Follow </button>
-                    </div><!--/col-->
-                    <div class="col-xs-12 col-sm-4">
-                        <h2><strong>245</strong></h2>
-                        <p><small>Following</small></p>
-                        <button class="btn btn-info btn-block"><span class="fa fa-user"></span> View Profile </button>
-                    </div><!--/col-->
-                    <div class="col-xs-12 col-sm-4">
-                        <h2><strong>43</strong></h2>
-                        <p><small>Snippets</small></p>
-                        <button type="button" class="btn btn-primary btn-block"><span class="fa fa-gear"></span> Options </button>
-                    </div><!--/col-->
-                </div><!--/row-->
-            </div><!--/panel-body-->
-        </div><!--/panel-->
-    </div>
+    {% include "AppFrontEndBundle:Elements:userblock.html.twig" %}
 
     {% if photo is defined  %}
         <div class=" col-md-8">
             <div class="panel panel-default">
                 <div class="panel-body">
 
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Дата</th>
-                            <th>Заказать Изображение</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for ph in photo %}
+                    <form action="{{ path('app_front_end_orderimg') }}" method="post">
+                         <table class="table">
+                            <thead>
                             <tr>
-                                <td>{{ ph.id }}</td>
-                                <td>{{ ph.date | date }}</td>
-                                <td><a href="{{ path('app_front_end_order', {'id' : ph.id}) }}"><img  height="42" width="42" src="{{ asset(ph.adress) }}"></a></td>
+                                <th>ID</th>
+                                <th>Дата</th>
+                                <th>Заказать Изображение</th>
+                                <th>Выбрать</th>
                             </tr>
+                            </thead>
+                            <tbody>
+                            {% for photo in photo %}
+                              {% if photo.access=="public" %}
+                                  <tr>
+                                     <td>{{photo.id }}</td>
+                                     <td>{{ photo.date  |date }}</td>
+                                     <td><img  height="80" width="80" src="{{ asset(photo.adress)| imagine_filter('watermark_photo',runtimeConfig ) }}"></td>
+                                     <td><input  name="images[]" type="checkbox" value="{{ photo.id }}"></td>
+                                  </tr>
+                              {% endif %}
+                            {% endfor %}
+                            </tbody>
 
-                        {% endfor %}
-
-                    </table>
+                        </table>
+                        <input type="hidden" name="userId" value="{{user.getId}}">
+                        <div align="center" ><button type="submit" name="button" value="approved" class="btn btn-lg btn-success">Заказать</button></div>
+                    </form>
                 </div>
             </div>
         </div>
+
+
     {% endif %}
 
+{% endblock %}
+
+ {% block jscript %}
+
+    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.2/js/bootstrap.min.js"></script>
+    <script src="{{ asset('bundles/appfrontend/js/modal.js') }}"></script>
 {% endblock %}

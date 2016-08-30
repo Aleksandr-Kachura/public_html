@@ -8,7 +8,16 @@
         <meta name="description" content="">
         <meta name="author" content="">
         {% block title %} <title>Photo Gallery</title> {% endblock %}
-        {% block link %}  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">   {% endblock %}
+        {% block link %}
+            <link rel="stylesheet" href="{{ asset('bundles/appfrontend/css/mvp_styles.css') }}"/>
+            <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+            <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+            <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+         {% endblock %}
     {% endblock %}
 
 </head>
@@ -71,19 +80,17 @@
 
 
     {% block content_header %}
-        <div class="row" style="text-align:center; border-bottom:1px dashed #ccc;  padding:0 0 20px 0; margin-bottom:40px;">
-            <h3 style="font-family:arial; font-weight:bold; font-size:30px;">
-                  <a style="text-decoration:none; color:#666;" href="#">We opening soon ! <span style="color:red;">Demo</span></a>
-            </h3>
-
-
-        {% block login %}
-        {% endblock %}
+        <div class="heading">
+            <h1><a href="#">MVP</a></h1>
         </div>
        <!-- <a href=" {{ path('fos_user_security_login') }}"></a>-->
     {% endblock %}
-
-    {% block content %}{% endblock %}
+    <div class="mvp_nav btn-group btn-group-justified">
+        {% block login %}
+        {% endblock %}
+    </div>
+    {% block content %}
+    {% endblock %}
     {% block gallery %}{% endblock %}
     {% block modal %}
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -102,12 +109,8 @@
 </div>
 
 </body>
-<script>
-    var pathajax="{{ path('app_front_end_ajax') }}";
-</script>
 {% block jscript %}
-    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.2/js/bootstrap.min.js"></script>
+
     <script src="{{ asset('bundles/appfrontend/js/photo-gallery.js') }}"></script>
 {% endblock %}
 </html>

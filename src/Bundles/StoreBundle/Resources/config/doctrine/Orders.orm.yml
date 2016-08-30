@@ -10,12 +10,21 @@ Bundles\StoreBundle\Entity\Orders:
     fields:
         date:
             type: datetime
+        status:
+            type: string
+            length: '50'
     manyToOne:
         users:
             targetEntity: Users
             inversedBy: orders
             joinColumn:
               name: userId
+              referencedColumnName: id
+        user2:
+            targetEntity: User2
+            inversedBy: orders
+            joinColumn:
+              name: user2Id
               referencedColumnName: id
         photo:
             targetEntity: Photo

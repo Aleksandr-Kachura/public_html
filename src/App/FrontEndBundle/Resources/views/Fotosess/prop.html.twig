@@ -1,0 +1,64 @@
+{% extends "AppFrontEndBundle::layout.html.twig" %}
+
+    {% block login %}
+        <a class="btn btn-warning" href="{{ path('app_front_end_wellcome') }}">Главная<i class="glyphicon glyphicon-th-large"></i></a>
+        <a class="btn btn-success" href="{{ path('app_front_end_multi') }}">Мой профиль<i class="glyphicon glyphicon-user"></i></a>
+        <a class="btn btn-danger" href="{{ path('bundles_login_security_logout') }}">Выход<i class="glyphicon glyphicon-log-out"></i></a>
+
+    {% endblock %}
+
+
+{% block content %}
+
+
+    {% if galleries is defined  %}
+        {% for  gallery in galleries %}
+
+            {%  set runtimeConfig = {"watermark": {"position": gallery.config, image: "Resources/data/draft.png",  size: "0.5"} } %}
+            <div class=" col-md-8">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+
+                        <form action="{{ path('app_front_end_orderfs') }}" method="post">
+                            <div align="right"> <button type="submit" name="button" value="delete" class="btn btn-xs btn-danger">Удалить</button> </div>
+                            <input type="hidden" name="galId" value="{{gallery.id}}">
+                            <h3>{{ gallery.name }} {{ gallery.phId }} </h3>
+                            {% set photos = gallery.getPhoto %}
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Дата</th>
+                                        <th>Заказать Изображение</th>
+                                        <th>Выбрать</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for photo in photos %}
+                                         <tr>
+                                            <td>{{photo.id }}</td>
+                                            <td>{{ photo.date  |date   }}</td>
+                                            <td><img  height="80" width="80" src="{{ asset(photo.adress)| imagine_filter('watermark_photo',runtimeConfig ) }}"></td>
+                                            <td><input  name="images[]" type="checkbox" value="{{ photo.id }}"></td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+
+                            </table>
+                         <div align="center" ><button type="submit" name="button" value="approved" class="btn btn-lg btn-success">Заказать</button></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}
+
+
+{% block jscript %}
+
+    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.2/js/bootstrap.min.js"></script>
+    <script src="{{ asset('bundles/appfrontend/js/modal.js') }}"></script>
+{% endblock %}

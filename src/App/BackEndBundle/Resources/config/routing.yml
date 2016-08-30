@@ -1,3 +1,6 @@
 app_back_end_homepage:
     path:     /hello/{name}
     defaults: { _controller: AppBackEndBundle:Default:index }
+app_back_end_api:
+   path:     /api
+   defaults: { _controller: AppBackEndBundle:Api:test }

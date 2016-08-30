@@ -1,8 +1,7 @@
 {% extends "AppFrontEndBundle::layout.html.twig" %}
 
     {% block login %}
-       Каталог фотографов
-        <p>Главная <strong><a style="color:red" href="{{ path('app_front_end_wellcome') }}">main</a></strong></p>
+        <a class="btn btn-warning" href="{{ path('app_front_end_wellcome') }}">Главная<i class="glyphicon glyphicon-th-large"></i></a>
     {% endblock %}
 
 {% block content %}
@@ -13,22 +12,60 @@
 
                     <table class="table">
                         <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Логин</th>
-                            <th>Подробнее</th>
-                        </tr>
+                            <tr>
+                                <th>Photo</th>
+                                <th>Firstname</th>
+                                <th>Lastname</th>
+                                <th>City/Country</th>
+                                <th>Подробней</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        {% for user in users %}
-                            <tr>
-                                <td>{{ user.id }}</td>
-                                <td>{{ user.username }}</td>
-                                <td><a href="{{ path('app_front_end_photograph', {'id' :user.id}) }}">Страница</a></td>
-                            </tr>
+                            {% if curUser is defined  %}
+                                {% for user in users %}
+                                      {% if user.id != curUser.getId %}
+                                            <tr>
+                                                {% if user.getImg is not empty  %}
+                                                    <td><img height="80" width="80" src="{{ user.img }}" class=" img-circle img-responsive"></td>
+                                                {% else %}
+                                                   <td><img height="80" width="80" src="http://api.randomuser.me/portraits/men/49.jpg" alt="" class=" img-circle img-responsive"></td>
+                                                {% endif %}
+                                                <td>{{user.getFirstname }}</td>
+                                                <td>{{ user.getLastname }}</td>
+                                                {% if (user.city is defined) and (user.city|length > 3) %}
+                                                    <td>{{user.city}}/{{ user.country}}</td>
+                                                {% else %}
+                                                    <td>undefine</td>
+                                                {% endif %}
+                                                <td><a href="{{ path('app_front_end_photograph', {'id' :user.id}) }}">Страница</a></td>
+                                            </tr>
+                                      {% endif %}
+                                  {% endfor %}
+                            {% else %}
+                                   <td> Для просмотра пройдите регистрацию</td>
+                            {% endif %}
 
-                        {% endfor %}
+        {#{% if curUser is defined  %}
+                            {% if user.id != curUser.getId %}
+                                {% for user in users %}
 
+
+                                            <tr>
+                                                <td><a href="{{ path('app_front_end_photograph', {'id' :user.id}) }}">Страница</a></td>
+                                            </tr>
+                                       {% else %}
+
+                                {% endfor %}
+                            {% endif %}
+                        {% else %}
+                            {% for user in users %}
+                                    <tr>
+
+                                        <td><a href="{{ path('app_front_end_photograph', {'id' :user.id}) }}">Страница</a></td>
+                                    </tr>
+                            {% endfor %}
+        #}
+                       </tbody>
                     </table>
                 </div>
             </div>

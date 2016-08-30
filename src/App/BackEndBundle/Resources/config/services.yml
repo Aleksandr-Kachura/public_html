@@ -8,7 +8,7 @@ services:
              - { name: sonata.admin, manager_type: orm, group: "Content", label: "User" }
          arguments:
              - ~
-             - Bundles\StoreBundle\Entity\Users
+             - Bundles\StoreBundle\Entity\User2
              - ~
          calls:
              - [ setTranslationDomain, [BundlesStoreBundle]]
